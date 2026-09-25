@@ -211,7 +211,8 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
         '<span class="time">' + esc(g.tipoff) + '</span>' +
         '<span class="teams">' + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
         right +
-        (ok ? '' : '<span class="msg">' + esc(g.message || '') + '</span>');
+        (ok ? (g.truncatedAt ? '<span class="msg">記録の不整合のため ' + esc(g.truncatedAt) + ' までを表示中</span>' : '')
+            : '<span class="msg">' + esc(g.message || '') + '</span>');
       list.appendChild(el);
     });
   }

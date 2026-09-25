@@ -59,6 +59,15 @@ class StoreTest(unittest.TestCase):
         self.assertTrue(self.store.game_path('900002').exists())
         self.assertEqual(self.store.dates_to_retry(), ['20260925'])
 
+    def test_live_inconsistency_keeps_the_page_up_to_the_break(self):
+        playing = ScheduledGame('900003', '19:05', Team(HOME, '1'), Team(AWAY, '2'), 40, 38, '3Q 残り5:00')
+        report = Report()
+        entry = process_game(self.store, FakeFetcher(BAD), playing, '20260925', report)
+        self.assertEqual((entry['status'], entry['truncatedAt']), ('live', 'Q1 残り7:00'))
+        self.assertEqual((entry['home']['score'], entry['away']['score']), (40, 38))
+        self.assertTrue(self.store.game_path('900003').exists())
+        self.assertEqual(report.problems, [])
+
     def test_unreadable_play_by_play_is_a_structure_problem(self):
         report = Report()
         entry = process_game(self.store, FakeFetcher('<html>maintenance</html>'), FINISHED, '20260924', report)

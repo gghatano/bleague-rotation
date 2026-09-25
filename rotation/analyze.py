@@ -10,7 +10,9 @@ SHOT_POINTS = {'2Pシュート': 2, '3Pシュート': 3, 'フリースロー': 1
 
 
 class DataError(Exception):
-    pass
+    def __init__(self, message: str, sec: int | None = None):
+        super().__init__(message)
+        self.sec = sec
 
 
 class UnsupportedGame(Exception):
@@ -57,7 +59,7 @@ def reconstruct(events: list[Event], teams: list[str], game_end: int):
         for team, court in on_court.items():
             if len(court) != 5:
                 names = '、'.join(f'#{j} {n}' for j, n in court)
-                raise DataError(f'{team}: {clock_label(sec)} 時点でコート上が{len(court)}人（{names}）')
+                raise DataError(f'{team}: {clock_label(sec)} 時点でコート上が{len(court)}人（{names}）', sec)
     for team, court in on_court.items():
         for key, start in court.items():
             intervals[team].append((key, start, game_end))
@@ -121,7 +123,17 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
     unknown = {e.team for e in events} - set(teams)
     if unknown:
         raise DataError(f'日程にないチーム名がテキストに出現: {sorted(unknown)}')
-    intervals, anomalies = reconstruct(events, teams, game_end)
+    truncated = None
+    try:
+        intervals, anomalies = reconstruct(events, teams, game_end)
+    except DataError as e:
+        # A live feed is often corrected within minutes; until then show the part before the break.
+        if final or not e.sec:
+            raise
+        truncated = {'sec': e.sec, 'reason': str(e)}
+        events = [ev for ev in events if ev.sec < e.sec]
+        game_end = e.sec
+        intervals, anomalies = reconstruct(events, teams, game_end)
     result = []
     for team, opp in ((home, away), (away, home)):
         stints = _stints(team, opp, events, intervals[team], game_end)
@@ -135,4 +147,4 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
     side = {home: 0, away: 1}
     scoring = [[e.sec, side[e.team], p] for e in events if (p := points_of(e.desc))]
     return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': regular, 'final': final, 'elapsedSec': game_end,
-            'teams': result, 'scoring': scoring, 'anomalies': anomalies}
+            'truncated': truncated, 'teams': result, 'scoring': scoring, 'anomalies': anomalies}

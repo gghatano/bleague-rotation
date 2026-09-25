@@ -168,7 +168,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .flow-hit{cursor:pointer;}
 .flow-hit:hover{fill:var(--line);fill-opacity:.45;}
 .now-label{font-size:10px;font-weight:500;fill:var(--live);}
-.meta .live{font-weight:500;color:var(--live);}
+.meta .live,.note .live{font-weight:500;color:var(--live);}
 .margin-seg{cursor:pointer;}
 .margin-seg:hover{filter:brightness(1.1);}
 .margin-num{font-size:9.5px;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none;}
@@ -501,7 +501,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     now.setAttribute('stroke', 'var(--live)'); now.setAttribute('stroke-width', 1.5);
     now.setAttribute('stroke-dasharray', '4,3');
     svg.appendChild(now);
-    svg.appendChild(text('現在', nx, TOP_PAD - 15, 'now-label', 'middle'));
+    svg.appendChild(text(DATA.truncated ? 'ここまで表示' : '現在', nx, TOP_PAD - 15, 'now-label', 'middle'));
   }
 
   var totalH = chartBottom + BOTTOM_PAD;

@@ -68,16 +68,20 @@ def render_game(game: dict) -> str:
         'scoring': game.get('scoring', []),
         'final': game.get('final', True),
         'elapsedSec': game.get('elapsedSec', game['periodLength'] * game['numPeriods']),
+        'truncated': bool(game.get('truncated')),
     }
     live = not chart['final']
     note = f'ソースの重複した交代記録{len(game["anomalies"])}件は無視して集計しています。' if game['anomalies'] else ''
     if live:
         note += '試合中のデータです。試合終了後、翌朝の更新で確定版に置き換わります。'
+    if game.get('truncated'):
+        note += (f'<b class="live">{html.escape(game["truncatedAt"])} 以降は、出典の交代記録に不整合があるため表示を止めています'
+                 f'（{html.escape(game["truncated"]["reason"])}）。出典で修正されれば、次の更新で表示が戻ります。</b>')
     values = {
         'TITLE': f'{t1}-{t2} ローテーション',
         'DATE': game['date'],
         'T1': t1, 'T2': t2,
-        'S1': str(home['score']), 'S2': str(away['score']),
+        'S1': str(game['home']['score']), 'S2': str(game['away']['score']),
         'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）'
                 + (f'・<b class="live">試合中 {html.escape(game.get("clock", ""))} 時点</b>' if live else ''),
         'NOTE': note,

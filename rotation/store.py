@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .analyze import DataError, UnsupportedGame, analyze
+from .analyze import DataError, UnsupportedGame, analyze, clock_label
 from .fetch import Fetcher
 from .parse import ScheduledGame, StructureError, parse_play_by_play, parse_schedule
 
@@ -94,8 +94,11 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
         if final and computed != [game.home_score, game.away_score]:
             raise DataError(f'再計算した得点 {computed[0]}-{computed[1]} が公式スコア {game.home_score}-{game.away_score} と一致しない')
         if not final:
-            entry['home']['score'], entry['away']['score'] = computed
             entry['clock'] = game.status
+            if result['truncated']:
+                entry['truncatedAt'] = clock_label(result['truncated']['sec'])
+            else:
+                entry['home']['score'], entry['away']['score'] = computed
     except UnsupportedGame as e:
         entry.update(status='unsupported', message=str(e))
         path.unlink(missing_ok=True)

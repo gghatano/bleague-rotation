@@ -104,6 +104,19 @@ class AnalyzeTest(unittest.TestCase):
         with self.assertRaises(UnsupportedGame):
             analyze(events, periods, HOME, AWAY)
 
+    def test_live_game_is_cut_just_before_an_inconsistency(self):
+        broken = [li('残り7分00秒', HOME, '#9 P9 プレイヤーアウト'), li('残り7分00秒', HOME, '#6 P6 プレイヤーイン')]
+        events, periods = parse_play_by_play(page(starters(HOME, H5) + starters(AWAY, A5) + BASELINE_SCORING, broken), min_events=0)
+        result = analyze(events, periods, HOME, AWAY, final=False)
+        self.assertEqual((result['elapsedSec'], result['truncated']['sec']), (780, 780))
+        self.assertIn('Q2 残り7:00 時点でコート上が6人', result['truncated']['reason'])
+        self.assertEqual(sum(p['totalSec'] for p in team(result, HOME)['players']), 5 * 780)
+
+    def test_finished_game_with_an_inconsistency_is_rejected(self):
+        broken = [li('残り7分00秒', HOME, '#9 P9 プレイヤーアウト'), li('残り7分00秒', HOME, '#6 P6 プレイヤーイン')]
+        with self.assertRaises(DataError):
+            run(game(q2=broken))
+
     def test_overtime_is_unsupported(self):
         src = game() + '<span class="ba-accordion__title">延長</span><ul></ul>'
         with self.assertRaises(UnsupportedGame):
