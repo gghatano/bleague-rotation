@@ -1,0 +1,226 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B.LEAGUE ローテーション</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#faf7f1;
+  --surface:#ffffff;
+  --surface-sunken:#f2ede2;
+  --ink:#241f17;
+  --ink-muted:#6b6255;
+  --ink-faint:#948a78;
+  --line:#e6dfce;
+  --line-strong:#d3c9ae;
+  --accent:#3d6fb4;
+  --accent-bg:#e4ecf7;
+  --warn:#c15a3f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17140f;
+    --surface:#201b13;
+    --surface-sunken:#291f16;
+    --ink:#f2ede1;
+    --ink-muted:#b3a891;
+    --ink-faint:#8a806c;
+    --line:#332c20;
+    --line-strong:#463c2b;
+    --accent:#7ba3e2;
+    --accent-bg:#1f2b3d;
+    --warn:#d98567;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f;
+  --surface:#201b13;
+  --surface-sunken:#291f16;
+  --ink:#f2ede1;
+  --ink-muted:#b3a891;
+  --ink-faint:#8a806c;
+  --line:#332c20;
+  --line-strong:#463c2b;
+  --accent:#7ba3e2;
+  --accent-bg:#1f2b3d;
+  --warn:#d98567;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
+.page{max-width:640px;margin:0 auto;padding:1.75rem 1.25rem 2.5rem;}
+h1{font-family:"Oswald",sans-serif;font-weight:500;font-size:24px;letter-spacing:.01em;margin:0 0 .25rem;}
+.lead{font-size:13px;color:var(--ink-muted);margin:0 0 1.5rem;line-height:1.6;}
+.cal{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem 1rem;}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.cal-title{font-family:"Oswald",sans-serif;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums;}
+.cal-nav{display:flex;gap:6px;}
+button{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;}
+button:disabled{opacity:.35;cursor:default;}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.cal-nav button{width:32px;height:28px;font-size:14px;}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;}
+.dow{font-size:11px;color:var(--ink-faint);text-align:center;padding:2px 0 4px;}
+.dow.sun{color:var(--warn);}
+.day{height:44px;border-color:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-variant-numeric:tabular-nums;font-size:13px;}
+.day.empty{visibility:hidden;}
+.day .dots{display:flex;gap:2px;height:5px;}
+.day .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.day .dot.pending{background:var(--line-strong);}
+.day.has{border-color:var(--line);}
+.day.has:hover{background:var(--surface-sunken);}
+.day.sel{background:var(--accent-bg);border-color:var(--accent);}
+.day.plain{color:var(--ink-faint);cursor:default;}
+h2{font-family:"Oswald",sans-serif;font-weight:500;font-size:15px;letter-spacing:.02em;margin:1.6rem 0 .7rem;}
+.games{display:flex;flex-direction:column;gap:8px;}
+.game{display:grid;grid-template-columns:3.2rem minmax(0,1fr) auto;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem 1rem;color:inherit;text-decoration:none;}
+a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
+.game .time{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+.game .teams{font-size:14px;}
+.game .score{font-variant-numeric:tabular-nums;font-weight:500;padding:0 .35em;}
+.game .go{font-size:12px;color:var(--accent);white-space:nowrap;}
+.game .issue{font-size:11.5px;color:var(--warn);white-space:nowrap;}
+.game .msg{grid-column:2 / -1;font-size:11.5px;color:var(--ink-faint);}
+.empty-note{font-size:13px;color:var(--ink-faint);}
+.foot{margin-top:2rem;font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
+</style>
+
+<div class="page">
+  <h1>B.LEAGUE ローテーション</h1>
+  <p class="lead">B.PREMIERの公式テキスト速報から、選手の出場区間と5人ごとの得失点差を復元しています。日付を選ぶと、その日の試合が表示されます。</p>
+
+  <div class="cal">
+    <div class="cal-head">
+      <div class="cal-title" id="cal-title"></div>
+      <div class="cal-nav">
+        <button type="button" id="prev" aria-label="前の月">‹</button>
+        <button type="button" id="next" aria-label="次の月">›</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <h2 id="list-title"></h2>
+  <div class="games" id="games"></div>
+
+  <p class="foot">毎朝6時ごろ、前日の試合を取得して更新します。データの不整合が見つかった試合は表示を保留し、翌日以降に再取得します。</p>
+</div>
+
+<script type="application/json" id="index-data">{{INDEX}}</script>
+<script>
+(function(){
+  var INDEX = JSON.parse(document.getElementById('index-data').textContent);
+  var byDate = {};
+  Object.keys(INDEX.games).forEach(function(id){
+    var g = INDEX.games[id];
+    (byDate[g.date] = byDate[g.date] || []).push(g);
+  });
+  Object.keys(byDate).forEach(function(d){
+    byDate[d].sort(function(a, b){ return a.tipoff < b.tipoff ? -1 : a.tipoff > b.tipoff ? 1 : 0; });
+  });
+  var dates = Object.keys(byDate).sort();
+  var DOW = ['日','月','火','水','木','金','土'];
+
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function iso(y, m, d){ return y + '-' + pad(m) + '-' + pad(d); }
+  function monthKey(date){ return date.slice(0, 7); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  var selected = /^#\d{4}-\d{2}-\d{2}$/.test(location.hash) ? location.hash.slice(1) : dates[dates.length - 1];
+  var view = selected ? monthKey(selected) : new Date().toISOString().slice(0, 7);
+  var months = dates.map(monthKey);
+
+  function renderCalendar(){
+    var y = +view.slice(0, 4), m = +view.slice(5, 7);
+    document.getElementById('cal-title').textContent = y + '年' + m + '月';
+    var grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    DOW.forEach(function(w, i){
+      var el = document.createElement('div');
+      el.className = 'dow' + (i === 0 ? ' sun' : '');
+      el.textContent = w;
+      grid.appendChild(el);
+    });
+    var first = new Date(y, m - 1, 1).getDay();
+    var days = new Date(y, m, 0).getDate();
+    for (var i = 0; i < first; i++){
+      var pad0 = document.createElement('div');
+      pad0.className = 'day empty';
+      grid.appendChild(pad0);
+    }
+    for (var d = 1; d <= days; d++){
+      var key = iso(y, m, d);
+      var games = byDate[key] || [];
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'day' + (games.length ? ' has' : ' plain') + (key === selected ? ' sel' : '');
+      btn.disabled = !games.length;
+      btn.setAttribute('aria-label', m + '月' + d + '日' + (games.length ? ' ' + games.length + '試合' : ''));
+      var num = document.createElement('span');
+      num.textContent = d;
+      btn.appendChild(num);
+      var dots = document.createElement('span');
+      dots.className = 'dots';
+      games.forEach(function(g){
+        var dot = document.createElement('i');
+        dot.className = 'dot' + (g.status === 'ok' ? '' : ' pending');
+        dots.appendChild(dot);
+      });
+      btn.appendChild(dots);
+      if (games.length){
+        btn.addEventListener('click', (function(k){ return function(){ select(k); }; })(key));
+      }
+      grid.appendChild(btn);
+    }
+    document.getElementById('prev').disabled = !months.some(function(k){ return k < view; });
+    document.getElementById('next').disabled = !months.some(function(k){ return k > view; });
+  }
+
+  function renderList(){
+    var title = document.getElementById('list-title');
+    var list = document.getElementById('games');
+    list.innerHTML = '';
+    if (!selected || !byDate[selected]){
+      title.textContent = '試合';
+      list.innerHTML = '<p class="empty-note">まだ試合データがありません。</p>';
+      return;
+    }
+    var p = selected.split('-');
+    title.textContent = (+p[1]) + '月' + (+p[2]) + '日（' + DOW[new Date(+p[0], +p[1] - 1, +p[2]).getDay()] + '）の試合';
+    byDate[selected].forEach(function(g){
+      var ok = g.status === 'ok';
+      var el = document.createElement(ok ? 'a' : 'div');
+      el.className = 'game';
+      if (ok) el.href = 'games/' + encodeURIComponent(g.gameId) + '.html';
+      var right = ok ? '<span class="go">ローテーション →</span>'
+                     : '<span class="issue">' + (g.status === 'unsupported' ? '未対応' : 'データ確認中') + '</span>';
+      el.innerHTML =
+        '<span class="time">' + esc(g.tipoff) + '</span>' +
+        '<span class="teams">' + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
+        right +
+        (ok ? '' : '<span class="msg">' + esc(g.message || '') + '</span>');
+      list.appendChild(el);
+    });
+  }
+
+  function select(key){
+    selected = key;
+    view = monthKey(key);
+    history.replaceState(null, '', '#' + key);
+    renderCalendar();
+    renderList();
+  }
+
+  function shift(delta){
+    var candidates = months.filter(function(k){ return delta < 0 ? k < view : k > view; }).sort();
+    if (!candidates.length) return;
+    view = delta < 0 ? candidates[candidates.length - 1] : candidates[0];
+    renderCalendar();
+  }
+
+  document.getElementById('prev').addEventListener('click', function(){ shift(-1); });
+  document.getElementById('next').addEventListener('click', function(){ shift(1); });
+  renderCalendar();
+  renderList();
+})();
+</script>

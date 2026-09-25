@@ -1,0 +1,69 @@
+name: daily
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 06:00 JST
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'YYYYMMDD（空なら前日JST）'
+        required: false
+  push:
+    branches: [main]
+    paths: ['rotation/**', 'templates/**', 'data/**']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test
+        run: python -m unittest discover -s tests -t .
+      - name: Fetch and analyze games
+        if: github.event_name != 'push'
+        env:
+          DATE: ${{ inputs.date }}
+        run: |
+          if [ -n "$DATE" ]; then
+            python -m rotation update --date "$DATE"
+          else
+            python -m rotation update
+          fi
+      - name: Commit data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update game data'
+            git push
+          fi
+      - name: Build site
+        run: python -m rotation build --out _site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

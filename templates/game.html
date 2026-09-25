@@ -1,0 +1,431 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#faf7f1;
+  --surface:#ffffff;
+  --surface-sunken:#f2ede2;
+  --ink:#241f17;
+  --ink-muted:#6b6255;
+  --ink-faint:#948a78;
+  --line:#e6dfce;
+  --line-strong:#d3c9ae;
+  --t1:#3d6fb4;
+  --t1-ink:#1c3e6e;
+  --t2:#c8722f;
+  --t2-ink:#7a4114;
+  --badge-bg:#eee3c9;
+  --badge-ink:#6b5326;
+  --margin-pos:#2f8f78;
+  --margin-pos-ink:#dff1eb;
+  --margin-neg:#c15a3f;
+  --margin-neg-ink:#f9e4dc;
+  --margin-zero:#c7bea9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17140f;
+    --surface:#201b13;
+    --surface-sunken:#291f16;
+    --ink:#f2ede1;
+    --ink-muted:#b3a891;
+    --ink-faint:#8a806c;
+    --line:#332c20;
+    --line-strong:#463c2b;
+    --t1:#7ba3e2;
+    --t1-ink:#cddcf3;
+    --t2:#e2934f;
+    --t2-ink:#f6dcbd;
+    --badge-bg:#3a2f1c;
+    --badge-ink:#e0c98c;
+    --margin-pos:#4fae95;
+    --margin-pos-ink:#0f2b23;
+    --margin-neg:#d98567;
+    --margin-neg-ink:#341a10;
+    --margin-zero:#544a38;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f;
+  --surface:#201b13;
+  --surface-sunken:#291f16;
+  --ink:#f2ede1;
+  --ink-muted:#b3a891;
+  --ink-faint:#8a806c;
+  --line:#332c20;
+  --line-strong:#463c2b;
+  --t1:#7ba3e2;
+  --t1-ink:#cddcf3;
+  --t2:#e2934f;
+  --t2-ink:#f6dcbd;
+  --badge-bg:#3a2f1c;
+  --badge-ink:#e0c98c;
+  --margin-pos:#4fae95;
+  --margin-pos-ink:#0f2b23;
+  --margin-neg:#d98567;
+  --margin-neg-ink:#341a10;
+  --margin-zero:#544a38;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);}
+.page{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+  padding:1.75rem 1.5rem 2.25rem;
+  max-width:760px;
+  margin:0 auto;
+}
+.back{font-size:12.5px;color:var(--ink-muted);text-decoration:none;display:inline-block;margin:0 0 .9rem;}
+.back:hover{color:var(--ink);}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:"Oswald",sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--badge-ink);
+  background:var(--badge-bg);
+  padding:4px 10px 3px;
+  border-radius:3px;
+  margin:0 0 .9rem;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:1rem;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:1rem;
+  margin-bottom:1.5rem;
+  flex-wrap:wrap;
+}
+.matchup{
+  font-family:"Oswald",sans-serif;
+  font-weight:500;
+  font-size:26px;
+  letter-spacing:.01em;
+  text-wrap:balance;
+  margin:0;
+  line-height:1.15;
+}
+.matchup .t1{color:var(--t1-ink);}
+.matchup .t2{color:var(--t2-ink);}
+.matchup .score{
+  font-variant-numeric:tabular-nums;
+  font-weight:600;
+}
+.matchup .vs{
+  color:var(--ink-faint);
+  font-weight:400;
+  font-size:.7em;
+  padding:0 .3em;
+}
+.meta{
+  font-size:13px;
+  color:var(--ink-muted);
+  margin:.35rem 0 0;
+}
+.legend{
+  display:flex;
+  gap:1.25rem;
+  font-size:12.5px;
+  color:var(--ink-muted);
+  white-space:nowrap;
+}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.swatch{width:10px;height:10px;border-radius:2px;display:inline-block;}
+.chart-wrap{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1.1rem 1rem .6rem;
+  overflow-x:auto;
+}
+svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
+.axis-label{font-family:"Oswald",sans-serif;letter-spacing:.04em;}
+.team-tag{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.03em;}
+.bar{cursor:pointer;}
+.bar:hover{filter:brightness(1.12);}
+.name-label{font-size:11px;fill:var(--ink);}
+.stat-label{font-size:9.5px;font-variant-numeric:tabular-nums;}
+.stat-time{fill:var(--ink-faint);}
+.stat-pm-pos{fill:var(--margin-pos);}
+.stat-pm-neg{fill:var(--margin-neg);}
+.stat-pm-zero{fill:var(--ink-faint);}
+.margin-seg{cursor:pointer;}
+.margin-seg:hover{filter:brightness(1.1);}
+.margin-num{font-size:9.5px;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none;}
+.margin-row-label{font-size:9.5px;fill:var(--ink-faint);}
+.tooltip{
+  position:fixed;
+  pointer-events:none;
+  background:var(--ink);
+  color:var(--bg);
+  font-size:12px;
+  line-height:1.5;
+  padding:6px 10px;
+  border-radius:6px;
+  transform:translate(-50%,calc(-100% - 10px));
+  white-space:nowrap;
+  z-index:10;
+  font-variant-numeric:tabular-nums;
+}
+.tooltip b{font-weight:500;}
+.note{
+  margin-top:1.1rem;
+  font-size:12.5px;
+  color:var(--ink-faint);
+  line-height:1.7;
+}
+.lineups{margin-top:1.75rem;}
+.lu-heading{
+  font-family:"Oswald",sans-serif;
+  font-size:16px;
+  font-weight:500;
+  letter-spacing:.01em;
+  margin:0 0 .2rem;
+}
+.lu-sub{font-size:12.5px;color:var(--ink-muted);margin:0 0 1rem;}
+.lu-team{
+  font-family:"Oswald",sans-serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.03em;
+  margin:1rem 0 .4rem;
+}
+.lu-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px;}
+.lu-table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap;}
+.lu-table th{
+  text-align:left;
+  font-weight:400;
+  color:var(--ink-faint);
+  font-size:11px;
+  padding:8px 10px;
+  border-bottom:1px solid var(--line);
+}
+.lu-table td{padding:7px 10px;border-bottom:1px solid var(--line);}
+.lu-table tbody tr:last-child td{border-bottom:none;}
+.lu-time,.lu-fa,.lu-cnt{font-variant-numeric:tabular-nums;color:var(--ink-muted);}
+.lu-margin{font-variant-numeric:tabular-nums;font-weight:500;}
+.lu-margin.lu-pos{color:var(--margin-pos);}
+.lu-margin.lu-neg{color:var(--margin-neg);}
+.lu-margin.lu-zero{color:var(--ink-faint);}
+.lu-names{color:var(--ink);white-space:normal;min-width:220px;}
+.lu-rest td{color:var(--ink-faint);font-style:italic;}
+</style>
+
+<div class="page">
+  <a class="back" href="../index.html#{{DATE}}">← 日程に戻る</a>
+  <header>
+    <div>
+      <p class="matchup">
+        <span class="t1">{{T1}}</span> <span class="score">{{S1}}</span>
+        <span class="vs">–</span>
+        <span class="score">{{S2}}</span> <span class="t2">{{T2}}</span>
+      </p>
+      <p class="meta">{{META}}</p>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--t1)"></i>{{T1}}</span>
+      <span><i class="swatch" style="background:var(--t2)"></i>{{T2}}</span>
+      <span><i class="swatch" style="background:var(--margin-pos)"></i>5人時+</span>
+      <span><i class="swatch" style="background:var(--margin-neg)"></i>5人時−</span>
+    </div>
+  </header>
+
+  <div class="chart-wrap">
+    <div id="chart"></div>
+  </div>
+
+  <p class="note">選手名の下の数字は個人の+/-（その選手が出場していた時間帯のチーム得点差の合計）と出場時間。「5人時±」の帯は、そのチームの5人が変わらない区間ごとの得点差（自チーム得点 − 相手得点）。帯・バーにカーソルを合わせると詳細を表示します。{{NOTE}}</p>
+
+  {{LINEUPS}}
+</div>
+
+<div id="tooltip" class="tooltip" hidden></div>
+
+<script type="application/json" id="chart-data">
+{{DATA}}
+</script>
+
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('chart-data').textContent);
+  var svgNS = 'http://www.w3.org/2000/svg';
+
+  function mmss(sec){
+    sec = Math.max(0, Math.round(sec));
+    var m = Math.floor(sec/60), s = sec%60;
+    return m + ':' + (s<10?'0':'') + s;
+  }
+  function clockLabel(globalSec){
+    var period = Math.min(DATA.numPeriods, Math.floor(globalSec / DATA.periodLength) + 1);
+    var inPeriod = globalSec - (period-1)*DATA.periodLength;
+    var remain = DATA.periodLength - inPeriod;
+    if(remain < 0) remain = 0;
+    return 'Q' + period + ' 残り' + mmss(remain);
+  }
+
+  var LABEL_W = 128, RIGHT_PAD = 6, ROW_H = 32, ROW_GAP = 4, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
+  var MARGIN_H = 15, MARGIN_GAP = 6;
+  var CHART_W = 560;
+  var gameLen = DATA.periodLength * DATA.numPeriods;
+  var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
+  function X(sec){ return x0 + (sec/gameLen)*xw; }
+  function marginColor(m){ return m > 0 ? 'var(--margin-pos)' : m < 0 ? 'var(--margin-neg)' : 'var(--margin-zero)'; }
+  function marginInk(m){ return m > 0 ? 'var(--margin-pos-ink)' : m < 0 ? 'var(--margin-neg-ink)' : 'var(--ink-faint)'; }
+  function fmtMargin(m){ return m > 0 ? '+' + m : String(m); }
+
+  var y = TOP_PAD;
+  var svg = document.createElementNS(svgNS, 'svg');
+  var defsFrag = [];
+
+  DATA.teams.forEach(function(team){
+    var g = document.createElementNS(svgNS,'text');
+    g.setAttribute('x', 0); g.setAttribute('y', y - 8);
+    g.setAttribute('class','team-tag'); g.setAttribute('font-size','12');
+    g.setAttribute('fill', team.color); g.setAttribute('font-weight','500');
+    g.textContent = team.name;
+    svg.appendChild(g);
+
+    var marginRowLabel = document.createElementNS(svgNS,'text');
+    marginRowLabel.setAttribute('x', 0); marginRowLabel.setAttribute('y', y + MARGIN_H/2 + 3.5);
+    marginRowLabel.setAttribute('class','margin-row-label');
+    marginRowLabel.textContent = '5人時±';
+    svg.appendChild(marginRowLabel);
+
+    (team.stints || []).forEach(function(st){
+      var bx = X(st.start), bw = Math.max(X(st.end) - X(st.start), 1);
+      var seg = document.createElementNS(svgNS,'rect');
+      seg.setAttribute('class','margin-seg');
+      seg.setAttribute('x', bx.toFixed(1)); seg.setAttribute('y', y);
+      seg.setAttribute('width', bw.toFixed(1)); seg.setAttribute('height', MARGIN_H);
+      seg.setAttribute('rx', 2);
+      seg.setAttribute('fill', marginColor(st.margin));
+      seg.addEventListener('mouseenter', function(ev){ showMarginTip(ev, team, st); });
+      seg.addEventListener('mousemove', moveTip);
+      seg.addEventListener('mouseleave', hideTip);
+      svg.appendChild(seg);
+      if(bw >= 18){
+        var numEl = document.createElementNS(svgNS,'text');
+        numEl.setAttribute('x', (bx+bw/2).toFixed(1)); numEl.setAttribute('y', y + MARGIN_H/2 + 3.5);
+        numEl.setAttribute('text-anchor','middle'); numEl.setAttribute('class','margin-num');
+        numEl.setAttribute('fill', marginInk(st.margin));
+        numEl.textContent = fmtMargin(st.margin);
+        svg.appendChild(numEl);
+      }
+    });
+    y += MARGIN_H + MARGIN_GAP;
+
+    team.players.forEach(function(p){
+      var rowTop = y;
+      var nameEl = document.createElementNS(svgNS,'text');
+      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 12);
+      nameEl.setAttribute('class','name-label');
+      nameEl.textContent = '#' + p.jersey + ' ' + p.name;
+      svg.appendChild(nameEl);
+
+      var statEl = document.createElementNS(svgNS,'text');
+      statEl.setAttribute('x', 0); statEl.setAttribute('y', rowTop + 24);
+      statEl.setAttribute('class','stat-label');
+      var pmSpan = document.createElementNS(svgNS,'tspan');
+      pmSpan.setAttribute('class', p.plusMinus > 0 ? 'stat-pm-pos' : p.plusMinus < 0 ? 'stat-pm-neg' : 'stat-pm-zero');
+      pmSpan.textContent = (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
+      statEl.appendChild(pmSpan);
+      var timeSpan = document.createElementNS(svgNS,'tspan');
+      timeSpan.setAttribute('class', 'stat-time');
+      timeSpan.textContent = '  ・  ' + mmss(p.totalSec);
+      statEl.appendChild(timeSpan);
+      svg.appendChild(statEl);
+
+      p.intervals.forEach(function(iv){
+        var s=iv[0], e=iv[1];
+        var bx = X(s), bw = Math.max(X(e)-X(s), 1.5);
+        var rect = document.createElementNS(svgNS,'rect');
+        rect.setAttribute('class','bar');
+        rect.setAttribute('x', bx.toFixed(1));
+        rect.setAttribute('y', rowTop + (ROW_H-18)/2);
+        rect.setAttribute('width', bw.toFixed(1));
+        rect.setAttribute('height', 18);
+        rect.setAttribute('rx', 2.5);
+        rect.setAttribute('fill', team.color);
+        rect.addEventListener('mouseenter', function(ev){ showTip(ev, p, s, e); });
+        rect.addEventListener('mousemove', function(ev){ moveTip(ev); });
+        rect.addEventListener('mouseleave', hideTip);
+        svg.appendChild(rect);
+      });
+      y += ROW_H + ROW_GAP;
+    });
+    y += TEAM_GAP;
+  });
+
+  var chartBottom = y - TEAM_GAP + 6;
+
+  for(var q=0; q<=DATA.numPeriods; q++){
+    var gx = X(q*DATA.periodLength);
+    var line = document.createElementNS(svgNS,'line');
+    line.setAttribute('x1', gx.toFixed(1)); line.setAttribute('x2', gx.toFixed(1));
+    line.setAttribute('y1', TOP_PAD - 12); line.setAttribute('y2', chartBottom);
+    line.setAttribute('stroke', 'var(--line-strong)'); line.setAttribute('stroke-width', 1);
+    svg.insertBefore(line, svg.firstChild);
+  }
+  for(var m=1; m<DATA.numPeriods*2; m++){
+    if(m % 2 === 0) continue;
+    var mx = X(m*DATA.periodLength/2);
+    var mline = document.createElementNS(svgNS,'line');
+    mline.setAttribute('x1', mx.toFixed(1)); mline.setAttribute('x2', mx.toFixed(1));
+    mline.setAttribute('y1', TOP_PAD - 12); mline.setAttribute('y2', chartBottom);
+    mline.setAttribute('stroke', 'var(--line)'); mline.setAttribute('stroke-width', 1);
+    mline.setAttribute('stroke-dasharray','2,3');
+    svg.insertBefore(mline, svg.firstChild);
+  }
+
+  for(var qi=0; qi<DATA.numPeriods; qi++){
+    var lx = (X(qi*DATA.periodLength) + X((qi+1)*DATA.periodLength))/2;
+    var qlabel = document.createElementNS(svgNS,'text');
+    qlabel.setAttribute('x', lx.toFixed(1)); qlabel.setAttribute('y', chartBottom + 15);
+    qlabel.setAttribute('text-anchor','middle'); qlabel.setAttribute('class','axis-label');
+    qlabel.setAttribute('font-size','10.5'); qlabel.setAttribute('fill','var(--ink-faint)');
+    qlabel.textContent = 'Q' + (qi+1);
+    svg.appendChild(qlabel);
+  }
+
+  var totalH = chartBottom + BOTTOM_PAD;
+  svg.setAttribute('viewBox', '0 0 ' + CHART_W + ' ' + totalH);
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('role','img');
+  var title = document.createElementNS(svgNS,'title');
+  title.textContent = DATA.teams[0].name + 'と' + DATA.teams[1].name + '、選手ごとの出場区間を示すローテーションチャート';
+  svg.insertBefore(title, svg.firstChild);
+
+  document.getElementById('chart').appendChild(svg);
+
+  var tip = document.getElementById('tooltip');
+  function showTip(ev, p, s, e){
+    tip.innerHTML = '<b>#' + p.jersey + ' ' + p.name + '</b><br>' +
+      clockLabel(s) + ' → ' + clockLabel(e) + '<br>出場 ' + mmss(e-s) +
+      '　通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
+    tip.hidden = false;
+    moveTip(ev);
+  }
+  function showMarginTip(ev, team, st){
+    var names = st.lineup.map(function(pl){ return '#' + pl.jersey + ' ' + pl.name; }).join('、');
+    tip.innerHTML = '<b>' + team.name + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
+      clockLabel(st.start) + ' → ' + clockLabel(st.end) + '<br>' + names;
+    tip.hidden = false;
+    moveTip(ev);
+  }
+  function moveTip(ev){
+    tip.style.left = ev.clientX + 'px';
+    tip.style.top = ev.clientY + 'px';
+  }
+  function hideTip(){ tip.hidden = true; }
+})();
+</script>
