@@ -302,7 +302,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     return 'Q' + period + ' 残り' + mmss(remain);
   }
 
-  var LABEL_W = 128, RIGHT_PAD = 6, ROW_H = 32, ROW_GAP = 4, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
+  var LABEL_W = 128, RIGHT_PAD = 6, ROW_H = 26, ROW_GAP = 2, BAR_H = 16, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
   var MARGIN_H = 15, MARGIN_GAP = 6;
   var CHART_W = 560;
   var gameLen = DATA.periodLength * DATA.numPeriods;
@@ -477,13 +477,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     team.players.forEach(function(p){
       var rowTop = y;
       var nameEl = document.createElementNS(svgNS,'text');
-      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 12);
+      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 10.5);
       nameEl.setAttribute('class','name-label');
       nameEl.textContent = '#' + p.jersey + ' ' + p.name;
       svg.appendChild(nameEl);
 
       var statEl = document.createElementNS(svgNS,'text');
-      statEl.setAttribute('x', 0); statEl.setAttribute('y', rowTop + 24);
+      statEl.setAttribute('x', 0); statEl.setAttribute('y', rowTop + 21.5);
       statEl.setAttribute('class','stat-label');
       var pmSpan = document.createElementNS(svgNS,'tspan');
       pmSpan.setAttribute('class', p.plusMinus > 0 ? 'stat-pm-pos' : p.plusMinus < 0 ? 'stat-pm-neg' : 'stat-pm-zero');
@@ -501,9 +501,9 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
         var rect = document.createElementNS(svgNS,'rect');
         rect.setAttribute('class','bar');
         rect.setAttribute('x', bx.toFixed(1));
-        rect.setAttribute('y', rowTop + (ROW_H-18)/2);
+        rect.setAttribute('y', rowTop + (ROW_H-BAR_H)/2);
         rect.setAttribute('width', bw.toFixed(1));
-        rect.setAttribute('height', 18);
+        rect.setAttribute('height', BAR_H);
         rect.setAttribute('rx', 2.5);
         rect.setAttribute('fill', team.color);
         rect.addEventListener('mouseenter', function(ev){ showTip(ev, p, s, e); });
