@@ -15,6 +15,10 @@ def _jst(dt: datetime) -> str:
     return dt.astimezone(JST).strftime('%Y/%m/%d %H:%M')
 
 
+def short_name(name: str) -> str:
+    return name.split('・')[0]
+
+
 def _json_for_script(obj) -> str:
     return json.dumps(obj, ensure_ascii=False).replace('</', '<\\/')
 
@@ -34,7 +38,7 @@ def _sign_class(n: int) -> str:
 def _lineup_table(lineups: list[dict]) -> str:
     rows = []
     for g in lineups[:LINEUP_ROWS]:
-        names = ' '.join(f"#{p['jersey']} {html.escape(p['name'])}" for p in g['lineup'])
+        names = ' '.join(f"#{p['jersey']} {html.escape(short_name(p['name']))}" for p in g['lineup'])
         rows.append(
             f'<tr><td class="lu-time">{_mmss(g["sec"])}</td>'
             f'<td class="lu-margin {_sign_class(g["margin"])}">{_signed(g["margin"])}</td>'

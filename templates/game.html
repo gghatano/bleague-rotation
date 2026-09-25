@@ -312,6 +312,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   function marginColor(m){ return m > 0 ? 'var(--margin-pos)' : m < 0 ? 'var(--margin-neg)' : 'var(--margin-zero)'; }
   function marginInk(m){ return m > 0 ? 'var(--margin-pos-ink)' : m < 0 ? 'var(--margin-neg-ink)' : 'var(--ink-faint)'; }
   function fmtMargin(m){ return m > 0 ? '+' + m : String(m); }
+  function shortName(n){ return String(n).split('・')[0]; }
   function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function text(str, x, yy, cls, anchor){
     var el = document.createElementNS(svgNS, 'text');
@@ -390,7 +391,14 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     above.appendChild(el('rect', {x: x0, y: top, width: xw, height: FLOW_H / 2}));
     below.appendChild(el('rect', {x: x0, y: mid, width: xw, height: FLOW_H / 2}));
     defs.appendChild(above); defs.appendChild(below);
+    var focusClip = el('clipPath', {id: 'flow-focus'});
+    var focusClipRect = el('rect', {x: 0, y: top - 4, width: 0, height: FLOW_H + 8});
+    focusClip.appendChild(focusClipRect);
+    defs.appendChild(focusClip);
     svg.appendChild(defs);
+    var focusBand = el('rect', {x: 0, y: top, width: 0, height: FLOW_H, fill: 'var(--ink)', 'fill-opacity': 0.07,
+      visibility: 'hidden', 'pointer-events': 'none'});
+    svg.appendChild(focusBand);
 
     var line = points.map(function(p, i){ return (i ? 'L' : 'M') + X(p.t).toFixed(1) + ',' + Y(p.margin).toFixed(1); }).join(' ');
     var area = line + ' L' + X(points[points.length - 1].t).toFixed(1) + ',' + mid + ' L' + X(0).toFixed(1) + ',' + mid + ' Z';
@@ -406,6 +414,21 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     svg.appendChild(el('line', {x1: x0, x2: x0 + xw, y1: mid, y2: mid, stroke: 'var(--line-strong)', 'stroke-width': 1}));
     svg.appendChild(el('path', {d: line, fill: 'none', stroke: 'var(--ink-muted)', 'stroke-width': 1.75,
       'stroke-linejoin': 'round', 'stroke-linecap': 'round'}));
+    var focusLine = el('path', {d: line, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 3, 'stroke-linejoin': 'round',
+      'stroke-linecap': 'round', 'clip-path': 'url(#flow-focus)', visibility: 'hidden', 'pointer-events': 'none'});
+    svg.appendChild(focusLine);
+    flowFocus = {
+      show: function(from, to){
+        var fx = X(from), fw = Math.max(X(to) - X(from), 1);
+        [focusBand, focusClipRect].forEach(function(r){ r.setAttribute('x', fx.toFixed(1)); r.setAttribute('width', fw.toFixed(1)); });
+        focusBand.setAttribute('visibility', 'visible');
+        focusLine.setAttribute('visibility', 'visible');
+      },
+      hide: function(){
+        focusBand.setAttribute('visibility', 'hidden');
+        focusLine.setAttribute('visibility', 'hidden');
+      }
+    };
 
     leadChanges(points).forEach(function(p){
       svg.appendChild(el('circle', {cx: X(p.t).toFixed(1), cy: mid, r: 3.5,
@@ -433,12 +456,35 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 
   var y = TOP_PAD;
   var fitLabels = [];
+  var flowFocus = null, rowBgs = {}, litRows = [];
+  function rowKey(ti, jersey, name){ return ti + ':' + jersey + ':' + name; }
+  function focusTime(from, to){ if (flowFocus) flowFocus.show(from, to); }
+  function lightRows(ti, lineup){
+    lineup.forEach(function(pl){
+      var bg = rowBgs[rowKey(ti, pl.jersey, pl.name)];
+      if (bg){ bg.setAttribute('fill-opacity', 0.16); litRows.push(bg); }
+    });
+  }
+  function clearFocus(){
+    if (flowFocus) flowFocus.hide();
+    litRows.forEach(function(bg){ bg.setAttribute('fill-opacity', 0); });
+    litRows = [];
+    hideTip();
+  }
+  function teamPoints(ti, from, to){
+    var pf = 0, pa = 0;
+    (DATA.scoring || []).forEach(function(e){
+      if (e[0] < from || e[0] >= to) return;
+      if (e[1] === ti) pf += e[2]; else pa += e[2];
+    });
+    return {pf: pf, pa: pa};
+  }
   var svg = document.createElementNS(svgNS, 'svg');
   if (DATA.scoring && DATA.scoring.length){
     y = drawFlow(y) + FLOW_GAP;
   }
 
-  DATA.teams.forEach(function(team){
+  DATA.teams.forEach(function(team, ti){
     var g = document.createElementNS(svgNS,'text');
     g.setAttribute('x', 0); g.setAttribute('y', y - 8);
     g.setAttribute('class','team-tag'); g.setAttribute('font-size','12');
@@ -460,9 +506,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       seg.setAttribute('width', bw.toFixed(1)); seg.setAttribute('height', MARGIN_H);
       seg.setAttribute('rx', 2);
       seg.setAttribute('fill', marginColor(st.margin));
-      seg.addEventListener('mouseenter', function(ev){ showMarginTip(ev, team, st); });
+      seg.addEventListener('mouseenter', function(ev){
+        showMarginTip(ev, team, st);
+        focusTime(st.start, st.end);
+        lightRows(ti, st.lineup);
+      });
       seg.addEventListener('mousemove', moveTip);
-      seg.addEventListener('mouseleave', hideTip);
+      seg.addEventListener('mouseleave', clearFocus);
       svg.appendChild(seg);
       if(bw >= 18){
         var numEl = document.createElementNS(svgNS,'text');
@@ -477,10 +527,14 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 
     team.players.forEach(function(p){
       var rowTop = y;
+      var rowBg = el('rect', {x: 0, y: rowTop - ROW_GAP / 2, width: CHART_W, height: ROW_H + ROW_GAP, rx: 2,
+        fill: team.color, 'fill-opacity': 0, 'pointer-events': 'none'});
+      svg.appendChild(rowBg);
+      rowBgs[rowKey(ti, p.jersey, p.name)] = rowBg;
       var nameEl = document.createElementNS(svgNS,'text');
       nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 10);
       nameEl.setAttribute('class','name-label');
-      nameEl.textContent = '#' + p.jersey + ' ' + p.name;
+      nameEl.textContent = '#' + p.jersey + ' ' + shortName(p.name);
       svg.appendChild(nameEl);
 
       var statEl = document.createElementNS(svgNS,'text');
@@ -508,9 +562,12 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
         rect.setAttribute('height', BAR_H);
         rect.setAttribute('rx', 2.5);
         rect.setAttribute('fill', team.color);
-        rect.addEventListener('mouseenter', function(ev){ showTip(ev, p, s, e); });
+        rect.addEventListener('mouseenter', function(ev){
+          showTip(ev, p, s, e, teamPoints(ti, s, e));
+          focusTime(s, e);
+        });
         rect.addEventListener('mousemove', function(ev){ moveTip(ev); });
-        rect.addEventListener('mouseleave', hideTip);
+        rect.addEventListener('mouseleave', clearFocus);
         svg.appendChild(rect);
       });
       y += ROW_H + ROW_GAP;
@@ -609,7 +666,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     rows.forEach(function(r){
       html += '<tr><td class="lu-time">' + esc(clockLabel(r.t)) + '</td>' +
         '<td><span class="crunch-team t' + (r.side + 1) + '">' + esc(names[r.side]) + '</span> ' +
-          (r.name ? '#' + esc(r.jersey) + ' ' + esc(r.name) : '') + '</td>' +
+          (r.name ? '#' + esc(r.jersey) + ' ' + esc(shortName(r.name)) : '') + '</td>' +
         '<td class="lu-fa">' + esc(r.kind) + ' +' + r.pts + '</td>' +
         '<td class="lu-fa">' + esc(names[0]) + ' ' + r.home + ' - ' + r.away + ' ' + esc(names[1]) + '</td>' +
         '<td>' + (r.tag ? '<span class="crunch-tag' + (r.tag === '逆転' ? ' rev' : '') + '">' + r.tag + '</span>' : '') + '</td></tr>';
@@ -619,7 +676,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       var byPlayer = {}, order = [];
       rows.forEach(function(r){
         if (r.side !== side || !r.name) return;
-        var key = r.jersey + ' ' + r.name;
+        var key = r.jersey + ' ' + shortName(r.name);
         if (!(key in byPlayer)){ byPlayer[key] = 0; order.push(key); }
         byPlayer[key] += r.pts;
       });
@@ -632,15 +689,16 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   renderCrunch();
 
   var tip = document.getElementById('tooltip');
-  function showTip(ev, p, s, e){
-    tip.innerHTML = '<b>#' + esc(p.jersey) + ' ' + esc(p.name) + '</b><br>' +
+  function showTip(ev, p, s, e, pts){
+    tip.innerHTML = '<b>#' + esc(p.jersey) + ' ' + esc(shortName(p.name)) + '</b><br>' +
       clockLabel(s) + ' → ' + clockLabel(e) + '<br>出場 ' + mmss(e-s) +
-      '　通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
+      '　この間 ' + fmtMargin(pts.pf - pts.pa) + '（' + pts.pf + '得点-' + pts.pa + '失点）<br>' +
+      '通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
     tip.hidden = false;
     moveTip(ev);
   }
   function showMarginTip(ev, team, st){
-    var names = st.lineup.map(function(pl){ return '#' + esc(pl.jersey) + ' ' + esc(pl.name); }).join('、');
+    var names = st.lineup.map(function(pl){ return '#' + esc(pl.jersey) + ' ' + esc(shortName(pl.name)); }).join('、');
     tip.innerHTML = '<b>' + esc(team.name) + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
       clockLabel(st.start) + ' → ' + clockLabel(st.end) + '<br>' + names;
     tip.hidden = false;
