@@ -5,14 +5,14 @@
  "home": {
   "name": "茨城",
   "teamId": "712",
-  "score": 64
+  "score": 76
  },
  "away": {
   "name": "三遠",
   "teamId": "697",
-  "score": 78
+  "score": 81
  },
- "clock": "4Q 残り8:18",
+ "clock": "4Q 残り5:41",
  "status": "live",
  "anomalies": [
   {
@@ -33,11 +33,12 @@
  "periodLength": 600,
  "numPeriods": 4,
  "final": false,
- "elapsedSec": 1902,
+ "elapsedSec": 2101,
+ "truncated": null,
  "teams": [
   {
    "name": "茨城",
-   "score": 64,
+   "score": 76,
    "players": [
     {
      "jersey": "8",
@@ -70,7 +71,7 @@
     {
      "jersey": "15",
      "name": "前田",
-     "totalSec": 958,
+     "totalSec": 1157,
      "intervals": [
       [
        0,
@@ -90,10 +91,10 @@
       ],
       [
        1800,
-       1902
+       2101
       ]
      ],
-     "plusMinus": 0
+     "plusMinus": 6
     },
     {
      "jersey": "11",
@@ -142,7 +143,7 @@
     {
      "jersey": "4",
      "name": "ロー",
-     "totalSec": 1465,
+     "totalSec": 1664,
      "intervals": [
       [
        0,
@@ -155,14 +156,18 @@
       [
        794,
        1747
+      ],
+      [
+       1902,
+       2101
       ]
      ],
-     "plusMinus": -14
+     "plusMinus": -8
     },
     {
      "jersey": "1",
      "name": "パークスジュニア",
-     "totalSec": 839,
+     "totalSec": 1038,
      "intervals": [
       [
        200,
@@ -182,15 +187,15 @@
       ],
       [
        1839,
-       1902
+       2101
       ]
      ],
-     "plusMinus": -4
+     "plusMinus": 2
     },
     {
      "jersey": "7",
      "name": "ディレイニー",
-     "totalSec": 1277,
+     "totalSec": 1476,
      "intervals": [
       [
        200,
@@ -206,10 +211,10 @@
       ],
       [
        1747,
-       1902
+       2101
       ]
      ],
-     "plusMinus": -11
+     "plusMinus": -5
     },
     {
      "jersey": "34",
@@ -226,7 +231,7 @@
     {
      "jersey": "2",
      "name": "福澤",
-     "totalSec": 543,
+     "totalSec": 563,
      "intervals": [
       [
        385,
@@ -238,10 +243,10 @@
       ],
       [
        1672,
-       1902
+       1922
       ]
      ],
-     "plusMinus": -7
+     "plusMinus": -8
     },
     {
      "jersey": "12",
@@ -258,7 +263,7 @@
     {
      "jersey": "10",
      "name": "陳岡",
-     "totalSec": 151,
+     "totalSec": 330,
      "intervals": [
       [
        1182,
@@ -271,9 +276,13 @@
       [
        1775,
        1800
+      ],
+      [
+       1922,
+       2101
       ]
      ],
-     "plusMinus": -5
+     "plusMinus": 2
     }
    ],
    "stints": [
@@ -1001,6 +1010,64 @@
        "name": "パークスジュニア"
       }
      ]
+    },
+    {
+     "start": 1902,
+     "end": 1922,
+     "for": 0,
+     "against": 1,
+     "margin": -1,
+     "lineup": [
+      {
+       "jersey": "2",
+       "name": "福澤"
+      },
+      {
+       "jersey": "7",
+       "name": "ディレイニー"
+      },
+      {
+       "jersey": "15",
+       "name": "前田"
+      },
+      {
+       "jersey": "1",
+       "name": "パークスジュニア"
+      },
+      {
+       "jersey": "4",
+       "name": "ロー"
+      }
+     ]
+    },
+    {
+     "start": 1922,
+     "end": 2101,
+     "for": 9,
+     "against": 2,
+     "margin": 7,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ディレイニー"
+      },
+      {
+       "jersey": "15",
+       "name": "前田"
+      },
+      {
+       "jersey": "1",
+       "name": "パークスジュニア"
+      },
+      {
+       "jersey": "4",
+       "name": "ロー"
+      },
+      {
+       "jersey": "10",
+       "name": "陳岡"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -1118,6 +1185,35 @@
      "for": 5,
      "against": 6,
      "margin": -1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ディレイニー"
+      },
+      {
+       "jersey": "15",
+       "name": "前田"
+      },
+      {
+       "jersey": "1",
+       "name": "パークスジュニア"
+      },
+      {
+       "jersey": "4",
+       "name": "ロー"
+      },
+      {
+       "jersey": "10",
+       "name": "陳岡"
+      }
+     ],
+     "sec": 179,
+     "for": 9,
+     "against": 2,
+     "margin": 7,
      "stints": 1
     },
     {
@@ -1529,6 +1625,35 @@
     {
      "lineup": [
       {
+       "jersey": "2",
+       "name": "福澤"
+      },
+      {
+       "jersey": "7",
+       "name": "ディレイニー"
+      },
+      {
+       "jersey": "15",
+       "name": "前田"
+      },
+      {
+       "jersey": "1",
+       "name": "パークスジュニア"
+      },
+      {
+       "jersey": "4",
+       "name": "ロー"
+      }
+     ],
+     "sec": 20,
+     "for": 0,
+     "against": 1,
+     "margin": -1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
        "jersey": "1",
        "name": "パークスジュニア"
       },
@@ -1588,12 +1713,12 @@
   },
   {
    "name": "三遠",
-   "score": 78,
+   "score": 81,
    "players": [
     {
      "jersey": "24",
      "name": "佐々木",
-     "totalSec": 1149,
+     "totalSec": 1348,
      "intervals": [
       [
        0,
@@ -1621,15 +1746,15 @@
       ],
       [
        1876,
-       1902
+       2101
       ]
      ],
-     "plusMinus": 13
+     "plusMinus": 7
     },
     {
      "jersey": "21",
      "name": "ブラウン",
-     "totalSec": 1465,
+     "totalSec": 1664,
      "intervals": [
       [
        0,
@@ -1649,15 +1774,15 @@
       ],
       [
        1672,
-       1902
+       2101
       ]
      ],
-     "plusMinus": 20
+     "plusMinus": 14
     },
     {
      "jersey": "28",
      "name": "津屋",
-     "totalSec": 797,
+     "totalSec": 996,
      "intervals": [
       [
        0,
@@ -1677,10 +1802,10 @@
       ],
       [
        1876,
-       1902
+       2101
       ]
      ],
-     "plusMinus": 17
+     "plusMinus": 11
     },
     {
      "jersey": "55",
@@ -1713,7 +1838,7 @@
     {
      "jersey": "7",
      "name": "デイビス",
-     "totalSec": 1475,
+     "totalSec": 1557,
      "intervals": [
       [
        0,
@@ -1729,10 +1854,10 @@
       ],
       [
        1775,
-       1902
+       1984
       ]
      ],
-     "plusMinus": 9
+     "plusMinus": 6
     },
     {
      "jersey": "14",
@@ -1789,7 +1914,7 @@
     {
      "jersey": "2",
      "name": "ヴァン・タバーゲン",
-     "totalSec": 1219,
+     "totalSec": 1418,
      "intervals": [
       [
        234,
@@ -1802,21 +1927,29 @@
       [
        1414,
        1775
+      ],
+      [
+       1902,
+       2101
       ]
      ],
-     "plusMinus": 9
+     "plusMinus": 3
     },
     {
      "jersey": "15",
      "name": "兪",
-     "totalSec": 156,
+     "totalSec": 273,
      "intervals": [
       [
        367,
        523
+      ],
+      [
+       1984,
+       2101
       ]
      ],
-     "plusMinus": 1
+     "plusMinus": -2
     },
     {
      "jersey": "20",
@@ -2523,12 +2656,12 @@
        "name": "ハレルソン"
       },
       {
-       "jersey": "21",
-       "name": "ブラウン"
-      },
-      {
        "jersey": "7",
        "name": "デイビス"
+      },
+      {
+       "jersey": "21",
+       "name": "ブラウン"
       }
      ]
     },
@@ -2552,12 +2685,12 @@
        "name": "ハレルソン"
       },
       {
-       "jersey": "21",
-       "name": "ブラウン"
-      },
-      {
        "jersey": "7",
        "name": "デイビス"
+      },
+      {
+       "jersey": "21",
+       "name": "ブラウン"
       }
      ]
     },
@@ -2573,12 +2706,12 @@
        "name": "ハレルソン"
       },
       {
-       "jersey": "21",
-       "name": "ブラウン"
-      },
-      {
        "jersey": "7",
        "name": "デイビス"
+      },
+      {
+       "jersey": "21",
+       "name": "ブラウン"
       },
       {
        "jersey": "24",
@@ -2587,6 +2720,64 @@
       {
        "jersey": "28",
        "name": "津屋"
+      }
+     ]
+    },
+    {
+     "start": 1902,
+     "end": 1984,
+     "for": 1,
+     "against": 4,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "デイビス"
+      },
+      {
+       "jersey": "21",
+       "name": "ブラウン"
+      },
+      {
+       "jersey": "24",
+       "name": "佐々木"
+      },
+      {
+       "jersey": "28",
+       "name": "津屋"
+      },
+      {
+       "jersey": "2",
+       "name": "ヴァン・タバーゲン"
+      }
+     ]
+    },
+    {
+     "start": 1984,
+     "end": 2101,
+     "for": 2,
+     "against": 5,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "21",
+       "name": "ブラウン"
+      },
+      {
+       "jersey": "24",
+       "name": "佐々木"
+      },
+      {
+       "jersey": "28",
+       "name": "津屋"
+      },
+      {
+       "jersey": "2",
+       "name": "ヴァン・タバーゲン"
+      },
+      {
+       "jersey": "15",
+       "name": "兪"
       }
      ]
     }
@@ -2648,6 +2839,35 @@
      "for": 13,
      "against": 9,
      "margin": 4,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "28",
+       "name": "津屋"
+      },
+      {
+       "jersey": "15",
+       "name": "兪"
+      },
+      {
+       "jersey": "21",
+       "name": "ブラウン"
+      },
+      {
+       "jersey": "24",
+       "name": "佐々木"
+      },
+      {
+       "jersey": "2",
+       "name": "ヴァン・タバーゲン"
+      }
+     ],
+     "sec": 226,
+     "for": 6,
+     "against": 5,
+     "margin": 1,
      "stints": 2
     },
     {
@@ -2740,31 +2960,31 @@
     {
      "lineup": [
       {
-       "jersey": "28",
-       "name": "津屋"
-      },
-      {
-       "jersey": "15",
-       "name": "兪"
-      },
-      {
-       "jersey": "21",
-       "name": "ブラウン"
+       "jersey": "2",
+       "name": "ヴァン・タバーゲン"
       },
       {
        "jersey": "24",
        "name": "佐々木"
       },
       {
-       "jersey": "2",
-       "name": "ヴァン・タバーゲン"
+       "jersey": "21",
+       "name": "ブラウン"
+      },
+      {
+       "jersey": "28",
+       "name": "津屋"
+      },
+      {
+       "jersey": "7",
+       "name": "デイビス"
       }
      ],
-     "sec": 109,
+     "sec": 100,
      "for": 4,
-     "against": 0,
-     "margin": 4,
-     "stints": 1
+     "against": 5,
+     "margin": -1,
+     "stints": 2
     },
     {
      "lineup": [
@@ -3054,35 +3274,6 @@
      "for": 0,
      "against": 5,
      "margin": -5,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "2",
-       "name": "ヴァン・タバーゲン"
-      },
-      {
-       "jersey": "24",
-       "name": "佐々木"
-      },
-      {
-       "jersey": "21",
-       "name": "ブラウン"
-      },
-      {
-       "jersey": "28",
-       "name": "津屋"
-      },
-      {
-       "jersey": "7",
-       "name": "デイビス"
-      }
-     ],
-     "sec": 18,
-     "for": 3,
-     "against": 1,
-     "margin": 2,
      "stints": 1
     },
     {
@@ -3457,7 +3648,47 @@
    1889,
    1,
    2
+  ],
+  [
+   1902,
+   1,
+   1
+  ],
+  [
+   1956,
+   0,
+   1
+  ],
+  [
+   1956,
+   0,
+   1
+  ],
+  [
+   1983,
+   0,
+   2
+  ],
+  [
+   2024,
+   0,
+   2
+  ],
+  [
+   2046,
+   1,
+   2
+  ],
+  [
+   2059,
+   0,
+   3
+  ],
+  [
+   2101,
+   0,
+   3
   ]
  ],
- "generatedAt": "2026-09-25T11:58:26+00:00"
+ "generatedAt": "2026-09-25T12:08:30+00:00"
 }

@@ -5,29 +5,29 @@
  "home": {
   "name": "佐賀",
   "teamId": "1638",
-  "score": 84
+  "score": 87
  },
  "away": {
   "name": "広島",
   "teamId": "721",
   "score": 100
  },
- "clock": "4Q 残り0:22",
- "status": "live",
+ "status": "ok",
  "anomalies": [],
  "periodLength": 600,
  "numPeriods": 4,
- "final": false,
- "elapsedSec": 2378,
+ "final": true,
+ "elapsedSec": 2400,
+ "truncated": null,
  "teams": [
   {
    "name": "佐賀",
-   "score": 84,
+   "score": 87,
    "players": [
     {
      "jersey": "13",
      "name": "阿部",
-     "totalSec": 1670,
+     "totalSec": 1692,
      "intervals": [
       [
        0,
@@ -47,15 +47,15 @@
       ],
       [
        1911,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -25
+     "plusMinus": -24
     },
     {
      "jersey": "23",
      "name": "ダジンスキー",
-     "totalSec": 2054,
+     "totalSec": 2076,
      "intervals": [
       [
        0,
@@ -71,10 +71,10 @@
       ],
       [
        1646,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -5
+     "plusMinus": -4
     },
     {
      "jersey": "25",
@@ -103,7 +103,7 @@
     {
      "jersey": "9",
      "name": "リトル",
-     "totalSec": 2122,
+     "totalSec": 2144,
      "intervals": [
       [
        0,
@@ -119,15 +119,15 @@
       ],
       [
        1800,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -20
+     "plusMinus": -19
     },
     {
      "jersey": "1",
      "name": "ドットソン",
-     "totalSec": 2153,
+     "totalSec": 2175,
      "intervals": [
       [
        0,
@@ -143,15 +143,15 @@
       ],
       [
        1800,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -23
+     "plusMinus": -22
     },
     {
      "jersey": "8",
      "name": "エクスザビエロ",
-     "totalSec": 479,
+     "totalSec": 501,
      "intervals": [
       [
        225,
@@ -167,10 +167,10 @@
       ],
       [
        2378,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -11
+     "plusMinus": -10
     },
     {
      "jersey": "34",
@@ -817,6 +817,35 @@
        "name": "阿部"
       }
      ]
+    },
+    {
+     "start": 2378,
+     "end": 2400,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "23",
+       "name": "ダジンスキー"
+      },
+      {
+       "jersey": "1",
+       "name": "ドットソン"
+      },
+      {
+       "jersey": "9",
+       "name": "リトル"
+      },
+      {
+       "jersey": "13",
+       "name": "阿部"
+      },
+      {
+       "jersey": "8",
+       "name": "エクスザビエロ"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -1225,6 +1254,35 @@
      "against": 5,
      "margin": 0,
      "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "23",
+       "name": "ダジンスキー"
+      },
+      {
+       "jersey": "1",
+       "name": "ドットソン"
+      },
+      {
+       "jersey": "9",
+       "name": "リトル"
+      },
+      {
+       "jersey": "13",
+       "name": "阿部"
+      },
+      {
+       "jersey": "8",
+       "name": "エクスザビエロ"
+      }
+     ],
+     "sec": 22,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "stints": 1
     }
    ]
   },
@@ -1375,7 +1433,7 @@
     {
      "jersey": "34",
      "name": "三谷",
-     "totalSec": 1134,
+     "totalSec": 1156,
      "intervals": [
       [
        153,
@@ -1395,10 +1453,10 @@
       ],
       [
        2108,
-       2378
+       2400
       ]
      ],
-     "plusMinus": 9
+     "plusMinus": 8
     },
     {
      "jersey": "3",
@@ -1427,7 +1485,7 @@
     {
      "jersey": "30",
      "name": "山崎",
-     "totalSec": 652,
+     "totalSec": 674,
      "intervals": [
       [
        296,
@@ -1443,15 +1501,15 @@
       ],
       [
        2378,
-       2378
+       2400
       ]
      ],
-     "plusMinus": 6
+     "plusMinus": 5
     },
     {
      "jersey": "31",
      "name": "松野",
-     "totalSec": 113,
+     "totalSec": 135,
      "intervals": [
       [
        514,
@@ -1463,15 +1521,15 @@
       ],
       [
        2378,
-       2378
+       2400
       ]
      ],
-     "plusMinus": -4
+     "plusMinus": -5
     },
     {
      "jersey": "32",
      "name": "晴山",
-     "totalSec": 375,
+     "totalSec": 397,
      "intervals": [
       [
        572,
@@ -1484,21 +1542,25 @@
       [
        1699,
        1800
+      ],
+      [
+       2378,
+       2400
       ]
      ],
-     "plusMinus": -4
+     "plusMinus": -5
     },
     {
      "jersey": "4",
      "name": "ロバーツ",
-     "totalSec": 0,
+     "totalSec": 22,
      "intervals": [
       [
        2378,
-       2378
+       2400
       ]
      ],
-     "plusMinus": 0
+     "plusMinus": -1
     }
    ],
    "stints": [
@@ -2284,6 +2346,35 @@
        "name": "三谷"
       }
      ]
+    },
+    {
+     "start": 2378,
+     "end": 2400,
+     "for": 2,
+     "against": 3,
+     "margin": -1,
+     "lineup": [
+      {
+       "jersey": "34",
+       "name": "三谷"
+      },
+      {
+       "jersey": "4",
+       "name": "ロバーツ"
+      },
+      {
+       "jersey": "30",
+       "name": "山崎"
+      },
+      {
+       "jersey": "31",
+       "name": "松野"
+      },
+      {
+       "jersey": "32",
+       "name": "晴山"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -2812,6 +2903,35 @@
     {
      "lineup": [
       {
+       "jersey": "34",
+       "name": "三谷"
+      },
+      {
+       "jersey": "4",
+       "name": "ロバーツ"
+      },
+      {
+       "jersey": "30",
+       "name": "山崎"
+      },
+      {
+       "jersey": "31",
+       "name": "松野"
+      },
+      {
+       "jersey": "32",
+       "name": "晴山"
+      }
+     ],
+     "sec": 22,
+     "for": 2,
+     "against": 3,
+     "margin": -1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
        "jersey": "13",
        "name": "エバンス"
       },
@@ -3291,7 +3411,12 @@
    2378,
    1,
    2
+  ],
+  [
+   2390,
+   0,
+   3
   ]
  ],
- "generatedAt": "2026-09-25T11:58:22+00:00"
+ "generatedAt": "2026-09-25T12:08:27+00:00"
 }

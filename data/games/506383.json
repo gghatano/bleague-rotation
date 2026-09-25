@@ -12,13 +12,13 @@
   "teamId": "698",
   "score": 94
  },
- "clock": "4Q 残り0:03",
- "status": "live",
+ "status": "ok",
  "anomalies": [],
  "periodLength": 600,
  "numPeriods": 4,
- "final": false,
- "elapsedSec": 2397,
+ "final": true,
+ "elapsedSec": 2400,
+ "truncated": null,
  "teams": [
   {
    "name": "京都",
@@ -43,7 +43,7 @@
     {
      "jersey": "32",
      "name": "カロイアロ",
-     "totalSec": 1888,
+     "totalSec": 1891,
      "intervals": [
       [
        0,
@@ -63,15 +63,15 @@
       ],
       [
        1800,
-       2397
+       2400
       ]
      ],
-     "plusMinus": 6
+     "plusMinus": 9
     },
     {
      "jersey": "10",
      "name": "ジャクソン",
-     "totalSec": 1990,
+     "totalSec": 1993,
      "intervals": [
       [
        0,
@@ -87,15 +87,15 @@
       ],
       [
        1689,
-       2397
+       2400
       ]
      ],
-     "plusMinus": -3
+     "plusMinus": 0
     },
     {
      "jersey": "23",
      "name": "リバース",
-     "totalSec": 1055,
+     "totalSec": 1058,
      "intervals": [
       [
        0,
@@ -111,10 +111,10 @@
       ],
       [
        2397,
-       2397
+       2400
       ]
      ],
-     "plusMinus": -26
+     "plusMinus": -23
     },
     {
      "jersey": "13",
@@ -199,7 +199,7 @@
     {
      "jersey": "39",
      "name": "ホール",
-     "totalSec": 1013,
+     "totalSec": 1016,
      "intervals": [
       [
        427,
@@ -211,10 +211,10 @@
       ],
       [
        1588,
-       2397
+       2400
       ]
      ],
-     "plusMinus": 22
+     "plusMinus": 25
     },
     {
      "jersey": "7",
@@ -251,7 +251,7 @@
     {
      "jersey": "20",
      "name": "フィリップス",
-     "totalSec": 698,
+     "totalSec": 701,
      "intervals": [
       [
        600,
@@ -263,10 +263,10 @@
       ],
       [
        2397,
-       2397
+       2400
       ]
      ],
-     "plusMinus": 0
+     "plusMinus": 3
     }
    ],
    "stints": [
@@ -878,6 +878,35 @@
        "name": "カロイアロ"
       }
      ]
+    },
+    {
+     "start": 2397,
+     "end": 2400,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "39",
+       "name": "ホール"
+      },
+      {
+       "jersey": "10",
+       "name": "ジャクソン"
+      },
+      {
+       "jersey": "32",
+       "name": "カロイアロ"
+      },
+      {
+       "jersey": "20",
+       "name": "フィリップス"
+      },
+      {
+       "jersey": "23",
+       "name": "リバース"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -1460,6 +1489,35 @@
      "against": 0,
      "margin": 0,
      "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "39",
+       "name": "ホール"
+      },
+      {
+       "jersey": "10",
+       "name": "ジャクソン"
+      },
+      {
+       "jersey": "32",
+       "name": "カロイアロ"
+      },
+      {
+       "jersey": "20",
+       "name": "フィリップス"
+      },
+      {
+       "jersey": "23",
+       "name": "リバース"
+      }
+     ],
+     "sec": 3,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
+     "stints": 1
     }
    ]
   },
@@ -1470,7 +1528,7 @@
     {
      "jersey": "0",
      "name": "オーガスト",
-     "totalSec": 1818,
+     "totalSec": 1821,
      "intervals": [
       [
        0,
@@ -1494,15 +1552,15 @@
       ],
       [
        2085,
-       2397
+       2400
       ]
      ],
-     "plusMinus": -2
+     "plusMinus": -5
     },
     {
      "jersey": "6",
      "name": "岡田",
-     "totalSec": 1184,
+     "totalSec": 1187,
      "intervals": [
       [
        0,
@@ -1530,15 +1588,15 @@
       ],
       [
        2397,
-       2397
+       2400
       ]
      ],
-     "plusMinus": 14
+     "plusMinus": 11
     },
     {
      "jersey": "4",
      "name": "クリーナー",
-     "totalSec": 1705,
+     "totalSec": 1708,
      "intervals": [
       [
        0,
@@ -1562,10 +1620,10 @@
       ],
       [
        2160,
-       2397
+       2400
       ]
      ],
-     "plusMinus": -2
+     "plusMinus": -5
     },
     {
      "jersey": "16",
@@ -1594,7 +1652,7 @@
     {
      "jersey": "20",
      "name": "スニード",
-     "totalSec": 1884,
+     "totalSec": 1887,
      "intervals": [
       [
        0,
@@ -1610,10 +1668,10 @@
       ],
       [
        1929,
-       2397
+       2400
       ]
      ],
-     "plusMinus": 24
+     "plusMinus": 21
     },
     {
      "jersey": "25",
@@ -1650,7 +1708,7 @@
     {
      "jersey": "11",
      "name": "駒沢",
-     "totalSec": 1155,
+     "totalSec": 1158,
      "intervals": [
       [
        275,
@@ -1666,10 +1724,10 @@
       ],
       [
        2397,
-       2397
+       2400
       ]
      ],
-     "plusMinus": -18
+     "plusMinus": -21
     },
     {
      "jersey": "7",
@@ -2734,6 +2792,35 @@
        "name": "クリーナー"
       }
      ]
+    },
+    {
+     "start": 2397,
+     "end": 2400,
+     "for": 0,
+     "against": 3,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "スニード"
+      },
+      {
+       "jersey": "0",
+       "name": "オーガスト"
+      },
+      {
+       "jersey": "4",
+       "name": "クリーナー"
+      },
+      {
+       "jersey": "6",
+       "name": "岡田"
+      },
+      {
+       "jersey": "11",
+       "name": "駒沢"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -3050,11 +3137,11 @@
        "name": "クリーナー"
       }
      ],
-     "sec": 86,
+     "sec": 89,
      "for": 0,
-     "against": 6,
-     "margin": -6,
-     "stints": 2
+     "against": 9,
+     "margin": -9,
+     "stints": 3
     },
     {
      "lineup": [
@@ -4068,5 +4155,5 @@
    3
   ]
  ],
- "generatedAt": "2026-09-25T11:58:19+00:00"
+ "generatedAt": "2026-09-25T12:08:24+00:00"
 }
