@@ -1,0 +1,426 @@
+<title>A東京-琉球 ローテーション</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#faf7f1;
+  --surface:#ffffff;
+  --surface-sunken:#f2ede2;
+  --ink:#241f17;
+  --ink-muted:#6b6255;
+  --ink-faint:#948a78;
+  --line:#e6dfce;
+  --line-strong:#d3c9ae;
+  --away:#3d6fb4;
+  --away-ink:#1c3e6e;
+  --home:#c8722f;
+  --home-ink:#7a4114;
+  --badge-bg:#eee3c9;
+  --badge-ink:#6b5326;
+  --margin-pos:#2f8f78;
+  --margin-pos-ink:#dff1eb;
+  --margin-neg:#c15a3f;
+  --margin-neg-ink:#f9e4dc;
+  --margin-zero:#c7bea9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17140f;
+    --surface:#201b13;
+    --surface-sunken:#291f16;
+    --ink:#f2ede1;
+    --ink-muted:#b3a891;
+    --ink-faint:#8a806c;
+    --line:#332c20;
+    --line-strong:#463c2b;
+    --away:#7ba3e2;
+    --away-ink:#cddcf3;
+    --home:#e2934f;
+    --home-ink:#f6dcbd;
+    --badge-bg:#3a2f1c;
+    --badge-ink:#e0c98c;
+    --margin-pos:#4fae95;
+    --margin-pos-ink:#0f2b23;
+    --margin-neg:#d98567;
+    --margin-neg-ink:#341a10;
+    --margin-zero:#544a38;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f;
+  --surface:#201b13;
+  --surface-sunken:#291f16;
+  --ink:#f2ede1;
+  --ink-muted:#b3a891;
+  --ink-faint:#8a806c;
+  --line:#332c20;
+  --line-strong:#463c2b;
+  --away:#7ba3e2;
+  --away-ink:#cddcf3;
+  --home:#e2934f;
+  --home-ink:#f6dcbd;
+  --badge-bg:#3a2f1c;
+  --badge-ink:#e0c98c;
+  --margin-pos:#4fae95;
+  --margin-pos-ink:#0f2b23;
+  --margin-neg:#d98567;
+  --margin-neg-ink:#341a10;
+  --margin-zero:#544a38;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);}
+.page{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+  padding:1.75rem 1.5rem 2.25rem;
+  max-width:760px;
+  margin:0 auto;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:"Oswald",sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--badge-ink);
+  background:var(--badge-bg);
+  padding:4px 10px 3px;
+  border-radius:3px;
+  margin:0 0 .9rem;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:1rem;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:1rem;
+  margin-bottom:1.5rem;
+  flex-wrap:wrap;
+}
+.matchup{
+  font-family:"Oswald",sans-serif;
+  font-weight:500;
+  font-size:26px;
+  letter-spacing:.01em;
+  text-wrap:balance;
+  margin:0;
+  line-height:1.15;
+}
+.matchup .away{color:var(--away-ink);}
+.matchup .home{color:var(--home-ink);}
+.matchup .score{
+  font-variant-numeric:tabular-nums;
+  font-weight:600;
+}
+.matchup .vs{
+  color:var(--ink-faint);
+  font-weight:400;
+  font-size:.7em;
+  padding:0 .3em;
+}
+.meta{
+  font-size:13px;
+  color:var(--ink-muted);
+  margin:.35rem 0 0;
+}
+.legend{
+  display:flex;
+  gap:1.25rem;
+  font-size:12.5px;
+  color:var(--ink-muted);
+  white-space:nowrap;
+}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.swatch{width:10px;height:10px;border-radius:2px;display:inline-block;}
+.chart-wrap{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1.1rem 1rem .6rem;
+  overflow-x:auto;
+}
+svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
+.axis-label{font-family:"Oswald",sans-serif;letter-spacing:.04em;}
+.team-tag{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.03em;}
+.bar{cursor:pointer;}
+.bar:hover{filter:brightness(1.12);}
+.name-label{font-size:11px;fill:var(--ink);}
+.stat-label{font-size:9.5px;font-variant-numeric:tabular-nums;}
+.stat-time{fill:var(--ink-faint);}
+.stat-pm-pos{fill:var(--margin-pos);}
+.stat-pm-neg{fill:var(--margin-neg);}
+.stat-pm-zero{fill:var(--ink-faint);}
+.margin-seg{cursor:pointer;}
+.margin-seg:hover{filter:brightness(1.1);}
+.margin-num{font-size:9.5px;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none;}
+.margin-row-label{font-size:9.5px;fill:var(--ink-faint);}
+.tooltip{
+  position:fixed;
+  pointer-events:none;
+  background:var(--ink);
+  color:var(--bg);
+  font-size:12px;
+  line-height:1.5;
+  padding:6px 10px;
+  border-radius:6px;
+  transform:translate(-50%,calc(-100% - 10px));
+  white-space:nowrap;
+  z-index:10;
+  font-variant-numeric:tabular-nums;
+}
+.tooltip b{font-weight:500;}
+.note{
+  margin-top:1.1rem;
+  font-size:12.5px;
+  color:var(--ink-faint);
+  line-height:1.7;
+}
+.lineups{margin-top:1.75rem;}
+.lu-heading{
+  font-family:"Oswald",sans-serif;
+  font-size:16px;
+  font-weight:500;
+  letter-spacing:.01em;
+  margin:0 0 .2rem;
+}
+.lu-sub{font-size:12.5px;color:var(--ink-muted);margin:0 0 1rem;}
+.lu-team{
+  font-family:"Oswald",sans-serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.03em;
+  margin:1rem 0 .4rem;
+}
+.lu-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px;}
+.lu-table{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap;}
+.lu-table th{
+  text-align:left;
+  font-weight:400;
+  color:var(--ink-faint);
+  font-size:11px;
+  padding:8px 10px;
+  border-bottom:1px solid var(--line);
+}
+.lu-table td{padding:7px 10px;border-bottom:1px solid var(--line);}
+.lu-table tbody tr:last-child td{border-bottom:none;}
+.lu-time,.lu-fa,.lu-cnt{font-variant-numeric:tabular-nums;color:var(--ink-muted);}
+.lu-margin{font-variant-numeric:tabular-nums;font-weight:500;}
+.lu-margin.lu-pos{color:var(--margin-pos);}
+.lu-margin.lu-neg{color:var(--margin-neg);}
+.lu-margin.lu-zero{color:var(--ink-faint);}
+.lu-names{color:var(--ink);white-space:normal;min-width:220px;}
+.lu-rest td{color:var(--ink-faint);font-style:italic;}
+</style>
+
+<div class="page">
+  <span class="eyebrow"><i>&#9679;</i>設計モックアップ</span>
+  <header>
+    <div>
+      <p class="matchup">
+        <span class="away">A東京</span> <span class="score">74</span>
+        <span class="vs">–</span>
+        <span class="score">85</span> <span class="home">琉球</span>
+      </p>
+      <p class="meta">2026年9月23日・B.LEAGUE PREMIER — 実際のプレイバイプレイから復元した出場区間</p>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--away)"></i>A東京</span>
+      <span><i class="swatch" style="background:var(--home)"></i>琉球</span>
+      <span><i class="swatch" style="background:var(--margin-pos)"></i>5人時+</span>
+      <span><i class="swatch" style="background:var(--margin-neg)"></i>5人時−</span>
+    </div>
+  </header>
+
+  <div class="chart-wrap">
+    <div id="chart"></div>
+  </div>
+
+  <p class="note">実データ（gameId 506389）で出場区間を復元した設計確認用モックアップです。選手名の下の数字は個人の+/-（その選手が出場していた時間帯のチーム得点差の合計）と出場時間。「5人時±」の帯は、そのチームの5人が変わらない区間ごとの得点差（自チーム得点 − 相手得点）。帯・バーともカーソルを合わせると詳細（出場5人・時刻・得失点）を表示します。</p>
+
+  <div class="lineups"><h3 class="lu-heading">出場選手の集合別 +/-</h3><p class="lu-sub">同じ５人の組み合わせを、連続しない出場も合わせて集計（出場時間順）</p><p class="lu-team" style="color:var(--away-ink)">A東京</p><div class="lu-scroll"><table class="lu-table"><thead><tr><th>出場</th><th>+/-</th><th>得点-失点</th><th>回数</th><th>5人</th></tr></thead><tbody><tr><td class="lu-time">7:40</td><td class="lu-margin lu-pos">+1</td><td class="lu-fa">15-14</td><td class="lu-cnt">2</td><td class="lu-names">#11 ジョンソン #22 ロシター #1 ホグ #3 テーブス #9 安藤</td></tr><tr><td class="lu-time">4:47</td><td class="lu-margin lu-neg">-1</td><td class="lu-fa">12-13</td><td class="lu-cnt">1</td><td class="lu-names">#11 ジョンソン #47 オルブリッチ #1 ホグ #3 テーブス #9 安藤</td></tr><tr><td class="lu-time">3:54</td><td class="lu-margin lu-pos">+1</td><td class="lu-fa">6-5</td><td class="lu-cnt">2</td><td class="lu-names">#11 ジョンソン #22 ロシター #75 小酒部 #47 オルブリッチ #1 ホグ</td></tr><tr><td class="lu-time">3:28</td><td class="lu-margin lu-neg">-1</td><td class="lu-fa">5-6</td><td class="lu-cnt">1</td><td class="lu-names">#75 小酒部 #47 オルブリッチ #10 バランスキー #1 ホグ #3 テーブス</td></tr><tr><td class="lu-time">3:12</td><td class="lu-margin lu-neg">-5</td><td class="lu-fa">7-12</td><td class="lu-cnt">3</td><td class="lu-names">#11 ジョンソン #75 小酒部 #47 オルブリッチ #1 ホグ #9 安藤</td></tr><tr><td class="lu-time">2:06</td><td class="lu-margin lu-pos">+6</td><td class="lu-fa">9-3</td><td class="lu-cnt">1</td><td class="lu-names">#11 ジョンソン #22 ロシター #75 小酒部 #47 オルブリッチ #10 バランスキー</td></tr><tr class="lu-rest"><td class="lu-time">14:53</td><td class="lu-margin lu-neg">-12</td><td class="lu-fa">–</td><td class="lu-cnt">–</td><td class="lu-names">他 12 組み合わせ</td></tr></tbody></table></div><p class="lu-team" style="color:var(--home-ink)">琉球</p><div class="lu-scroll"><table class="lu-table"><thead><tr><th>出場</th><th>+/-</th><th>得点-失点</th><th>回数</th><th>5人</th></tr></thead><tbody><tr><td class="lu-time">5:51</td><td class="lu-margin lu-pos">+13</td><td class="lu-fa">16-3</td><td class="lu-cnt">3</td><td class="lu-names">#18 脇 #11 ラベナ #21 ジョーンズ #8 佐土原 #17 ヌワバ</td></tr><tr><td class="lu-time">5:50</td><td class="lu-margin lu-neg">-4</td><td class="lu-fa">6-10</td><td class="lu-cnt">3</td><td class="lu-names">#45 クーリー #21 ジョーンズ #15 松脇 #17 ヌワバ #3 大浦</td></tr><tr><td class="lu-time">4:16</td><td class="lu-margin lu-pos">+3</td><td class="lu-fa">8-5</td><td class="lu-cnt">2</td><td class="lu-names">#45 クーリー #34 小野寺 #8 佐土原 #17 ヌワバ #3 大浦</td></tr><tr><td class="lu-time">3:28</td><td class="lu-margin lu-neg">-7</td><td class="lu-fa">4-11</td><td class="lu-cnt">1</td><td class="lu-names">#45 クーリー #34 小野寺 #15 松脇 #17 ヌワバ #3 大浦</td></tr><tr><td class="lu-time">3:07</td><td class="lu-margin lu-pos">+3</td><td class="lu-fa">5-2</td><td class="lu-cnt">1</td><td class="lu-names">#21 ジョーンズ #34 小野寺 #15 松脇 #17 ヌワバ #3 大浦</td></tr><tr><td class="lu-time">2:51</td><td class="lu-margin lu-pos">+1</td><td class="lu-fa">7-6</td><td class="lu-cnt">1</td><td class="lu-names">#18 脇 #11 ラベナ #21 ジョーンズ #15 松脇 #17 ヌワバ</td></tr><tr class="lu-rest"><td class="lu-time">14:37</td><td class="lu-margin lu-pos">+2</td><td class="lu-fa">–</td><td class="lu-cnt">–</td><td class="lu-names">他 17 組み合わせ</td></tr></tbody></table></div></div>
+</div>
+
+<div id="tooltip" class="tooltip" hidden></div>
+
+<script type="application/json" id="chart-data">
+{"meta": {"date": "2026-09-23", "away": {"name": "A東京", "score": 74}, "home": {"name": "琉球", "score": 85}}, "periodLength": 600, "numPeriods": 4, "teams": [{"name": "A東京", "color": "var(--away)", "players": [{"jersey": "3", "name": "テーブス", "totalSec": 1360, "intervals": [[0, 287], [746, 1134], [1200, 1373], [1682, 2194]], "plusMinus": -7}, {"jersey": "22", "name": "ロシター", "totalSec": 1366, "intervals": [[0, 287], [600, 847], [1200, 1682], [1890, 1988], [2104, 2356]], "plusMinus": -7}, {"jersey": "1", "name": "ホグ", "totalSec": 1658, "intervals": [[0, 369], [474, 600], [847, 1556], [1682, 1930], [2194, 2400]], "plusMinus": -7}, {"jersey": "9", "name": "安藤", "totalSec": 1475, "intervals": [[0, 410], [677, 1484], [1890, 2104], [2356, 2400]], "plusMinus": -15}, {"jersey": "11", "name": "ジョンソン", "totalSec": 1779, "intervals": [[0, 474], [847, 1682], [1930, 2400]], "plusMinus": 0}, {"jersey": "75", "name": "小酒部", "totalSec": 1542, "intervals": [[287, 847], [1134, 1200], [1484, 2400]], "plusMinus": -9}, {"jersey": "47", "name": "オルブリッチ", "totalSec": 1842, "intervals": [[287, 1200], [1373, 1890], [1988, 2400]], "plusMinus": -7}, {"jersey": "10", "name": "バランスキー", "totalSec": 642, "intervals": [[369, 677], [1556, 1890]], "plusMinus": 3}, {"jersey": "21", "name": "平岩", "totalSec": 143, "intervals": [[410, 553]], "plusMinus": -1}, {"jersey": "2", "name": "大倉", "totalSec": 193, "intervals": [[553, 746]], "plusMinus": -5}], "stints": [{"start": 0, "end": 287, "for": 13, "against": 9, "margin": 4, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}]}, {"start": 287, "end": 369, "for": 3, "against": 5, "margin": -2, "lineup": [{"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 369, "end": 410, "for": 2, "against": 0, "margin": 2, "lineup": [{"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}]}, {"start": 410, "end": 474, "for": 3, "against": 5, "margin": -2, "lineup": [{"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}, {"jersey": "21", "name": "平岩"}]}, {"start": 474, "end": 553, "for": 4, "against": 3, "margin": 1, "lineup": [{"jersey": "1", "name": "ホグ"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}, {"jersey": "21", "name": "平岩"}]}, {"start": 553, "end": 600, "for": 0, "against": 1, "margin": -1, "lineup": [{"jersey": "1", "name": "ホグ"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}, {"jersey": "2", "name": "大倉"}]}, {"start": 600, "end": 677, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}, {"jersey": "2", "name": "大倉"}]}, {"start": 677, "end": 746, "for": 2, "against": 4, "margin": -2, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "9", "name": "安藤"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "2", "name": "大倉"}]}, {"start": 746, "end": 847, "for": 0, "against": 6, "margin": -6, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "9", "name": "安藤"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 847, "end": 1134, "for": 12, "against": 13, "margin": -1, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 1134, "end": 1200, "for": 2, "against": 3, "margin": -1, "lineup": [{"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 1200, "end": 1373, "for": 2, "against": 5, "margin": -3, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}]}, {"start": 1373, "end": 1484, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 1484, "end": 1556, "for": 1, "against": 0, "margin": 1, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 1556, "end": 1682, "for": 9, "against": 3, "margin": 6, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}]}, {"start": 1682, "end": 1890, "for": 5, "against": 6, "margin": -1, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}, {"jersey": "10", "name": "バランスキー"}]}, {"start": 1890, "end": 1930, "for": 2, "against": 2, "margin": 0, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "75", "name": "小酒部"}]}, {"start": 1930, "end": 1988, "for": 0, "against": 5, "margin": -5, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}]}, {"start": 1988, "end": 2104, "for": 5, "against": 2, "margin": 3, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 2104, "end": 2194, "for": 2, "against": 0, "margin": 2, "lineup": [{"jersey": "3", "name": "テーブス"}, {"jersey": "22", "name": "ロシター"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 2194, "end": 2356, "for": 5, "against": 5, "margin": 0, "lineup": [{"jersey": "22", "name": "ロシター"}, {"jersey": "1", "name": "ホグ"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}, {"start": 2356, "end": 2400, "for": 2, "against": 4, "margin": -2, "lineup": [{"jersey": "1", "name": "ホグ"}, {"jersey": "9", "name": "安藤"}, {"jersey": "11", "name": "ジョンソン"}, {"jersey": "75", "name": "小酒部"}, {"jersey": "47", "name": "オルブリッチ"}]}]}, {"name": "琉球", "color": "var(--home)", "players": [{"jersey": "3", "name": "大浦", "totalSec": 1527, "intervals": [[0, 208], [410, 711], [1018, 1387], [1556, 1930], [2104, 2331], [2337, 2356], [2365, 2387], [2393, 2400]], "plusMinus": -12}, {"jersey": "34", "name": "小野寺", "totalSec": 1133, "intervals": [[0, 208], [600, 711], [1018, 1390], [1523, 1556], [1695, 2104]], "plusMinus": 2}, {"jersey": "15", "name": "松脇", "totalSec": 1225, "intervals": [[0, 287], [369, 600], [847, 1018], [1200, 1387], [2051, 2400]], "plusMinus": -1}, {"jersey": "45", "name": "クーリー", "totalSec": 1372, "intervals": [[0, 287], [369, 621], [1026, 1098], [1523, 1988], [2104, 2400]], "plusMinus": -5}, {"jersey": "17", "name": "ヌワバ", "totalSec": 2155, "intervals": [[0, 369], [496, 1026], [1076, 1523], [1556, 2365]], "plusMinus": 14}, {"jersey": "11", "name": "ラベナ", "totalSec": 943, "intervals": [[208, 410], [711, 1018], [1387, 1682], [1930, 2069]], "plusMinus": 13}, {"jersey": "18", "name": "脇", "totalSec": 999, "intervals": [[208, 496], [711, 1200], [1390, 1556], [2069, 2104], [2331, 2337], [2356, 2365], [2387, 2393]], "plusMinus": 20}, {"jersey": "21", "name": "ジョーンズ", "totalSec": 1736, "intervals": [[287, 369], [410, 600], [621, 1076], [1098, 1695], [1988, 2400]], "plusMinus": 7}, {"jersey": "8", "name": "佐土原", "totalSec": 910, "intervals": [[287, 410], [600, 847], [1387, 1523], [1682, 2051], [2365, 2400]], "plusMinus": 17}], "stints": [{"start": 0, "end": 208, "for": 4, "against": 11, "margin": -7, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}]}, {"start": 208, "end": 287, "for": 5, "against": 2, "margin": 3, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}]}, {"start": 287, "end": 369, "for": 5, "against": 3, "margin": 2, "lineup": [{"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 369, "end": 410, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 410, "end": 496, "for": 5, "against": 4, "margin": 1, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 496, "end": 600, "for": 4, "against": 3, "margin": 1, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 600, "end": 621, "for": 0, "against": 0, "margin": 0, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 621, "end": 711, "for": 3, "against": 2, "margin": 1, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 711, "end": 847, "for": 9, "against": 0, "margin": 9, "lineup": [{"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 847, "end": 1018, "for": 7, "against": 6, "margin": 1, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1018, "end": 1026, "for": 0, "against": 0, "margin": 0, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1026, "end": 1076, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1076, "end": 1098, "for": 4, "against": 2, "margin": 2, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}]}, {"start": 1098, "end": 1200, "for": 5, "against": 4, "margin": 1, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1200, "end": 1387, "for": 5, "against": 2, "margin": 3, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "15", "name": "松脇"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1387, "end": 1390, "for": 0, "against": 0, "margin": 0, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 1390, "end": 1523, "for": 2, "against": 0, "margin": 2, "lineup": [{"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 1523, "end": 1556, "for": 0, "against": 1, "margin": -1, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1556, "end": 1682, "for": 3, "against": 9, "margin": -6, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 1682, "end": 1695, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 1695, "end": 1930, "for": 8, "against": 5, "margin": 3, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 1930, "end": 1988, "for": 5, "against": 0, "margin": 5, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 1988, "end": 2051, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 2051, "end": 2069, "for": 2, "against": 0, "margin": 2, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "15", "name": "松脇"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "11", "name": "ラベナ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2069, "end": 2104, "for": 0, "against": 3, "margin": -3, "lineup": [{"jersey": "34", "name": "小野寺"}, {"jersey": "15", "name": "松脇"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2104, "end": 2331, "for": 2, "against": 7, "margin": -5, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2331, "end": 2337, "for": 3, "against": 0, "margin": 3, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2337, "end": 2356, "for": 0, "against": 0, "margin": 0, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2356, "end": 2365, "for": 1, "against": 0, "margin": 1, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "17", "name": "ヌワバ"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}]}, {"start": 2365, "end": 2387, "for": 0, "against": 0, "margin": 0, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 2387, "end": 2393, "for": 3, "against": 0, "margin": 3, "lineup": [{"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "18", "name": "脇"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}, {"start": 2393, "end": 2400, "for": 0, "against": 2, "margin": -2, "lineup": [{"jersey": "3", "name": "大浦"}, {"jersey": "15", "name": "松脇"}, {"jersey": "45", "name": "クーリー"}, {"jersey": "21", "name": "ジョーンズ"}, {"jersey": "8", "name": "佐土原"}]}]}]}
+</script>
+
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('chart-data').textContent);
+  var svgNS = 'http://www.w3.org/2000/svg';
+
+  function mmss(sec){
+    sec = Math.max(0, Math.round(sec));
+    var m = Math.floor(sec/60), s = sec%60;
+    return m + ':' + (s<10?'0':'') + s;
+  }
+  function clockLabel(globalSec){
+    var period = Math.min(DATA.numPeriods, Math.floor(globalSec / DATA.periodLength) + 1);
+    var inPeriod = globalSec - (period-1)*DATA.periodLength;
+    var remain = DATA.periodLength - inPeriod;
+    if(remain < 0) remain = 0;
+    return 'Q' + period + ' 残り' + mmss(remain);
+  }
+
+  var LABEL_W = 128, RIGHT_PAD = 6, ROW_H = 32, ROW_GAP = 4, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
+  var MARGIN_H = 15, MARGIN_GAP = 6;
+  var CHART_W = 560;
+  var gameLen = DATA.periodLength * DATA.numPeriods;
+  var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
+  function X(sec){ return x0 + (sec/gameLen)*xw; }
+  function marginColor(m){ return m > 0 ? 'var(--margin-pos)' : m < 0 ? 'var(--margin-neg)' : 'var(--margin-zero)'; }
+  function marginInk(m){ return m > 0 ? 'var(--margin-pos-ink)' : m < 0 ? 'var(--margin-neg-ink)' : 'var(--ink-faint)'; }
+  function fmtMargin(m){ return m > 0 ? '+' + m : String(m); }
+
+  var y = TOP_PAD;
+  var svg = document.createElementNS(svgNS, 'svg');
+  var defsFrag = [];
+
+  DATA.teams.forEach(function(team){
+    var g = document.createElementNS(svgNS,'text');
+    g.setAttribute('x', 0); g.setAttribute('y', y - 8);
+    g.setAttribute('class','team-tag'); g.setAttribute('font-size','12');
+    g.setAttribute('fill', team.color); g.setAttribute('font-weight','500');
+    g.textContent = team.name;
+    svg.appendChild(g);
+
+    var marginRowLabel = document.createElementNS(svgNS,'text');
+    marginRowLabel.setAttribute('x', 0); marginRowLabel.setAttribute('y', y + MARGIN_H/2 + 3.5);
+    marginRowLabel.setAttribute('class','margin-row-label');
+    marginRowLabel.textContent = '5人時±';
+    svg.appendChild(marginRowLabel);
+
+    (team.stints || []).forEach(function(st){
+      var bx = X(st.start), bw = Math.max(X(st.end) - X(st.start), 1);
+      var seg = document.createElementNS(svgNS,'rect');
+      seg.setAttribute('class','margin-seg');
+      seg.setAttribute('x', bx.toFixed(1)); seg.setAttribute('y', y);
+      seg.setAttribute('width', bw.toFixed(1)); seg.setAttribute('height', MARGIN_H);
+      seg.setAttribute('rx', 2);
+      seg.setAttribute('fill', marginColor(st.margin));
+      seg.addEventListener('mouseenter', function(ev){ showMarginTip(ev, team, st); });
+      seg.addEventListener('mousemove', moveTip);
+      seg.addEventListener('mouseleave', hideTip);
+      svg.appendChild(seg);
+      if(bw >= 18){
+        var numEl = document.createElementNS(svgNS,'text');
+        numEl.setAttribute('x', (bx+bw/2).toFixed(1)); numEl.setAttribute('y', y + MARGIN_H/2 + 3.5);
+        numEl.setAttribute('text-anchor','middle'); numEl.setAttribute('class','margin-num');
+        numEl.setAttribute('fill', marginInk(st.margin));
+        numEl.textContent = fmtMargin(st.margin);
+        svg.appendChild(numEl);
+      }
+    });
+    y += MARGIN_H + MARGIN_GAP;
+
+    team.players.forEach(function(p){
+      var rowTop = y;
+      var nameEl = document.createElementNS(svgNS,'text');
+      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 12);
+      nameEl.setAttribute('class','name-label');
+      nameEl.textContent = '#' + p.jersey + ' ' + p.name;
+      svg.appendChild(nameEl);
+
+      var statEl = document.createElementNS(svgNS,'text');
+      statEl.setAttribute('x', 0); statEl.setAttribute('y', rowTop + 24);
+      statEl.setAttribute('class','stat-label');
+      var pmSpan = document.createElementNS(svgNS,'tspan');
+      pmSpan.setAttribute('class', p.plusMinus > 0 ? 'stat-pm-pos' : p.plusMinus < 0 ? 'stat-pm-neg' : 'stat-pm-zero');
+      pmSpan.textContent = (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
+      statEl.appendChild(pmSpan);
+      var timeSpan = document.createElementNS(svgNS,'tspan');
+      timeSpan.setAttribute('class', 'stat-time');
+      timeSpan.textContent = '  ・  ' + mmss(p.totalSec);
+      statEl.appendChild(timeSpan);
+      svg.appendChild(statEl);
+
+      p.intervals.forEach(function(iv){
+        var s=iv[0], e=iv[1];
+        var bx = X(s), bw = Math.max(X(e)-X(s), 1.5);
+        var rect = document.createElementNS(svgNS,'rect');
+        rect.setAttribute('class','bar');
+        rect.setAttribute('x', bx.toFixed(1));
+        rect.setAttribute('y', rowTop + (ROW_H-18)/2);
+        rect.setAttribute('width', bw.toFixed(1));
+        rect.setAttribute('height', 18);
+        rect.setAttribute('rx', 2.5);
+        rect.setAttribute('fill', team.color);
+        rect.addEventListener('mouseenter', function(ev){ showTip(ev, p, s, e); });
+        rect.addEventListener('mousemove', function(ev){ moveTip(ev); });
+        rect.addEventListener('mouseleave', hideTip);
+        svg.appendChild(rect);
+      });
+      y += ROW_H + ROW_GAP;
+    });
+    y += TEAM_GAP;
+  });
+
+  var chartBottom = y - TEAM_GAP + 6;
+
+  for(var q=0; q<=DATA.numPeriods; q++){
+    var gx = X(q*DATA.periodLength);
+    var line = document.createElementNS(svgNS,'line');
+    line.setAttribute('x1', gx.toFixed(1)); line.setAttribute('x2', gx.toFixed(1));
+    line.setAttribute('y1', TOP_PAD - 12); line.setAttribute('y2', chartBottom);
+    line.setAttribute('stroke', 'var(--line-strong)'); line.setAttribute('stroke-width', 1);
+    svg.insertBefore(line, svg.firstChild);
+  }
+  for(var m=1; m<DATA.numPeriods*2; m++){
+    if(m % 2 === 0) continue;
+    var mx = X(m*DATA.periodLength/2);
+    var mline = document.createElementNS(svgNS,'line');
+    mline.setAttribute('x1', mx.toFixed(1)); mline.setAttribute('x2', mx.toFixed(1));
+    mline.setAttribute('y1', TOP_PAD - 12); mline.setAttribute('y2', chartBottom);
+    mline.setAttribute('stroke', 'var(--line)'); mline.setAttribute('stroke-width', 1);
+    mline.setAttribute('stroke-dasharray','2,3');
+    svg.insertBefore(mline, svg.firstChild);
+  }
+
+  for(var qi=0; qi<DATA.numPeriods; qi++){
+    var lx = (X(qi*DATA.periodLength) + X((qi+1)*DATA.periodLength))/2;
+    var qlabel = document.createElementNS(svgNS,'text');
+    qlabel.setAttribute('x', lx.toFixed(1)); qlabel.setAttribute('y', chartBottom + 15);
+    qlabel.setAttribute('text-anchor','middle'); qlabel.setAttribute('class','axis-label');
+    qlabel.setAttribute('font-size','10.5'); qlabel.setAttribute('fill','var(--ink-faint)');
+    qlabel.textContent = 'Q' + (qi+1);
+    svg.appendChild(qlabel);
+  }
+
+  var totalH = chartBottom + BOTTOM_PAD;
+  svg.setAttribute('viewBox', '0 0 ' + CHART_W + ' ' + totalH);
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('role','img');
+  var title = document.createElementNS(svgNS,'title');
+  title.textContent = 'A東京と琉球、選手ごとの出場区間を示すローテーションチャート';
+  svg.insertBefore(title, svg.firstChild);
+
+  document.getElementById('chart').appendChild(svg);
+
+  var tip = document.getElementById('tooltip');
+  function showTip(ev, p, s, e){
+    tip.innerHTML = '<b>#' + p.jersey + ' ' + p.name + '</b><br>' +
+      clockLabel(s) + ' → ' + clockLabel(e) + '<br>出場 ' + mmss(e-s) +
+      '　通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
+    tip.hidden = false;
+    moveTip(ev);
+  }
+  function showMarginTip(ev, team, st){
+    var names = st.lineup.map(function(pl){ return '#' + pl.jersey + ' ' + pl.name; }).join('、');
+    tip.innerHTML = '<b>' + team.name + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
+      clockLabel(st.start) + ' → ' + clockLabel(st.end) + '<br>' + names;
+    tip.hidden = false;
+    moveTip(ev);
+  }
+  function moveTip(ev){
+    tip.style.left = ev.clientX + 'px';
+    tip.style.top = ev.clientY + 'px';
+  }
+  function hideTip(){ tip.hidden = true; }
+})();
+</script>

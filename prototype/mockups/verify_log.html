@@ -1,0 +1,235 @@
+<title>プレイバイプレイ検証ログ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#faf7f1;
+  --surface:#ffffff;
+  --surface-sunken:#f2ede2;
+  --ink:#241f17;
+  --ink-muted:#6b6255;
+  --ink-faint:#948a78;
+  --line:#e6dfce;
+  --line-strong:#d3c9ae;
+  --ok:#2f8f78;
+  --ok-bg:#e3f1ec;
+  --warn:#c15a3f;
+  --warn-bg:#f8e6df;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17140f;
+    --surface:#201b13;
+    --surface-sunken:#291f16;
+    --ink:#f2ede1;
+    --ink-muted:#b3a891;
+    --ink-faint:#8a806c;
+    --line:#332c20;
+    --line-strong:#463c2b;
+    --ok:#4fae95;
+    --ok-bg:#16302a;
+    --warn:#d98567;
+    --warn-bg:#3a2318;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17140f;
+  --surface:#201b13;
+  --surface-sunken:#291f16;
+  --ink:#f2ede1;
+  --ink-muted:#b3a891;
+  --ink-faint:#8a806c;
+  --line:#332c20;
+  --line-strong:#463c2b;
+  --ok:#4fae95;
+  --ok-bg:#16302a;
+  --warn:#d98567;
+  --warn-bg:#3a2318;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);}
+.page{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+  padding:1.75rem 1.5rem 2.25rem;
+  max-width:720px;
+  margin:0 auto;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:"Oswald",sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-muted);background:var(--surface-sunken);
+  padding:4px 10px 3px;border-radius:3px;margin:0 0 .9rem;
+}
+h1{
+  font-family:"Oswald",sans-serif;font-weight:500;font-size:24px;
+  letter-spacing:.01em;text-wrap:balance;margin:0 0 .3rem;
+}
+.lead{font-size:13.5px;color:var(--ink-muted);line-height:1.65;margin:0 0 1.5rem;max-width:60ch;}
+.lead code{font-family:"Noto Sans JP",monospace;background:var(--surface-sunken);padding:1px 5px;border-radius:4px;font-size:.9em;}
+.stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  margin-bottom:1.75rem;
+}
+.stat{
+  background:var(--surface-sunken);border-radius:8px;padding:.85rem 1rem;
+}
+.stat .n{
+  font-family:"Oswald",sans-serif;font-size:26px;font-weight:500;
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.stat .l{font-size:11.5px;color:var(--ink-muted);margin-top:2px;}
+.stat.ok .n{color:var(--ok);}
+.stat.warn .n{color:var(--warn);}
+h2{
+  font-family:"Oswald",sans-serif;font-weight:500;font-size:15px;
+  letter-spacing:.02em;margin:0 0 .7rem;
+}
+.games{display:flex;flex-direction:column;gap:10px;margin-bottom:2rem;}
+.game{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:.9rem 1rem;
+}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.matchup{font-size:14px;}
+.matchup .id{color:var(--ink-faint);font-size:11.5px;font-variant-numeric:tabular-nums;margin-right:8px;}
+.matchup .score{font-variant-numeric:tabular-nums;font-weight:500;}
+.pill{
+  font-family:"Oswald",sans-serif;font-size:10.5px;font-weight:500;
+  letter-spacing:.03em;padding:3px 9px 2px;border-radius:20px;white-space:nowrap;
+}
+.pill.ok{background:var(--ok-bg);color:var(--ok);}
+.pill.warn{background:var(--warn-bg);color:var(--warn);}
+.checks{
+  display:flex;gap:14px;margin-top:.55rem;font-size:12px;color:var(--ink-muted);
+  flex-wrap:wrap;
+}
+.checks .bad{color:var(--warn);}
+.detail{
+  margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line);
+}
+.detail-text{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 .55rem;}
+.detail-text b{font-weight:500;color:var(--ink);}
+.mini-scroll{overflow-x:auto;}
+svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
+.note{font-size:12.5px;color:var(--ink-faint);line-height:1.7;}
+</style>
+
+<div class="page">
+  <span class="eyebrow"><i>&#9679;</i>設計モックアップ</span>
+  <h1>プレイバイプレイ検証ログ</h1>
+  <p class="lead">同一チームが常時5人ちょうどコート上にいるという不変条件で、Bリーグ公式テキスト速報の交代イベントを検算した記録。<code>プレイヤーイン/アウト</code>を冪等な状態機械で復元し、出場時間合計（期待値: 5人×2400秒）で突合。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">4</div><div class="l">検証した試合</div></div>
+    <div class="stat ok"><div class="n">4</div><div class="l">現在クリーン</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">事後修正を確認</div></div>
+  </div>
+
+  <h2>試合ごとの結果</h2>
+  <div class="games">
+
+    <div class="game">
+      <div class="game-top">
+        <div class="matchup"><span class="id">506389</span>A東京 <span class="score">74–85</span> 琉球</div>
+        <span class="pill ok">クリーン</span>
+      </div>
+      <div class="checks"><span>異常イベント 0件</span><span>出場時間 両チームOK</span><span>得点再計算 一致</span></div>
+    </div>
+
+    <div class="game">
+      <div class="game-top">
+        <div class="matchup"><span class="id">506385</span>長崎 <span class="score">64–89</span> 島根</div>
+        <span class="pill ok">クリーン</span>
+      </div>
+      <div class="checks"><span>異常イベント 0件</span><span>出場時間 両チームOK</span><span>得点再計算 一致</span></div>
+    </div>
+
+    <div class="game">
+      <div class="game-top">
+        <div class="matchup"><span class="id">506381</span>A東京 <span class="score">84–73</span> 琉球</div>
+        <span class="pill ok">クリーン</span>
+      </div>
+      <div class="checks"><span>異常イベント 0件</span><span>出場時間 両チームOK</span><span>得点再計算 一致</span></div>
+    </div>
+
+    <div class="game">
+      <div class="game-top">
+        <div class="matchup"><span class="id">506380</span>A千葉 <span class="score">74–76</span> 群馬</div>
+        <span class="pill ok">クリーン（修正後）</span>
+      </div>
+      <div class="checks"><span>異常イベント 0件</span><span>出場時間 両チームOK</span><span>得点再計算 一致</span></div>
+      <div class="detail">
+        <p class="detail-text"><b>9/24の初回取得時点</b>では、<b>群馬</b>で対応する退場を欠いた入場イベントが発生し、<b>第2Q 残り7:00〜2:13</b>（約4分47秒）の間コート上人数が6人として復元されていた。<b>9/25に再取得したところ、当該イベントは修正され解消していた</b>。ソース側で試合後にライブテキストの校正が入ることを示唆する事例。</p>
+        <div class="mini-scroll" id="mini-506380"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">サンプル4試合中1試合で、取得当日は異常を検出したが翌日には解消していた。「異常は5人不変条件で機械的に検出できる」に加え、「取得タイミングによっては同じ試合でも結果が変わりうる」という点も設計上考慮が必要（例: ライブ中〜試合直後の取得は要注意、時間を置いた取得の方が安定する可能性）。</p>
+</div>
+
+<script>
+(function(){
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var W = 640, H = 54;
+  var gameLen = 2400, periodLen = 600;
+  function X(sec){ return 4 + (sec/gameLen)*(W-8); }
+
+  var svg = document.createElementNS(svgNS,'svg');
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.setAttribute('width','100%');
+  svg.setAttribute('role','img');
+  var title = document.createElementNS(svgNS,'title');
+  title.textContent = '9/24時点で群馬のコート人数が6人になっていた区間(9/25には修正): 第2Q残り7:00〜2:13';
+  svg.appendChild(title);
+
+  var track = document.createElementNS(svgNS,'rect');
+  track.setAttribute('x', X(0)); track.setAttribute('y', 18);
+  track.setAttribute('width', X(gameLen)-X(0)); track.setAttribute('height', 14);
+  track.setAttribute('rx', 3);
+  track.setAttribute('fill', 'var(--surface-sunken)');
+  svg.appendChild(track);
+
+  var bad = document.createElementNS(svgNS,'rect');
+  bad.setAttribute('x', X(780).toFixed(1)); bad.setAttribute('y', 18);
+  bad.setAttribute('width', (X(1067)-X(780)).toFixed(1)); bad.setAttribute('height', 14);
+  bad.setAttribute('rx', 3);
+  bad.setAttribute('fill', 'var(--ok)');
+  bad.setAttribute('fill-opacity', '0.55');
+  svg.appendChild(bad);
+
+  for(var q=0; q<=4; q++){
+    var gx = X(q*periodLen);
+    var line = document.createElementNS(svgNS,'line');
+    line.setAttribute('x1', gx.toFixed(1)); line.setAttribute('x2', gx.toFixed(1));
+    line.setAttribute('y1', 14); line.setAttribute('y2', 36);
+    line.setAttribute('stroke', 'var(--line-strong)'); line.setAttribute('stroke-width', 1);
+    svg.appendChild(line);
+    if(q<4){
+      var lbl = document.createElementNS(svgNS,'text');
+      lbl.setAttribute('x', ((X(q*periodLen)+X((q+1)*periodLen))/2).toFixed(1));
+      lbl.setAttribute('y', 48);
+      lbl.setAttribute('text-anchor','middle');
+      lbl.setAttribute('font-size','9.5');
+      lbl.setAttribute('fill','var(--ink-faint)');
+      lbl.textContent = 'Q'+(q+1);
+      svg.appendChild(lbl);
+    }
+  }
+
+  var badLabel = document.createElementNS(svgNS,'text');
+  badLabel.setAttribute('x', ((X(780)+X(1067))/2).toFixed(1));
+  badLabel.setAttribute('y', 12);
+  badLabel.setAttribute('text-anchor','middle');
+  badLabel.setAttribute('font-size','9.5');
+  badLabel.setAttribute('font-weight','500');
+  badLabel.setAttribute('fill','var(--ink-muted)');
+  badLabel.textContent = '9/24時点で6人(現在は解消)';
+  svg.appendChild(badLabel);
+
+  document.getElementById('mini-506380').appendChild(svg);
+})();
+</script>
