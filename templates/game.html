@@ -471,14 +471,6 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     litRows = [];
     hideTip();
   }
-  function teamPoints(ti, from, to){
-    var pf = 0, pa = 0;
-    (DATA.scoring || []).forEach(function(e){
-      if (e[0] < from || e[0] >= to) return;
-      if (e[1] === ti) pf += e[2]; else pa += e[2];
-    });
-    return {pf: pf, pa: pa};
-  }
   var svg = document.createElementNS(svgNS, 'svg');
   if (DATA.scoring && DATA.scoring.length){
     y = drawFlow(y) + FLOW_GAP;
@@ -506,12 +498,10 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       seg.setAttribute('width', bw.toFixed(1)); seg.setAttribute('height', MARGIN_H);
       seg.setAttribute('rx', 2);
       seg.setAttribute('fill', marginColor(st.margin));
-      seg.addEventListener('mouseenter', function(ev){
-        showMarginTip(ev, team, st);
+      seg.addEventListener('mouseenter', function(){
         focusTime(st.start, st.end);
         lightRows(ti, st.lineup);
       });
-      seg.addEventListener('mousemove', moveTip);
       seg.addEventListener('mouseleave', clearFocus);
       svg.appendChild(seg);
       if(bw >= 18){
@@ -562,11 +552,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
         rect.setAttribute('height', BAR_H);
         rect.setAttribute('rx', 2.5);
         rect.setAttribute('fill', team.color);
-        rect.addEventListener('mouseenter', function(ev){
-          showTip(ev, p, s, e, teamPoints(ti, s, e));
-          focusTime(s, e);
-        });
-        rect.addEventListener('mousemove', function(ev){ moveTip(ev); });
+        rect.addEventListener('mouseenter', function(){ focusTime(s, e); });
         rect.addEventListener('mouseleave', clearFocus);
         svg.appendChild(rect);
       });
@@ -689,21 +675,6 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   renderCrunch();
 
   var tip = document.getElementById('tooltip');
-  function showTip(ev, p, s, e, pts){
-    tip.innerHTML = '<b>#' + esc(p.jersey) + ' ' + esc(shortName(p.name)) + '</b><br>' +
-      clockLabel(s) + ' → ' + clockLabel(e) + '<br>出場 ' + mmss(e-s) +
-      '　この間 ' + fmtMargin(pts.pf - pts.pa) + '（' + pts.pf + '得点-' + pts.pa + '失点）<br>' +
-      '通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
-    tip.hidden = false;
-    moveTip(ev);
-  }
-  function showMarginTip(ev, team, st){
-    var names = st.lineup.map(function(pl){ return '#' + esc(pl.jersey) + ' ' + esc(shortName(pl.name)); }).join('、');
-    tip.innerHTML = '<b>' + esc(team.name) + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
-      clockLabel(st.start) + ' → ' + clockLabel(st.end) + '<br>' + names;
-    tip.hidden = false;
-    moveTip(ev);
-  }
   function showFlowTip(ev, r){
     var home = DATA.teams[0].name, away = DATA.teams[1].name;
     var lead = r.margin > 0 ? esc(home) + ' ' + r.margin + '点リード'
