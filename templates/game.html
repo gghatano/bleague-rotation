@@ -159,6 +159,11 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .stat-pm-pos{fill:var(--margin-pos);}
 .stat-pm-neg{fill:var(--margin-neg);}
 .stat-pm-zero{fill:var(--ink-faint);}
+.flow-title{font-size:11px;font-weight:500;fill:var(--ink);}
+.flow-side{font-size:9.5px;fill:var(--ink-faint);}
+.flow-tick{font-size:9.5px;fill:var(--ink-faint);font-variant-numeric:tabular-nums;}
+.flow-hit{cursor:pointer;}
+.flow-hit:hover{fill:var(--line);fill-opacity:.45;}
 .margin-seg{cursor:pointer;}
 .margin-seg:hover{filter:brightness(1.1);}
 .margin-num{font-size:9.5px;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none;}
@@ -291,10 +296,85 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   function marginColor(m){ return m > 0 ? 'var(--margin-pos)' : m < 0 ? 'var(--margin-neg)' : 'var(--margin-zero)'; }
   function marginInk(m){ return m > 0 ? 'var(--margin-pos-ink)' : m < 0 ? 'var(--margin-neg-ink)' : 'var(--ink-faint)'; }
   function fmtMargin(m){ return m > 0 ? '+' + m : String(m); }
+  function esc(v){ return String(v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function text(str, x, yy, cls, anchor){
+    var el = document.createElementNS(svgNS, 'text');
+    el.setAttribute('x', x); el.setAttribute('y', yy);
+    el.setAttribute('class', cls);
+    if (anchor) el.setAttribute('text-anchor', anchor);
+    el.textContent = str;
+    return el;
+  }
+
+  var FLOW_H = 112, FLOW_GAP = 36, FLOW_BIN = 60;
+  function flowLabel(t){
+    return t % DATA.periodLength === 0 ? 'Q' + (t / DATA.periodLength) + ' 終了' : clockLabel(t) + ' 時点';
+  }
+  function drawFlow(top){
+    var home = DATA.teams[0], away = DATA.teams[1];
+    var events = DATA.scoring.slice().sort(function(a, b){ return a[0] - b[0]; });
+    var bins = Math.round(gameLen / FLOW_BIN), score = [0, 0], idx = 0, rows = [];
+    for (var b = 1; b <= bins; b++){
+      var t = b * FLOW_BIN;
+      while (idx < events.length && events[idx][0] <= t){ score[events[idx][1]] += events[idx][2]; idx++; }
+      rows.push({start: t - FLOW_BIN, t: t, home: score[0], away: score[1], margin: score[0] - score[1]});
+    }
+    var maxAbs = rows.reduce(function(mx, r){ return Math.max(mx, Math.abs(r.margin)); }, 0);
+    var yMax = Math.max(5, Math.ceil(maxAbs / 5) * 5);
+    var mid = top + FLOW_H / 2;
+    function Y(v){ return mid - v / yMax * (FLOW_H / 2); }
+
+    svg.appendChild(text('点差の推移', 0, top + 4, 'flow-title'));
+    svg.appendChild(text(home.name + ' リード', 0, top + 20, 'flow-side'));
+    svg.appendChild(text(away.name + ' リード', 0, top + FLOW_H - 4, 'flow-side'));
+    [yMax, -yMax].forEach(function(v){
+      var gl = document.createElementNS(svgNS, 'line');
+      gl.setAttribute('x1', x0); gl.setAttribute('x2', x0 + xw);
+      gl.setAttribute('y1', Y(v).toFixed(1)); gl.setAttribute('y2', Y(v).toFixed(1));
+      gl.setAttribute('stroke', 'var(--line)'); gl.setAttribute('stroke-width', 1);
+      gl.setAttribute('stroke-dasharray', '2,3');
+      svg.appendChild(gl);
+      svg.appendChild(text('+' + yMax, x0 - 6, Y(v) + 3.5, 'flow-tick', 'end'));
+    });
+    svg.appendChild(text('0', x0 - 6, mid + 3.5, 'flow-tick', 'end'));
+
+    var slot = xw / bins;
+    rows.forEach(function(r){
+      var bx = X(r.start) + 0.75, bw = Math.max(slot - 1.5, 1);
+      if (r.margin !== 0){
+        var bar = document.createElementNS(svgNS, 'rect');
+        var yTop = r.margin > 0 ? Y(r.margin) : mid;
+        bar.setAttribute('x', bx.toFixed(1)); bar.setAttribute('y', yTop.toFixed(1));
+        bar.setAttribute('width', bw.toFixed(1)); bar.setAttribute('height', Math.abs(Y(r.margin) - mid).toFixed(1));
+        bar.setAttribute('rx', 1.5);
+        bar.setAttribute('fill', r.margin > 0 ? home.color : away.color);
+        bar.setAttribute('class', 'flow-bar');
+        svg.appendChild(bar);
+      }
+      var hit = document.createElementNS(svgNS, 'rect');
+      hit.setAttribute('x', X(r.start).toFixed(1)); hit.setAttribute('y', top);
+      hit.setAttribute('width', slot.toFixed(1)); hit.setAttribute('height', FLOW_H);
+      hit.setAttribute('fill', 'transparent');
+      hit.setAttribute('class', 'flow-hit');
+      hit.addEventListener('mouseenter', function(ev){ showFlowTip(ev, r); });
+      hit.addEventListener('mousemove', moveTip);
+      hit.addEventListener('mouseleave', hideTip);
+      svg.appendChild(hit);
+    });
+
+    var base = document.createElementNS(svgNS, 'line');
+    base.setAttribute('x1', x0); base.setAttribute('x2', x0 + xw);
+    base.setAttribute('y1', mid); base.setAttribute('y2', mid);
+    base.setAttribute('stroke', 'var(--line-strong)'); base.setAttribute('stroke-width', 1);
+    svg.appendChild(base);
+    return top + FLOW_H;
+  }
 
   var y = TOP_PAD;
   var svg = document.createElementNS(svgNS, 'svg');
-  var defsFrag = [];
+  if (DATA.scoring && DATA.scoring.length){
+    y = drawFlow(y) + FLOW_GAP;
+  }
 
   DATA.teams.forEach(function(team){
     var g = document.createElementNS(svgNS,'text');
@@ -411,23 +491,31 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   svg.setAttribute('width', '100%');
   svg.setAttribute('role','img');
   var title = document.createElementNS(svgNS,'title');
-  title.textContent = DATA.teams[0].name + 'と' + DATA.teams[1].name + '、選手ごとの出場区間を示すローテーションチャート';
+  title.textContent = DATA.teams[0].name + 'と' + DATA.teams[1].name + '、1分ごとの点差の推移と、選手ごとの出場区間を示すローテーションチャート';
   svg.insertBefore(title, svg.firstChild);
 
   document.getElementById('chart').appendChild(svg);
 
   var tip = document.getElementById('tooltip');
   function showTip(ev, p, s, e){
-    tip.innerHTML = '<b>#' + p.jersey + ' ' + p.name + '</b><br>' +
+    tip.innerHTML = '<b>#' + esc(p.jersey) + ' ' + esc(p.name) + '</b><br>' +
       clockLabel(s) + ' → ' + clockLabel(e) + '<br>出場 ' + mmss(e-s) +
       '　通算+/- ' + (p.plusMinus > 0 ? '+' : '') + p.plusMinus;
     tip.hidden = false;
     moveTip(ev);
   }
   function showMarginTip(ev, team, st){
-    var names = st.lineup.map(function(pl){ return '#' + pl.jersey + ' ' + pl.name; }).join('、');
-    tip.innerHTML = '<b>' + team.name + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
+    var names = st.lineup.map(function(pl){ return '#' + esc(pl.jersey) + ' ' + esc(pl.name); }).join('、');
+    tip.innerHTML = '<b>' + esc(team.name) + ' ' + fmtMargin(st.margin) + '</b> (' + st.for + '得点 - ' + st.against + '失点)<br>' +
       clockLabel(st.start) + ' → ' + clockLabel(st.end) + '<br>' + names;
+    tip.hidden = false;
+    moveTip(ev);
+  }
+  function showFlowTip(ev, r){
+    var home = DATA.teams[0].name, away = DATA.teams[1].name;
+    var lead = r.margin > 0 ? esc(home) + ' ' + r.margin + '点リード'
+             : r.margin < 0 ? esc(away) + ' ' + (-r.margin) + '点リード' : '同点';
+    tip.innerHTML = '<b>' + flowLabel(r.t) + '</b><br>' + esc(home) + ' ' + r.home + ' - ' + r.away + ' ' + esc(away) + '<br>' + lead;
     tip.hidden = false;
     moveTip(ev);
   }

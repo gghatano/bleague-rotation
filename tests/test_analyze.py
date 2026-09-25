@@ -86,6 +86,7 @@ class AnalyzeTest(unittest.TestCase):
         ]
         result = run(game(plays))
         self.assertEqual([t['score'] for t in result['teams']], [5, 5])
+        self.assertEqual(result['scoring'][:3], [[60, 0, 3], [120, 1, 2], [120, 1, 1]])
         self.assertTrue(all(p['plusMinus'] == 0 for p in team(result, HOME)['players']))
 
     def test_overtime_is_unsupported(self):

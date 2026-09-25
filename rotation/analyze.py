@@ -129,4 +129,7 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str) -> dict
             'stints': stints,
             'lineups': _lineups(stints),
         })
-    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': num_periods, 'teams': result, 'anomalies': anomalies}
+    side = {home: 0, away: 1}
+    scoring = [[e.sec, side[e.team], p] for e in events if (p := points_of(e.desc))]
+    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': num_periods, 'teams': result,
+            'scoring': scoring, 'anomalies': anomalies}

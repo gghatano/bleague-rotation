@@ -65,6 +65,7 @@ def render_game(game: dict) -> str:
         'numPeriods': game['numPeriods'],
         'teams': [{'name': t['name'], 'color': f'var(--{slot})', 'players': t['players'], 'stints': t['stints']}
                   for slot, t in (('t1', home), ('t2', away))],
+        'scoring': game.get('scoring', []),
     }
     note = f'ソースの重複した交代記録{len(game["anomalies"])}件は無視して集計しています。' if game['anomalies'] else ''
     values = {
