@@ -267,7 +267,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   </div>
   <div id="crunch"></div>
 
-  <p class="note">選手名の下の数字は個人の+/-（その選手が出場していた時間帯のチーム得点差の合計）と出場時間。「5人時±」の帯は、そのチームの5人が変わらない区間ごとの得点差（自チーム得点 − 相手得点）。帯・バーにカーソルを合わせると詳細を表示します。{{NOTE}}</p>
+  <p class="note">選手名の右の数字は、個人の+/-（その選手が出場していた時間帯のチーム得点差の合計）と出場時間。「5人時±」の帯は、そのチームの5人が変わらない区間ごとの得点差（自チーム得点 − 相手得点）。出場区間の棒や「5人時±」の帯にカーソルを合わせると、その時間帯と、コートにいた選手の行が強調されます。点差グラフにカーソルを合わせると、その時点のスコアを表示します。{{NOTE}}</p>
 
   {{LINEUPS}}
 
@@ -396,7 +396,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     focusClip.appendChild(focusClipRect);
     defs.appendChild(focusClip);
     svg.appendChild(defs);
-    var focusBand = el('rect', {x: 0, y: top, width: 0, height: FLOW_H, fill: 'var(--ink)', 'fill-opacity': 0.07,
+    var focusBand = el('rect', {x: 0, y: top, width: 0, height: FLOW_H, fill: 'var(--ink)', 'fill-opacity': 0.1,
       visibility: 'hidden', 'pointer-events': 'none'});
     svg.appendChild(focusBand);
 
@@ -458,20 +458,30 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   var fitLabels = [];
   var flowFocus = null, rowBgs = {}, litRows = [];
   function rowKey(ti, jersey, name){ return ti + ':' + jersey + ':' + name; }
-  function focusTime(from, to){ if (flowFocus) flowFocus.show(from, to); }
+  var timeBand = null;
+  function focusTime(from, to){
+    if (flowFocus) flowFocus.show(from, to);
+    timeBand.setAttribute('x', X(from).toFixed(1));
+    timeBand.setAttribute('width', Math.max(X(to) - X(from), 1).toFixed(1));
+    timeBand.setAttribute('visibility', 'visible');
+  }
   function lightRows(ti, lineup){
     lineup.forEach(function(pl){
       var bg = rowBgs[rowKey(ti, pl.jersey, pl.name)];
-      if (bg){ bg.setAttribute('fill-opacity', 0.16); litRows.push(bg); }
+      if (bg){ bg.setAttribute('fill-opacity', 0.22); litRows.push(bg); }
     });
   }
   function clearFocus(){
     if (flowFocus) flowFocus.hide();
+    timeBand.setAttribute('visibility', 'hidden');
     litRows.forEach(function(bg){ bg.setAttribute('fill-opacity', 0); });
     litRows = [];
     hideTip();
   }
   var svg = document.createElementNS(svgNS, 'svg');
+  timeBand = el('rect', {x: 0, y: 0, width: 0, height: 0, fill: 'var(--ink)', 'fill-opacity': 0.06,
+    visibility: 'hidden', 'pointer-events': 'none'});
+  svg.appendChild(timeBand);
   if (DATA.scoring && DATA.scoring.length){
     y = drawFlow(y) + FLOW_GAP;
   }
@@ -552,7 +562,10 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
         rect.setAttribute('height', BAR_H);
         rect.setAttribute('rx', 2.5);
         rect.setAttribute('fill', team.color);
-        rect.addEventListener('mouseenter', function(){ focusTime(s, e); });
+        rect.addEventListener('mouseenter', function(){
+          focusTime(s, e);
+          lightRows(ti, [{jersey: p.jersey, name: p.name}]);
+        });
         rect.addEventListener('mouseleave', clearFocus);
         svg.appendChild(rect);
       });
@@ -562,6 +575,8 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   });
 
   var chartBottom = y - TEAM_GAP + 6;
+  timeBand.setAttribute('y', TOP_PAD - 12);
+  timeBand.setAttribute('height', chartBottom - (TOP_PAD - 12));
 
   for(var q=0; q<=DATA.numPeriods; q++){
     var gx = X(q*DATA.periodLength);
