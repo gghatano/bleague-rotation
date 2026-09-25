@@ -171,6 +171,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .crunch summary:hover{color:var(--ink);}
 .crunch .lu-scroll{margin-top:.4rem;}
 .crunch-team{font-weight:500;}
+.crunch-sum{font-size:12.5px;color:var(--ink-muted);margin:.5rem 0 0;}
 .crunch-team.t1{color:var(--t1-ink);}
 .crunch-team.t2{color:var(--t2-ink);}
 .crunch-tag{font-size:11px;padding:1px 7px;border-radius:10px;background:var(--surface-sunken);color:var(--ink-muted);}
@@ -571,31 +572,47 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   function renderCrunch(){
     if (!DATA.scoring || elapsed <= CRUNCH_FROM) return;
     var names = [DATA.teams[0].name, DATA.teams[1].name];
-    var events = DATA.scoring.map(function(e, i){ return [e[0], e[1], e[2], i]; })
-      .sort(function(a, b){ return a[0] - b[0] || a[3] - b[3]; });
+    var events = DATA.scoring.map(function(e, i){ return {t: e[0], side: e[1], pts: e[2], jersey: e[3] || '', name: e[4] || '', kind: e[5] || '', i: i}; })
+      .sort(function(a, b){ return a.t - b.t || a.i - b.i; });
     var score = [0, 0], leader = 0, rows = [], reversals = 0;
     events.forEach(function(e){
       var before = score[0] - score[1];
-      score[e[1]] += e[2];
+      score[e.side] += e.pts;
       var m = score[0] - score[1], sign = Math.sign(m), tag = '';
       if (sign && leader && sign !== leader) tag = '逆転';
       else if (!m && before) tag = '同点';
       if (sign) leader = sign;
-      if (e[0] >= CRUNCH_FROM){
+      if (e.t >= CRUNCH_FROM){
         if (tag === '逆転') reversals++;
-        rows.push({t: e[0], side: e[1], pts: e[2], home: score[0], away: score[1], tag: tag});
+        rows.push({t: e.t, side: e.side, pts: e.pts, jersey: e.jersey, name: e.name, kind: e.kind,
+                   home: score[0], away: score[1], tag: tag});
       }
     });
     if (!rows.length) return;
     var html = '<details class="crunch"><summary>終盤2分の得点経過（得点' + rows.length + '回・逆転' + reversals + '回）</summary>' +
-      '<div class="lu-scroll"><table class="lu-table crunch-table"><thead><tr><th>時刻</th><th>得点</th><th>スコア</th><th></th></tr></thead><tbody>';
+      '<div class="lu-scroll"><table class="lu-table crunch-table"><thead><tr><th>時刻</th><th>得点者</th><th></th><th>スコア</th><th></th></tr></thead><tbody>';
     rows.forEach(function(r){
       html += '<tr><td class="lu-time">' + esc(clockLabel(r.t)) + '</td>' +
-        '<td><span class="crunch-team t' + (r.side + 1) + '">' + esc(names[r.side]) + '</span> +' + r.pts + '</td>' +
+        '<td><span class="crunch-team t' + (r.side + 1) + '">' + esc(names[r.side]) + '</span> ' +
+          (r.name ? '#' + esc(r.jersey) + ' ' + esc(r.name) : '') + '</td>' +
+        '<td class="lu-fa">' + esc(r.kind) + ' +' + r.pts + '</td>' +
         '<td class="lu-fa">' + esc(names[0]) + ' ' + r.home + ' - ' + r.away + ' ' + esc(names[1]) + '</td>' +
         '<td>' + (r.tag ? '<span class="crunch-tag' + (r.tag === '逆転' ? ' rev' : '') + '">' + r.tag + '</span>' : '') + '</td></tr>';
     });
-    document.getElementById('crunch').innerHTML = html + '</tbody></table></div></details>';
+    html += '</tbody></table></div>';
+    [0, 1].forEach(function(side){
+      var byPlayer = {}, order = [];
+      rows.forEach(function(r){
+        if (r.side !== side || !r.name) return;
+        var key = r.jersey + ' ' + r.name;
+        if (!(key in byPlayer)){ byPlayer[key] = 0; order.push(key); }
+        byPlayer[key] += r.pts;
+      });
+      order.sort(function(a, b){ return byPlayer[b] - byPlayer[a]; });
+      html += '<p class="crunch-sum"><span class="crunch-team t' + (side + 1) + '">' + esc(names[side]) + '</span> ' +
+        (order.length ? order.map(function(k){ return '#' + esc(k) + ' ' + byPlayer[k] + '点'; }).join('、') : '得点なし') + '</p>';
+    });
+    document.getElementById('crunch').innerHTML = html + '</details>';
   }
   renderCrunch();
 

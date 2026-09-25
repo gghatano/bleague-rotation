@@ -92,7 +92,8 @@ class AnalyzeTest(unittest.TestCase):
         ]
         result = run(game(plays))
         self.assertEqual([t['score'] for t in result['teams']], [5, 5])
-        self.assertEqual(result['scoring'][:3], [[60, 0, 3], [120, 1, 2], [120, 1, 1]])
+        self.assertEqual(result['scoring'][:3], [[60, 0, 3, '1', 'P1', '3P'], [120, 1, 2, '11', 'P11', '2P'],
+                                                 [120, 1, 1, '11', 'P11', 'FT']])
         self.assertTrue(all(p['plusMinus'] == 0 for p in team(result, HOME)['players']))
 
     def test_game_in_progress_ends_at_latest_play(self):
