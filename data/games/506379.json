@@ -13,22 +13,7 @@
   "score": 90
  },
  "status": "ok",
- "anomalies": [
-  {
-   "sec": 1489,
-   "team": "三遠",
-   "jersey": "55",
-   "name": "ハレルソン",
-   "kind": "duplicate_out"
-  },
-  {
-   "sec": 1489,
-   "team": "三遠",
-   "jersey": "14",
-   "name": "湧川",
-   "kind": "duplicate_in"
-  }
- ],
+ "anomalies": [],
  "periodLength": 600,
  "numPeriods": 4,
  "final": true,
@@ -1944,7 +1929,7 @@
     {
      "jersey": "7",
      "name": "デイビス",
-     "totalSec": 1854,
+     "totalSec": 1853,
      "intervals": [
       [
        0,
@@ -1960,14 +1945,14 @@
       ],
       [
        1775,
-       1984
+       1983
       ],
       [
        2103,
        2400
       ]
      ],
-     "plusMinus": 6
+     "plusMinus": 8
     },
     {
      "jersey": "14",
@@ -2060,18 +2045,18 @@
     {
      "jersey": "15",
      "name": "兪",
-     "totalSec": 275,
+     "totalSec": 276,
      "intervals": [
       [
        367,
        523
       ],
       [
-       1984,
+       1983,
        2103
       ]
      ],
-     "plusMinus": -2
+     "plusMinus": -4
     },
     {
      "jersey": "20",
@@ -2586,39 +2571,10 @@
     },
     {
      "start": 1414,
-     "end": 1489,
-     "for": 4,
-     "against": 3,
-     "margin": 1,
-     "lineup": [
-      {
-       "jersey": "21",
-       "name": "ブラウン"
-      },
-      {
-       "jersey": "14",
-       "name": "湧川"
-      },
-      {
-       "jersey": "28",
-       "name": "津屋"
-      },
-      {
-       "jersey": "7",
-       "name": "デイビス"
-      },
-      {
-       "jersey": "2",
-       "name": "ヴァン・タバーゲン"
-      }
-     ]
-    },
-    {
-     "start": 1489,
      "end": 1558,
-     "for": 7,
-     "against": 0,
-     "margin": 7,
+     "for": 11,
+     "against": 3,
+     "margin": 8,
      "lineup": [
       {
        "jersey": "21",
@@ -2847,10 +2803,10 @@
     },
     {
      "start": 1902,
-     "end": 1984,
+     "end": 1983,
      "for": 1,
-     "against": 4,
-     "margin": -3,
+     "against": 2,
+     "margin": -1,
      "lineup": [
       {
        "jersey": "7",
@@ -2875,11 +2831,11 @@
      ]
     },
     {
-     "start": 1984,
+     "start": 1983,
      "end": 2103,
      "for": 2,
-     "against": 5,
-     "margin": -3,
+     "against": 7,
+     "margin": -5,
      "lineup": [
       {
        "jersey": "15",
@@ -3102,10 +3058,10 @@
        "name": "ヴァン・タバーゲン"
       }
      ],
-     "sec": 228,
+     "sec": 229,
      "for": 6,
-     "against": 5,
-     "margin": 1,
+     "against": 7,
+     "margin": -1,
      "stints": 2
     },
     {
@@ -3193,7 +3149,7 @@
      "for": 11,
      "against": 3,
      "margin": 8,
-     "stints": 2
+     "stints": 1
     },
     {
      "lineup": [
@@ -3247,10 +3203,10 @@
        "name": "デイビス"
       }
      ],
-     "sec": 100,
+     "sec": 99,
      "for": 4,
-     "against": 5,
-     "margin": -1,
+     "against": 3,
+     "margin": 1,
      "stints": 2
     },
     {
@@ -4228,5 +4184,5 @@
    "FT"
   ]
  ],
- "generatedAt": "2026-09-25T12:28:56+00:00"
+ "generatedAt": "2026-09-25T23:42:21+00:00"
 }
