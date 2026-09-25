@@ -5,30 +5,30 @@
  "home": {
   "name": "長崎",
   "teamId": "2488",
-  "score": 68
+  "score": 78
  },
  "away": {
   "name": "島根",
   "teamId": "720",
-  "score": 83
+  "score": 85
  },
- "clock": "4Q 残り4:44",
+ "clock": "4Q 残り0:05",
  "status": "live",
  "anomalies": [],
  "periodLength": 600,
  "numPeriods": 4,
  "final": false,
- "elapsedSec": 2116,
+ "elapsedSec": 2395,
  "truncated": null,
  "teams": [
   {
    "name": "長崎",
-   "score": 68,
+   "score": 78,
    "players": [
     {
      "jersey": "7",
      "name": "ブラントリー",
-     "totalSec": 1494,
+     "totalSec": 1773,
      "intervals": [
       [
        0,
@@ -48,10 +48,10 @@
       ],
       [
        2116,
-       2116
+       2395
       ]
      ],
-     "plusMinus": -3
+     "plusMinus": 4
     },
     {
      "jersey": "11",
@@ -84,7 +84,7 @@
     {
      "jersey": "18",
      "name": "馬場",
-     "totalSec": 1684,
+     "totalSec": 1963,
      "intervals": [
       [
        0,
@@ -104,15 +104,15 @@
       ],
       [
        2008,
-       2116
+       2395
       ]
      ],
-     "plusMinus": -7
+     "plusMinus": 0
     },
     {
      "jersey": "20",
      "name": "ランドルフ",
-     "totalSec": 1564,
+     "totalSec": 1749,
      "intervals": [
       [
        0,
@@ -129,14 +129,18 @@
       [
        1800,
        2116
+      ],
+      [
+       2210,
+       2395
       ]
      ],
-     "plusMinus": -12
+     "plusMinus": -8
     },
     {
      "jersey": "9",
      "name": "森川",
-     "totalSec": 1652,
+     "totalSec": 1931,
      "intervals": [
       [
        0,
@@ -152,10 +156,10 @@
       ],
       [
        1691,
-       2116
+       2395
       ]
      ],
-     "plusMinus": -1
+     "plusMinus": 6
     },
     {
      "jersey": "77",
@@ -176,7 +180,7 @@
     {
      "jersey": "32",
      "name": "田中",
-     "totalSec": 743,
+     "totalSec": 1022,
      "intervals": [
       [
        334,
@@ -192,15 +196,15 @@
       ],
       [
        1996,
-       2116
+       2395
       ]
      ],
-     "plusMinus": -12
+     "plusMinus": -5
     },
     {
      "jersey": "13",
      "name": "星川",
-     "totalSec": 1233,
+     "totalSec": 1327,
      "intervals": [
       [
        334,
@@ -220,10 +224,14 @@
       ],
       [
        2026,
-       2116
+       2210
+      ],
+      [
+       2395,
+       2395
       ]
      ],
-     "plusMinus": -15
+     "plusMinus": -12
     },
     {
      "jersey": "10",
@@ -975,6 +983,35 @@
        "name": "ランドルフ"
       },
       {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "18",
+       "name": "馬場"
+      }
+     ]
+    },
+    {
+     "start": 2116,
+     "end": 2210,
+     "for": 5,
+     "against": 2,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
        "jersey": "9",
        "name": "森川"
       },
@@ -987,8 +1024,37 @@
        "name": "馬場"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ]
+    },
+    {
+     "start": 2210,
+     "end": 2395,
+     "for": 5,
+     "against": 1,
+     "margin": 4,
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "18",
+       "name": "馬場"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
       }
      ]
     }
@@ -1051,6 +1117,35 @@
      "against": 10,
      "margin": 1,
      "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "18",
+       "name": "馬場"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ],
+     "sec": 185,
+     "for": 5,
+     "against": 1,
+     "margin": 4,
+     "stints": 1
     },
     {
      "lineup": [
@@ -1253,6 +1348,35 @@
      "for": 1,
      "against": 5,
      "margin": -4,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "18",
+       "name": "馬場"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ],
+     "sec": 94,
+     "for": 5,
+     "against": 2,
+     "margin": 3,
      "stints": 1
     },
     {
@@ -1578,12 +1702,12 @@
   },
   {
    "name": "島根",
-   "score": 83,
+   "score": 85,
    "players": [
     {
      "jersey": "9",
      "name": "デニス",
-     "totalSec": 1704,
+     "totalSec": 1983,
      "intervals": [
       [
        0,
@@ -1599,10 +1723,10 @@
       ],
       [
        1950,
-       2116
+       2395
       ]
      ],
-     "plusMinus": 13
+     "plusMinus": 6
     },
     {
      "jersey": "20",
@@ -1659,7 +1783,7 @@
     {
      "jersey": "4",
      "name": "ケイ",
-     "totalSec": 1469,
+     "totalSec": 1748,
      "intervals": [
       [
        0,
@@ -1679,15 +1803,15 @@
       ],
       [
        1950,
-       2116
+       2395
       ]
      ],
-     "plusMinus": 16
+     "plusMinus": 9
     },
     {
      "jersey": "77",
      "name": "岡田",
-     "totalSec": 1621,
+     "totalSec": 1900,
      "intervals": [
       [
        0,
@@ -1707,15 +1831,15 @@
       ],
       [
        2070,
-       2116
+       2395
       ]
      ],
-     "plusMinus": 7
+     "plusMinus": 0
     },
     {
      "jersey": "29",
      "name": "アルーホリー",
-     "totalSec": 677,
+     "totalSec": 862,
      "intervals": [
       [
        334,
@@ -1728,14 +1852,18 @@
       [
        1466,
        1950
+      ],
+      [
+       2210,
+       2395
       ]
      ],
-     "plusMinus": 9
+     "plusMinus": 5
     },
     {
      "jersey": "11",
      "name": "中村",
-     "totalSec": 936,
+     "totalSec": 1215,
      "intervals": [
       [
        334,
@@ -1751,10 +1879,10 @@
       ],
       [
        2116,
-       2116
+       2395
       ]
      ],
-     "plusMinus": 7
+     "plusMinus": 0
     },
     {
      "jersey": "75",
@@ -1783,7 +1911,7 @@
     {
      "jersey": "15",
      "name": "白濱",
-     "totalSec": 1094,
+     "totalSec": 1188,
      "intervals": [
       [
        836,
@@ -1799,10 +1927,10 @@
       ],
       [
        1800,
-       2116
+       2210
       ]
      ],
-     "plusMinus": 12
+     "plusMinus": 9
     }
    ],
    "stints": [
@@ -2414,6 +2542,64 @@
        "name": "岡田"
       }
      ]
+    },
+    {
+     "start": 2116,
+     "end": 2210,
+     "for": 2,
+     "against": 5,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "15",
+       "name": "白濱"
+      },
+      {
+       "jersey": "4",
+       "name": "ケイ"
+      },
+      {
+       "jersey": "9",
+       "name": "デニス"
+      },
+      {
+       "jersey": "77",
+       "name": "岡田"
+      },
+      {
+       "jersey": "11",
+       "name": "中村"
+      }
+     ]
+    },
+    {
+     "start": 2210,
+     "end": 2395,
+     "for": 1,
+     "against": 5,
+     "margin": -4,
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "ケイ"
+      },
+      {
+       "jersey": "9",
+       "name": "デニス"
+      },
+      {
+       "jersey": "77",
+       "name": "岡田"
+      },
+      {
+       "jersey": "11",
+       "name": "中村"
+      },
+      {
+       "jersey": "29",
+       "name": "アルーホリー"
+      }
+     ]
     }
    ],
    "lineups": [
@@ -2478,6 +2664,35 @@
     {
      "lineup": [
       {
+       "jersey": "4",
+       "name": "ケイ"
+      },
+      {
+       "jersey": "9",
+       "name": "デニス"
+      },
+      {
+       "jersey": "77",
+       "name": "岡田"
+      },
+      {
+       "jersey": "11",
+       "name": "中村"
+      },
+      {
+       "jersey": "29",
+       "name": "アルーホリー"
+      }
+     ],
+     "sec": 185,
+     "for": 1,
+     "against": 5,
+     "margin": -4,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
        "jersey": "9",
        "name": "デニス"
       },
@@ -2503,6 +2718,35 @@
      "against": 7,
      "margin": -4,
      "stints": 3
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "77",
+       "name": "岡田"
+      },
+      {
+       "jersey": "11",
+       "name": "中村"
+      },
+      {
+       "jersey": "15",
+       "name": "白濱"
+      },
+      {
+       "jersey": "4",
+       "name": "ケイ"
+      },
+      {
+       "jersey": "9",
+       "name": "デニス"
+      }
+     ],
+     "sec": 152,
+     "for": 6,
+     "against": 7,
+     "margin": -1,
+     "stints": 2
     },
     {
      "lineup": [
@@ -2792,35 +3036,6 @@
      "for": 2,
      "against": 3,
      "margin": -1,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "77",
-       "name": "岡田"
-      },
-      {
-       "jersey": "11",
-       "name": "中村"
-      },
-      {
-       "jersey": "15",
-       "name": "白濱"
-      },
-      {
-       "jersey": "4",
-       "name": "ケイ"
-      },
-      {
-       "jersey": "9",
-       "name": "デニス"
-      }
-     ],
-     "sec": 58,
-     "for": 4,
-     "against": 2,
-     "margin": 2,
      "stints": 1
     },
     {
@@ -3278,7 +3493,47 @@
    2116,
    1,
    1
+  ],
+  [
+   2126,
+   0,
+   2
+  ],
+  [
+   2185,
+   0,
+   3
+  ],
+  [
+   2210,
+   1,
+   1
+  ],
+  [
+   2312,
+   0,
+   1
+  ],
+  [
+   2312,
+   0,
+   1
+  ],
+  [
+   2356,
+   0,
+   1
+  ],
+  [
+   2391,
+   0,
+   2
+  ],
+  [
+   2395,
+   1,
+   1
   ]
  ],
- "generatedAt": "2026-09-25T12:08:37+00:00"
+ "generatedAt": "2026-09-25T12:23:02+00:00"
 }
