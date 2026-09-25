@@ -34,25 +34,49 @@ class ScheduledGame:
     status: str
 
 
-def parse_play_by_play(src: str, min_events: int = MIN_EVENTS_PER_GAME) -> tuple[list[Event], int]:
-    """Returns events with game-clock seconds elapsed since tip-off, and the number of periods."""
-    blocks = re.split(r'<span class="ba-accordion__title">[^<]*</span>', src)[1:]
-    events = []
-    for period_idx, block in enumerate(blocks):
-        for li in re.findall(r'<li>(.*?)</li>', block, re.S):
-            clock = re.search(r'ba-liveText__time">残り(\d+)分(\d+)秒<', li)
-            team = re.search(r'ba-liveText__name">([^<]*)<', li)
-            desc = re.search(r'ba-liveText__desc">([^<]*)<', li)
-            if not (clock and team and desc):
-                continue
+def _period_rows(block: str) -> list[tuple[int, str, str]]:
+    rows = []
+    for li in re.findall(r'<li>(.*?)</li>', block, re.S):
+        clock = re.search(r'ba-liveText__time">残り(\d+)分(\d+)秒<', li)
+        team = re.search(r'ba-liveText__name">([^<]*)<', li)
+        desc = re.search(r'ba-liveText__desc">([^<]*)<', li)
+        if clock and team and desc:
             remain = int(clock.group(1)) * 60 + int(clock.group(2))
-            sec = period_idx * REGULAR_PERIOD_SEC + REGULAR_PERIOD_SEC - remain
-            events.append(Event(sec, html.unescape(team.group(1)).strip(), html.unescape(desc.group(1)).strip()))
-    if not blocks:
+            rows.append((remain, html.unescape(team.group(1)).strip(), html.unescape(desc.group(1)).strip()))
+    return rows
+
+
+def _is_newest_first(titles: list[str], periods: list[list[tuple[int, str, str]]]) -> bool:
+    numbers = [int(m.group(1)) for t in titles if (m := re.fullmatch(r'第(\d+)クォーター', t.strip()))]
+    if len(numbers) >= 2 and numbers[0] != numbers[-1]:
+        return numbers[0] > numbers[-1]
+    rows = periods[0] if periods else []
+    return bool(rows) and rows[0][0] < rows[-1][0]
+
+
+def parse_play_by_play(src: str, min_events: int = MIN_EVENTS_PER_GAME) -> tuple[list[Event], int]:
+    """Returns events with game-clock seconds elapsed since tip-off, and the number of periods.
+
+    A game in progress is rendered newest first (last quarter on top, latest play
+    first); a finished game oldest first. Both are normalised to chronological order.
+    """
+    parts = re.split(r'<span class="ba-accordion__title">([^<]*)</span>', src)
+    titles, periods = parts[1::2], [_period_rows(b) for b in parts[2::2]]
+    if not titles:
         raise StructureError('テキスト速報にピリオドの見出しが見つからない')
+    if _is_newest_first(titles, periods):
+        titles.reverse()
+        periods = [rows[::-1] for rows in reversed(periods)]
+    events = []
+    for period_idx, (title, rows) in enumerate(zip(titles, periods)):
+        remains = [r for r, _, _ in rows]
+        if remains != sorted(remains, reverse=True):
+            raise StructureError(f'{title.strip()} のイベントが残り時間の順に並んでいない')
+        for remain, team, desc in rows:
+            events.append(Event(period_idx * REGULAR_PERIOD_SEC + REGULAR_PERIOD_SEC - remain, team, desc))
     if len(events) < min_events:
         raise StructureError(f'テキスト速報から読めたイベントが{len(events)}件しかない')
-    return events, len(blocks)
+    return events, len(titles)
 
 
 def _team(cell: str) -> Team:

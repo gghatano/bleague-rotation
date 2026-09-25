@@ -1,7 +1,7 @@
 import unittest
 
 from rotation.analyze import DataError, UnsupportedGame, analyze
-from rotation.parse import parse_play_by_play, parse_schedule
+from rotation.parse import StructureError, parse_play_by_play, parse_schedule
 
 
 def li(clock, team, desc):
@@ -13,6 +13,12 @@ def li(clock, team, desc):
 def page(*periods):
     return ''.join(f'<span class="ba-accordion__title">第{i}クォーター</span><ul>{"".join(rows)}</ul>'
                    for i, rows in enumerate(periods, 1))
+
+
+def live_page(*periods):
+    """Newest first, as the source renders a game in progress."""
+    return ''.join(f'<span class="ba-accordion__title">第{i}クォーター</span><ul>{"".join(reversed(rows))}</ul>'
+                   for i, rows in reversed(list(enumerate(periods, 1))))
 
 
 def starters(team, jerseys):
@@ -93,6 +99,28 @@ class AnalyzeTest(unittest.TestCase):
         src = game() + '<span class="ba-accordion__title">延長</span><ul></ul>'
         with self.assertRaises(UnsupportedGame):
             run(src)
+
+
+class OrderTest(unittest.TestCase):
+    def periods(self):
+        swap = [li('残り5分00秒', HOME, '#1 P1 プレイヤーアウト'), li('残り5分00秒', HOME, '#6 P6 プレイヤーイン')]
+        return (starters(HOME, H5) + starters(AWAY, A5) + swap, [], [li('残り3分00秒', AWAY, '#11 P11 ターンオーバー(1本)')],
+                BASELINE_SCORING)
+
+    def test_newest_first_page_parses_like_chronological_page(self):
+        chrono = parse_play_by_play(page(*self.periods()), min_events=0)
+        live = parse_play_by_play(live_page(*self.periods()), min_events=0)
+        self.assertEqual(live, chrono)
+        self.assertEqual(chrono[0][0].sec, 0)
+
+    def test_newest_first_page_with_only_first_quarter(self):
+        events, periods = parse_play_by_play(live_page(self.periods()[0]), min_events=0)
+        self.assertEqual((periods, events[0].sec, events[-1].sec), (1, 0, 300))
+
+    def test_shuffled_clock_is_a_structure_problem(self):
+        rows = starters(HOME, H5) + [li('残り5分00秒', HOME, '#1 P1 ターンオーバー(1本)'), li('残り8分00秒', HOME, '#2 P2 ターンオーバー(1本)')]
+        with self.assertRaises(StructureError):
+            parse_play_by_play(page(rows), min_events=0)
 
 
 class ScheduleTest(unittest.TestCase):
