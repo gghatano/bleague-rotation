@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -37,9 +38,9 @@ jobs:
           DATE: ${{ inputs.date }}
         run: |
           if [ -n "$DATE" ]; then
-            python -m rotation update --date "$DATE"
+            python -m rotation update --date "$DATE" --report report.json
           else
-            python -m rotation update
+            python -m rotation update --report report.json
           fi
       - name: Commit data
         if: github.event_name != 'push'
@@ -51,6 +52,11 @@ jobs:
             git commit -m 'Update game data'
             git push
           fi
+      - name: Open or close issues for detected problems
+        if: github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m rotation notify report.json --repo "$GITHUB_REPOSITORY"
       - name: Build site
         run: python -m rotation build --out _site
       - uses: actions/configure-pages@v5

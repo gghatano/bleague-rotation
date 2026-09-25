@@ -2,7 +2,7 @@ import re
 from collections import defaultdict
 from itertools import groupby
 
-from .parse import REGULAR_PERIOD_SEC, Event
+from .parse import REGULAR_PERIOD_SEC, Event, StructureError
 
 SUB_RE = re.compile(r'#(\d+)\s+(\S+)\s+プレイヤー(イン|アウト)$')
 SHOT_RE = re.compile(r'(2Pシュート|3Pシュート|フリースロー).*?(○|×)')
@@ -111,6 +111,10 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str) -> dict
         raise UnsupportedGame(f'ピリオド数{num_periods}（延長戦）は未対応')
     game_end = num_periods * REGULAR_PERIOD_SEC
     teams = [home, away]
+    if not any(SUB_RE.match(e.desc) for e in events):
+        raise StructureError('交代（プレイヤーイン/アウト）の記録を1件も読めない')
+    if not any(points_of(e.desc) for e in events):
+        raise StructureError('得点の記録を1件も読めない')
     unknown = {e.team for e in events} - set(teams)
     if unknown:
         raise DataError(f'日程にないチーム名がテキストに出現: {sorted(unknown)}')

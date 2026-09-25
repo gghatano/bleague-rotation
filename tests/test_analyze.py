@@ -23,12 +23,18 @@ HOME, AWAY = 'H', 'A'
 H5, A5 = [1, 2, 3, 4, 5], [11, 12, 13, 14, 15]
 
 
+BASELINE_SCORING = [
+    li('残り0分30秒', HOME, '#3 P3 2Pシュート インサイドペイント○(2点) レイアップ'),
+    li('残り0分30秒', AWAY, '#13 P13 2Pシュート インサイドペイント○(2点) レイアップ'),
+]
+
+
 def game(q1_extra=(), q2=(), q3=(), q4=()):
-    return page(starters(HOME, H5) + starters(AWAY, A5) + list(q1_extra), list(q2), list(q3), list(q4))
+    return page(starters(HOME, H5) + starters(AWAY, A5) + list(q1_extra), list(q2), list(q3), list(q4) + BASELINE_SCORING)
 
 
 def run(src):
-    events, periods = parse_play_by_play(src)
+    events, periods = parse_play_by_play(src, min_events=0)
     return analyze(events, periods, HOME, AWAY)
 
 
@@ -79,7 +85,7 @@ class AnalyzeTest(unittest.TestCase):
             li('残り7分00秒', HOME, '#2 P2 2Pシュート インサイドペイント× レイアップ'),
         ]
         result = run(game(plays))
-        self.assertEqual([t['score'] for t in result['teams']], [3, 3])
+        self.assertEqual([t['score'] for t in result['teams']], [5, 5])
         self.assertTrue(all(p['plusMinus'] == 0 for p in team(result, HOME)['players']))
 
     def test_overtime_is_unsupported(self):
