@@ -178,6 +178,9 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   font-variant-numeric:tabular-nums;
 }
 .tooltip b{font-weight:500;}
+.source{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
+.source p{margin:0 0 .35rem;}
+.source a{color:var(--ink-muted);}
 .note{
   margin-top:1.1rem;
   font-size:12.5px;
@@ -247,6 +250,12 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   <p class="note">選手名の下の数字は個人の+/-（その選手が出場していた時間帯のチーム得点差の合計）と出場時間。「5人時±」の帯は、そのチームの5人が変わらない区間ごとの得点差（自チーム得点 − 相手得点）。帯・バーにカーソルを合わせると詳細を表示します。{{NOTE}}</p>
 
   {{LINEUPS}}
+
+  <footer class="source">
+    <p>出典: <a href="{{SOURCE_URL}}" rel="noopener">sports.yahoo.co.jp B.PREMIER テキスト速報（gameId {{GAME_ID}}）</a>。テキスト速報の交代・得点の記録から本サイトが独自に集計したもので、公式記録ではありません。</p>
+    <p>データ取得: {{FETCHED_AT}}（JST）。毎朝6時ごろ前日の試合を取得します。取得後に出典側で記録が修正されても、このページには反映されない場合があります。</p>
+    <p>本サイトは非公式のファンサイトで、B.LEAGUE・Yahoo! JAPANとは関係ありません。</p>
+  </footer>
 </div>
 
 <div id="tooltip" class="tooltip" hidden></div>

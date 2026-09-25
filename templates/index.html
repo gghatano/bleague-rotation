@@ -82,7 +82,10 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
 .game .issue{font-size:11.5px;color:var(--warn);white-space:nowrap;}
 .game .msg{grid-column:2 / -1;font-size:11.5px;color:var(--ink-faint);}
 .empty-note{font-size:13px;color:var(--ink-faint);}
-.foot{margin-top:2rem;font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
+.foot{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
+.foot p{margin:0 0 .5rem;}
+.foot b{font-weight:500;color:var(--ink-muted);}
+.foot a{color:var(--ink-muted);}
 </style>
 
 <div class="page">
@@ -103,7 +106,11 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
   <h2 id="list-title"></h2>
   <div class="games" id="games"></div>
 
-  <p class="foot">毎朝6時ごろ、前日の試合を取得して更新します。データの不整合が見つかった試合は表示を保留し、翌日以降に再取得します。</p>
+  <footer class="foot">
+    <p><b>更新タイミング</b>: 毎朝6時ごろ（JST）に前日の試合を取得して更新します。交代記録に不整合がある試合は表示を保留し、翌日以降に再取得します（試合直後の記録は後から修正されることがあるため）。最終更新: {{BUILT_AT}}（JST）</p>
+    <p><b>出典</b>: <a href="https://sports.yahoo.co.jp/basket/bleague/premier/schedule" rel="noopener">sports.yahoo.co.jp B.PREMIER 日程・テキスト速報</a>。各試合ページに元のテキスト速報へのリンクがあります。数値はテキスト速報の記録から本サイトが独自に集計したもので、公式記録ではありません。</p>
+    <p>本サイトは非公式のファンサイトで、B.LEAGUE・Yahoo! JAPANとは関係ありません。</p>
+  </footer>
 </div>
 
 <script type="application/json" id="index-data">{{INDEX}}</script>

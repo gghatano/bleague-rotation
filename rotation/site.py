@@ -1,10 +1,18 @@
 import html
 import json
 import shutil
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 TEMPLATES = Path(__file__).resolve().parent.parent / 'templates'
 LINEUP_ROWS = 6
+JST = ZoneInfo('Asia/Tokyo')
+SOURCE_URL = 'https://sports.yahoo.co.jp/basket/bleague/premier/game/{}/text'
+
+
+def _jst(dt: datetime) -> str:
+    return dt.astimezone(JST).strftime('%Y/%m/%d %H:%M')
 
 
 def _json_for_script(obj) -> str:
@@ -66,6 +74,9 @@ def render_game(game: dict) -> str:
         'S1': str(home['score']), 'S2': str(away['score']),
         'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）',
         'NOTE': note,
+        'GAME_ID': html.escape(game['gameId']),
+        'SOURCE_URL': html.escape(SOURCE_URL.format(game['gameId'])),
+        'FETCHED_AT': _jst(datetime.fromisoformat(game['generatedAt'])),
         'LINEUPS': lineups,
         'DATA': _json_for_script(chart),
     }
@@ -88,6 +99,7 @@ def build(data_dir: Path, out_dir: Path) -> int:
         (out_dir / 'games' / f'{game_id}.html').write_text(render_game(game), encoding='utf-8')
         built += 1
     page = (TEMPLATES / 'index.html').read_text(encoding='utf-8')
+    page = page.replace('{{BUILT_AT}}', _jst(datetime.now(JST)))
     page = page.replace('{{INDEX}}', _json_for_script(index))
     (out_dir / 'index.html').write_text(page, encoding='utf-8')
     (out_dir / '.nojekyll').write_text('', encoding='utf-8')
