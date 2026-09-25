@@ -156,8 +156,8 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .team-tag{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.03em;}
 .bar{cursor:pointer;}
 .bar:hover{filter:brightness(1.12);}
-.name-label{font-size:11px;fill:var(--ink);}
-.stat-label{font-size:9.5px;font-variant-numeric:tabular-nums;}
+.name-label{font-size:10px;fill:var(--ink);}
+.stat-label{font-size:9px;font-variant-numeric:tabular-nums;}
 .stat-time{fill:var(--ink-faint);}
 .stat-pm-pos{fill:var(--margin-pos);}
 .stat-pm-neg{fill:var(--margin-neg);}
@@ -302,9 +302,9 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     return 'Q' + period + ' 残り' + mmss(remain);
   }
 
-  var LABEL_W = 128, RIGHT_PAD = 6, ROW_H = 26, ROW_GAP = 2, BAR_H = 16, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
+  var LABEL_W = 210, RIGHT_PAD = 6, ROW_H = 13, ROW_GAP = 1, BAR_H = 10, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
   var MARGIN_H = 15, MARGIN_GAP = 6;
-  var CHART_W = 560;
+  var CHART_W = 634;
   var gameLen = DATA.periodLength * DATA.numPeriods;
   var elapsed = DATA.elapsedSec || gameLen;
   var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
@@ -432,6 +432,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   }
 
   var y = TOP_PAD;
+  var fitLabels = [];
   var svg = document.createElementNS(svgNS, 'svg');
   if (DATA.scoring && DATA.scoring.length){
     y = drawFlow(y) + FLOW_GAP;
@@ -477,13 +478,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     team.players.forEach(function(p){
       var rowTop = y;
       var nameEl = document.createElementNS(svgNS,'text');
-      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 10.5);
+      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 10);
       nameEl.setAttribute('class','name-label');
       nameEl.textContent = '#' + p.jersey + ' ' + p.name;
       svg.appendChild(nameEl);
 
       var statEl = document.createElementNS(svgNS,'text');
-      statEl.setAttribute('x', 0); statEl.setAttribute('y', rowTop + 21.5);
+      statEl.setAttribute('x', LABEL_W - 8); statEl.setAttribute('y', rowTop + 10); statEl.setAttribute('text-anchor', 'end');
       statEl.setAttribute('class','stat-label');
       var pmSpan = document.createElementNS(svgNS,'tspan');
       pmSpan.setAttribute('class', p.plusMinus > 0 ? 'stat-pm-pos' : p.plusMinus < 0 ? 'stat-pm-neg' : 'stat-pm-zero');
@@ -491,9 +492,10 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       statEl.appendChild(pmSpan);
       var timeSpan = document.createElementNS(svgNS,'tspan');
       timeSpan.setAttribute('class', 'stat-time');
-      timeSpan.textContent = '  ・  ' + mmss(p.totalSec);
+      timeSpan.textContent = ' ・ ' + mmss(p.totalSec);
       statEl.appendChild(timeSpan);
       svg.appendChild(statEl);
+      fitLabels.push([nameEl, statEl]);
 
       p.intervals.forEach(function(iv){
         var s=iv[0], e=iv[1];
@@ -567,6 +569,19 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   svg.insertBefore(title, svg.firstChild);
 
   document.getElementById('chart').appendChild(svg);
+  function fitNames(){
+    fitLabels.forEach(function(pair){
+      var name = pair[0], stat = pair[1];
+      name.removeAttribute('textLength');
+      var room = LABEL_W - 8 - stat.getComputedTextLength() - 6;
+      if (name.getComputedTextLength() > room){
+        name.setAttribute('textLength', room.toFixed(1));
+        name.setAttribute('lengthAdjust', 'spacingAndGlyphs');
+      }
+    });
+  }
+  fitNames();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
 
   var CRUNCH_FROM = gameLen - 120;
   function renderCrunch(){
