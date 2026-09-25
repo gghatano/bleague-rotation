@@ -16,6 +16,7 @@
   --accent:#3d6fb4;
   --accent-bg:#e4ecf7;
   --warn:#c15a3f;
+  --live:#c0392b;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -30,6 +31,7 @@
     --accent:#7ba3e2;
     --accent-bg:#1f2b3d;
     --warn:#d98567;
+    --live:#e8776a;
   }
 }
 :root[data-theme="dark"]{
@@ -44,6 +46,7 @@
   --accent:#7ba3e2;
   --accent-bg:#1f2b3d;
   --warn:#d98567;
+  --live:#e8776a;
 }
 *{box-sizing:border-box;}
 body{background:var(--bg);color:var(--ink);margin:0;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
@@ -66,6 +69,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .day .dots{display:flex;gap:2px;height:5px;}
 .day .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);}
 .day .dot.pending{background:var(--line-strong);}
+.day .dot.live{background:var(--live);}
 .day.has{border-color:var(--line);}
 .day.has:hover{background:var(--surface-sunken);}
 .day.sel{background:var(--accent-bg);border-color:var(--accent);}
@@ -79,6 +83,7 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
 .game .teams{font-size:14px;}
 .game .score{font-variant-numeric:tabular-nums;font-weight:500;padding:0 .35em;}
 .game .go{font-size:12px;color:var(--accent);white-space:nowrap;}
+.game .live{font-size:12px;color:var(--live);font-weight:500;white-space:nowrap;}
 .game .issue{font-size:11.5px;color:var(--warn);white-space:nowrap;}
 .game .msg{grid-column:2 / -1;font-size:11.5px;color:var(--ink-faint);}
 .empty-note{font-size:13px;color:var(--ink-faint);}
@@ -170,7 +175,7 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
       dots.className = 'dots';
       games.forEach(function(g){
         var dot = document.createElement('i');
-        dot.className = 'dot' + (g.status === 'ok' ? '' : ' pending');
+        dot.className = 'dot' + (g.status === 'ok' ? '' : g.status === 'live' ? ' live' : ' pending');
         dots.appendChild(dot);
       });
       btn.appendChild(dots);
@@ -195,11 +200,12 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
     var p = selected.split('-');
     title.textContent = (+p[1]) + '月' + (+p[2]) + '日（' + DOW[new Date(+p[0], +p[1] - 1, +p[2]).getDay()] + '）の試合';
     byDate[selected].forEach(function(g){
-      var ok = g.status === 'ok';
+      var ok = g.status === 'ok' || g.status === 'live';
       var el = document.createElement(ok ? 'a' : 'div');
       el.className = 'game';
       if (ok) el.href = 'games/' + encodeURIComponent(g.gameId) + '.html';
-      var right = ok ? '<span class="go">ローテーション →</span>'
+      var right = g.status === 'live' ? '<span class="live">試合中 ' + esc(g.clock || '') + ' →</span>'
+                : ok ? '<span class="go">ローテーション →</span>'
                      : '<span class="issue">' + (g.status === 'unsupported' ? '未対応' : 'データ確認中') + '</span>';
       el.innerHTML =
         '<span class="time">' + esc(g.tipoff) + '</span>' +

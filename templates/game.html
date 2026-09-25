@@ -24,6 +24,7 @@
   --margin-neg:#c15a3f;
   --margin-neg-ink:#f9e4dc;
   --margin-zero:#c7bea9;
+  --live:#c0392b;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -46,6 +47,7 @@
     --margin-neg:#d98567;
     --margin-neg-ink:#341a10;
     --margin-zero:#544a38;
+    --live:#e8776a;
   }
 }
 :root[data-theme="dark"]{
@@ -68,6 +70,7 @@
   --margin-neg:#d98567;
   --margin-neg-ink:#341a10;
   --margin-zero:#544a38;
+  --live:#e8776a;
 }
 *{box-sizing:border-box;}
 body{background:var(--bg);}
@@ -164,6 +167,8 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .flow-tick{font-size:9.5px;fill:var(--ink-faint);font-variant-numeric:tabular-nums;}
 .flow-hit{cursor:pointer;}
 .flow-hit:hover{fill:var(--line);fill-opacity:.45;}
+.now-label{font-size:10px;font-weight:500;fill:var(--live);}
+.meta .live{font-weight:500;color:var(--live);}
 .margin-seg{cursor:pointer;}
 .margin-seg:hover{filter:brightness(1.1);}
 .margin-num{font-size:9.5px;font-weight:500;font-variant-numeric:tabular-nums;pointer-events:none;}
@@ -291,6 +296,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   var MARGIN_H = 15, MARGIN_GAP = 6;
   var CHART_W = 560;
   var gameLen = DATA.periodLength * DATA.numPeriods;
+  var elapsed = DATA.elapsedSec || gameLen;
   var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
   function X(sec){ return x0 + (sec/gameLen)*xw; }
   function marginColor(m){ return m > 0 ? 'var(--margin-pos)' : m < 0 ? 'var(--margin-neg)' : 'var(--margin-zero)'; }
@@ -308,16 +314,17 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 
   var FLOW_H = 112, FLOW_GAP = 36, FLOW_BIN = 60;
   function flowLabel(t){
+    if (DATA.final === false && t === elapsed) return clockLabel(t) + ' 時点（最新）';
     return t % DATA.periodLength === 0 ? 'Q' + (t / DATA.periodLength) + ' 終了' : clockLabel(t) + ' 時点';
   }
   function drawFlow(top){
     var home = DATA.teams[0], away = DATA.teams[1];
     var events = DATA.scoring.slice().sort(function(a, b){ return a[0] - b[0]; });
-    var bins = Math.round(gameLen / FLOW_BIN), score = [0, 0], idx = 0, rows = [];
+    var bins = Math.ceil(elapsed / FLOW_BIN), score = [0, 0], idx = 0, rows = [];
     for (var b = 1; b <= bins; b++){
-      var t = b * FLOW_BIN;
+      var t = Math.min(b * FLOW_BIN, elapsed);
       while (idx < events.length && events[idx][0] <= t){ score[events[idx][1]] += events[idx][2]; idx++; }
-      rows.push({start: t - FLOW_BIN, t: t, home: score[0], away: score[1], margin: score[0] - score[1]});
+      rows.push({start: (b - 1) * FLOW_BIN, t: t, home: score[0], away: score[1], margin: score[0] - score[1]});
     }
     var maxAbs = rows.reduce(function(mx, r){ return Math.max(mx, Math.abs(r.margin)); }, 0);
     var yMax = Math.max(5, Math.ceil(maxAbs / 5) * 5);
@@ -338,8 +345,8 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     });
     svg.appendChild(text('0', x0 - 6, mid + 3.5, 'flow-tick', 'end'));
 
-    var slot = xw / bins;
     rows.forEach(function(r){
+      var slot = X(r.t) - X(r.start);
       var bx = X(r.start) + 0.75, bw = Math.max(slot - 1.5, 1);
       if (r.margin !== 0){
         var bar = document.createElementNS(svgNS, 'rect');
@@ -484,6 +491,17 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     qlabel.setAttribute('font-size','10.5'); qlabel.setAttribute('fill','var(--ink-faint)');
     qlabel.textContent = 'Q' + (qi+1);
     svg.appendChild(qlabel);
+  }
+
+  if (DATA.final === false){
+    var nx = X(elapsed);
+    var now = document.createElementNS(svgNS, 'line');
+    now.setAttribute('x1', nx.toFixed(1)); now.setAttribute('x2', nx.toFixed(1));
+    now.setAttribute('y1', TOP_PAD - 12); now.setAttribute('y2', chartBottom);
+    now.setAttribute('stroke', 'var(--live)'); now.setAttribute('stroke-width', 1.5);
+    now.setAttribute('stroke-dasharray', '4,3');
+    svg.appendChild(now);
+    svg.appendChild(text('現在', nx, TOP_PAD - 15, 'now-label', 'middle'));
   }
 
   var totalH = chartBottom + BOTTOM_PAD;

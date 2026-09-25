@@ -51,6 +51,14 @@ class StoreTest(unittest.TestCase):
         self.assertEqual(report.problems, [])
         self.assertEqual([r['key'] for r in report.resolved], [game_key('900001')])
 
+    def test_game_in_progress_is_kept_as_live_and_retried(self):
+        playing = ScheduledGame('900002', '19:05', Team(HOME, '1'), Team(AWAY, '2'), 1, 0, '4Q 残り0:38')
+        entry = process_game(self.store, FakeFetcher(GOOD), playing, '20260925', Report())
+        self.assertEqual((entry['status'], entry['clock']), ('live', '4Q 残り0:38'))
+        self.assertEqual((entry['home']['score'], entry['away']['score']), (2, 2))
+        self.assertTrue(self.store.game_path('900002').exists())
+        self.assertEqual(self.store.dates_to_retry(), ['20260925'])
+
     def test_unreadable_play_by_play_is_a_structure_problem(self):
         report = Report()
         entry = process_game(self.store, FakeFetcher('<html>maintenance</html>'), FINISHED, '20260924', report)

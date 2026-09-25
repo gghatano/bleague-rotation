@@ -106,10 +106,13 @@ def _lineups(stints):
     return sorted(groups.values(), key=lambda g: -g['sec'])
 
 
-def analyze(events: list[Event], num_periods: int, home: str, away: str) -> dict:
-    if num_periods != 4:
+def analyze(events: list[Event], num_periods: int, home: str, away: str, final: bool = True) -> dict:
+    """Rebuilds a game. With final=False the game is still in progress: it may
+    have fewer than four periods, and every open stint ends at the latest play."""
+    regular = 4
+    if num_periods > regular or (final and num_periods != regular):
         raise UnsupportedGame(f'ピリオド数{num_periods}（延長戦）は未対応')
-    game_end = num_periods * REGULAR_PERIOD_SEC
+    game_end = regular * REGULAR_PERIOD_SEC if final else max(e.sec for e in events)
     teams = [home, away]
     if not any(SUB_RE.match(e.desc) for e in events):
         raise StructureError('交代（プレイヤーイン/アウト）の記録を1件も読めない')
@@ -131,5 +134,5 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str) -> dict
         })
     side = {home: 0, away: 1}
     scoring = [[e.sec, side[e.team], p] for e in events if (p := points_of(e.desc))]
-    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': num_periods, 'teams': result,
-            'scoring': scoring, 'anomalies': anomalies}
+    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': regular, 'final': final, 'elapsedSec': game_end,
+            'teams': result, 'scoring': scoring, 'anomalies': anomalies}

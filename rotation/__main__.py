@@ -20,26 +20,28 @@ def ymd(value: str) -> str:
     return value
 
 
-def yesterday_jst() -> str:
-    return (datetime.now(ZoneInfo('Asia/Tokyo')) - timedelta(days=1)).strftime('%Y%m%d')
+def jst_date(days_ago: int) -> str:
+    return (datetime.now(ZoneInfo('Asia/Tokyo')) - timedelta(days=days_ago)).strftime('%Y%m%d')
 
 
 def cmd_update(args) -> int:
     store = Store(ROOT / 'data')
     fetcher = Fetcher(ROOT / 'raw')
     report = Report()
-    dates = sorted(set(args.date or [yesterday_jst()]) | set(store.dates_to_retry()))
+    default = jst_date(0) if args.live else jst_date(1)
+    dates = sorted(set(args.date or [default]) | set(store.dates_to_retry()))
     season = store.index.get('seasonDates')
     for day in dates:
         if season and day not in season and not args.date:
             print(f'{day}: 試合なし')
             continue
-        entries = process_date(store, fetcher, day, report)
+        entries = process_date(store, fetcher, day, report, live=args.live)
         store.save_index()
         if not entries:
-            print(f'{day}: 終了済みの試合なし')
+            print(f'{day}: 対象の試合なし')
         for e in entries:
             line = f"{day} {e['gameId']} {e['home']['name']} {e['home']['score']}-{e['away']['score']} {e['away']['name']}: {e['status']}"
+            line += f" [{e['clock']}]" if 'clock' in e else ''
             print(line + (f" ({e['message']})" if 'message' in e else ''))
     report.write(Path(args.report))
     print(f'問題 {len(report.problems)} 件、解消 {len(report.resolved)} 件 → {args.report}')
@@ -62,9 +64,10 @@ def cmd_notify(args) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(prog='python -m rotation')
     sub = parser.add_subparsers(required=True)
-    p = sub.add_parser('update', help='指定日（既定: 前日JST）の試合を取得・集計する。不整合の試合も再試行する')
+    p = sub.add_parser('update', help='指定日（既定: 前日JST）の終了済みの試合を取得・集計する。不整合・試合中だった試合も再試行する')
     p.add_argument('--date', action='append', type=ymd, help='YYYYMMDD。複数指定可')
     p.add_argument('--report', default=str(ROOT / 'report.json'), help='見つかった問題の出力先')
+    p.add_argument('--live', action='store_true', help='試合中の試合も取り込む（日付の既定は当日JST）')
     p.set_defaults(func=cmd_update)
     p = sub.add_parser('build', help='data/ から静的サイトを生成する')
     p.add_argument('--out', default=str(ROOT / '_site'))

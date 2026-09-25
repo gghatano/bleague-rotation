@@ -95,6 +95,15 @@ class AnalyzeTest(unittest.TestCase):
         self.assertEqual(result['scoring'][:3], [[60, 0, 3], [120, 1, 2], [120, 1, 1]])
         self.assertTrue(all(p['plusMinus'] == 0 for p in team(result, HOME)['players']))
 
+    def test_game_in_progress_ends_at_latest_play(self):
+        rows = starters(HOME, H5) + starters(AWAY, A5) + BASELINE_SCORING
+        events, periods = parse_play_by_play(live_page(rows, [li('残り6分20秒', AWAY, '#11 P11 ターンオーバー(1本)')]), min_events=0)
+        result = analyze(events, periods, HOME, AWAY, final=False)
+        self.assertEqual((result['final'], result['elapsedSec'], result['numPeriods']), (False, 820, 4))
+        self.assertEqual(sum(p['totalSec'] for p in team(result, HOME)['players']), 5 * 820)
+        with self.assertRaises(UnsupportedGame):
+            analyze(events, periods, HOME, AWAY)
+
     def test_overtime_is_unsupported(self):
         src = game() + '<span class="ba-accordion__title">延長</span><ul></ul>'
         with self.assertRaises(UnsupportedGame):

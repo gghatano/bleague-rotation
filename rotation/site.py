@@ -66,14 +66,20 @@ def render_game(game: dict) -> str:
         'teams': [{'name': t['name'], 'color': f'var(--{slot})', 'players': t['players'], 'stints': t['stints']}
                   for slot, t in (('t1', home), ('t2', away))],
         'scoring': game.get('scoring', []),
+        'final': game.get('final', True),
+        'elapsedSec': game.get('elapsedSec', game['periodLength'] * game['numPeriods']),
     }
+    live = not chart['final']
     note = f'ソースの重複した交代記録{len(game["anomalies"])}件は無視して集計しています。' if game['anomalies'] else ''
+    if live:
+        note += '試合中のデータです。試合終了後、翌朝の更新で確定版に置き換わります。'
     values = {
         'TITLE': f'{t1}-{t2} ローテーション',
         'DATE': game['date'],
         'T1': t1, 'T2': t2,
         'S1': str(home['score']), 'S2': str(away['score']),
-        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）',
+        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）'
+                + (f'・<b class="live">試合中 {html.escape(game.get("clock", ""))} 時点</b>' if live else ''),
         'NOTE': note,
         'GAME_ID': html.escape(game['gameId']),
         'SOURCE_URL': html.escape(SOURCE_URL.format(game['gameId'])),
@@ -94,7 +100,7 @@ def build(data_dir: Path, out_dir: Path) -> int:
     (out_dir / 'games').mkdir(parents=True)
     built = 0
     for game_id, entry in index['games'].items():
-        if entry['status'] != 'ok':
+        if entry['status'] not in ('ok', 'live'):
             continue
         game = json.loads((data_dir / 'games' / f'{game_id}.json').read_text(encoding='utf-8'))
         (out_dir / 'games' / f'{game_id}.html').write_text(render_game(game), encoding='utf-8')

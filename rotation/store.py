@@ -25,7 +25,7 @@ class Store:
         self.index_path.write_text(json.dumps(self.index, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
 
     def dates_to_retry(self) -> list[str]:
-        return sorted({g['date'].replace('-', '') for g in self.index['games'].values() if g['status'] == 'error'})
+        return sorted({g['date'].replace('-', '') for g in self.index['games'].values() if g['status'] in ('error', 'live')})
 
 
 class Report:
@@ -75,16 +75,27 @@ def _report_game_problem(report: Report, entry: dict, kind: str, message: str):
     report.problem(kind, game_key(gid), title, body)
 
 
+def in_progress(game: ScheduledGame) -> bool:
+    return game.status != FINISHED and game.home_score is not None and game.away_score is not None
+
+
 def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, report: Report) -> dict:
+    """A finished game must reproduce the official score exactly. A game in
+    progress is only checked for five on court: its schedule score is fetched a
+    moment before the play-by-play and can already be a basket behind."""
+    final = game.status == FINISHED
     entry = _entry(game, ymd)
     previous = store.index['games'].get(game.game_id, {})
     path = store.game_path(game.game_id)
     try:
-        events, num_periods = parse_play_by_play(fetcher.play_by_play(game.game_id))
-        result = analyze(events, num_periods, game.home.name, game.away.name)
+        events, num_periods = parse_play_by_play(fetcher.play_by_play(game.game_id), **({} if final else {'min_events': 0}))
+        result = analyze(events, num_periods, game.home.name, game.away.name, final=final)
         computed = [t['score'] for t in result['teams']]
-        if computed != [game.home_score, game.away_score]:
+        if final and computed != [game.home_score, game.away_score]:
             raise DataError(f'再計算した得点 {computed[0]}-{computed[1]} が公式スコア {game.home_score}-{game.away_score} と一致しない')
+        if not final:
+            entry['home']['score'], entry['away']['score'] = computed
+            entry['clock'] = game.status
     except UnsupportedGame as e:
         entry.update(status='unsupported', message=str(e))
         path.unlink(missing_ok=True)
@@ -94,17 +105,17 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
         path.unlink(missing_ok=True)
         _report_game_problem(report, entry, kind, str(e))
     else:
-        entry.update(status='ok', anomalies=len(result['anomalies']))
+        entry.update(status='ok' if final else 'live', anomalies=len(result['anomalies']))
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {**entry, **result, 'generatedAt': datetime.now(timezone.utc).isoformat(timespec='seconds')}
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-        if previous.get('status') == 'error':
+        if final and previous.get('status') == 'error':
             report.resolved.append({'key': game_key(game.game_id), 'gameId': game.game_id})
     store.index['games'][game.game_id] = entry
     return entry
 
 
-def process_date(store: Store, fetcher: Fetcher, ymd: str, report: Report) -> list[dict]:
+def process_date(store: Store, fetcher: Fetcher, ymd: str, report: Report, live: bool = False) -> list[dict]:
     try:
         games, season_dates = parse_schedule(fetcher.schedule(ymd))
         if not season_dates:
@@ -117,4 +128,5 @@ def process_date(store: Store, fetcher: Fetcher, ymd: str, report: Report) -> li
                        f'- 内容: {e}\n- 出典: {SCHEDULE_URL.format(ymd)}')
         return []
     store.index['seasonDates'] = season_dates
-    return [process_game(store, fetcher, g, ymd, report) for g in games if g.status == FINISHED]
+    return [process_game(store, fetcher, g, ymd, report) for g in games
+            if g.status == FINISHED or (live and in_progress(g))]
