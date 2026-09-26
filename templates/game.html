@@ -176,6 +176,15 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .crunch-team.t2{color:var(--t2-ink);}
 .crunch-tag{font-size:11px;padding:1px 7px;border-radius:10px;background:var(--surface-sunken);color:var(--ink-muted);}
 .crunch-tag.rev{background:var(--live);color:var(--surface);}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-.5rem 0 1rem;}
+.share button{font:inherit;font-size:12.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:6px;padding:5px 12px;cursor:pointer;}
+.share button:hover{background:var(--surface-sunken);}
+.share button:focus-visible{outline:2px solid var(--t1);outline-offset:2px;}
+#share-x{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+#share-x:hover{opacity:.88;background:var(--ink);}
+.share-status{font-size:12px;color:var(--ink-muted);}
+.as-of{font-variant-numeric:tabular-nums;}
 .now-label{font-size:10px;font-weight:500;fill:var(--live);}
 .meta .live,.note .live{font-weight:500;color:var(--live);}
 .margin-seg{cursor:pointer;}
@@ -253,6 +262,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
         <span class="score">{{S2}}</span> <span class="t2">{{T2}}</span>
       </p>
       <p class="meta">{{META}}</p>
+      <p class="meta as-of">{{AS_OF}}</p>
     </div>
     <div class="legend">
       <span><i class="swatch" style="background:var(--t1)"></i>{{T1}}</span>
@@ -261,6 +271,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       <span><i class="swatch" style="background:var(--margin-neg)"></i>5人時−</span>
     </div>
   </header>
+
+  <div class="share">
+    <button type="button" id="share-x">Xに投稿</button>
+    <button type="button" id="copy-image">画像をコピー</button>
+    <button type="button" id="copy-url">URLをコピー</button>
+    <span class="share-status" id="share-status" role="status"></span>
+  </div>
 
   <div class="chart-wrap">
     <div id="chart"></div>
@@ -688,6 +705,84 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     document.getElementById('crunch').innerHTML = html + '</details>';
   }
   renderCrunch();
+
+  var SHARE = DATA.share;
+  var STYLE_PROPS = ['fill', 'fill-opacity', 'stroke', 'stroke-width', 'stroke-opacity', 'stroke-dasharray',
+    'stroke-linecap', 'stroke-linejoin', 'opacity', 'visibility', 'font-size', 'font-family', 'font-weight', 'letter-spacing'];
+  function inlineStyles(src, dst){
+    var cs = getComputedStyle(src);
+    dst.setAttribute('style', STYLE_PROPS.map(function(p){ return p + ':' + cs.getPropertyValue(p); }).join(';'));
+    for (var i = 0; i < src.children.length; i++) inlineStyles(src.children[i], dst.children[i]);
+  }
+  function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function renderPng(){
+    return new Promise(function(resolve, reject){
+      var scale = 2, pad = 24, headH = 70, footH = 34;
+      var vb = svg.viewBox.baseVal;
+      var clone = svg.cloneNode(true);
+      inlineStyles(svg, clone);
+      clone.setAttribute('width', vb.width); clone.setAttribute('height', vb.height);
+      clone.setAttribute('xmlns', svgNS);
+      var img = new Image();
+      img.onload = function(){
+        var canvas = document.createElement('canvas');
+        canvas.width = (vb.width + pad * 2) * scale;
+        canvas.height = (headH + vb.height + footH) * scale;
+        var ctx = canvas.getContext('2d');
+        ctx.scale(scale, scale);
+        var font = '"Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif';
+        ctx.fillStyle = cssVar('--bg'); ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = cssVar('--surface'); ctx.fillRect(pad / 2, headH - 8, vb.width + pad, vb.height + 12);
+        ctx.fillStyle = cssVar('--ink'); ctx.font = '600 20px ' + font; ctx.fillText(SHARE.title, pad, 32);
+        ctx.fillStyle = cssVar('--ink-muted'); ctx.font = '12px ' + font;
+        ctx.fillText(SHARE.date + '・' + SHARE.state + '・' + SHARE.asOf + ' 時点のデータ', pad, 52);
+        ctx.drawImage(img, pad, headH, vb.width, vb.height);
+        ctx.fillStyle = cssVar('--ink-faint'); ctx.font = '11px ' + font;
+        ctx.fillText('出典: sports.yahoo.co.jp テキスト速報を独自に集計（非公式）  ' + SHARE.url, pad, headH + vb.height + 22);
+        canvas.toBlob(function(blob){ blob ? resolve(blob) : reject(new Error('画像を作れませんでした')); }, 'image/png');
+      };
+      img.onerror = function(){ reject(new Error('図を画像にできませんでした')); };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(clone));
+    });
+  }
+  var status = document.getElementById('share-status');
+  function say(msg){ status.textContent = msg; }
+  function download(blob){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = SHARE.file;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  }
+  function copyImage(){
+    var png = renderPng();
+    var copied = (navigator.clipboard && window.ClipboardItem)
+      ? navigator.clipboard.write([new ClipboardItem({'image/png': png})])
+      : Promise.reject(new Error('unsupported'));
+    return copied.then(function(){ return true; }, function(){
+      return png.then(function(blob){ download(blob); return false; });
+    });
+  }
+  document.getElementById('copy-image').addEventListener('click', function(){
+    say('画像を作成中…');
+    copyImage().then(function(copied){
+      say(copied ? '画像をコピーしました' : 'この環境ではコピーできないため、画像を保存しました');
+    }, function(e){ say(e.message); });
+  });
+  document.getElementById('copy-url').addEventListener('click', function(){
+    navigator.clipboard.writeText(SHARE.url).then(function(){ say('URLをコピーしました'); }, function(){ say('URLをコピーできませんでした: ' + SHARE.url); });
+  });
+  document.getElementById('share-x').addEventListener('click', function(){
+    var text = SHARE.title + '（' + SHARE.date + '）の点差の推移とローテーション（' + SHARE.asOf + ' 時点）';
+    var intent = 'https://x.com/intent/post?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(SHARE.url);
+    var win = window.open(intent, '_blank');
+    if (win) win.opener = null;
+    say('画像を作成中…');
+    copyImage().then(function(copied){
+      say(copied ? '画像をコピーしました。Xの投稿画面で貼り付け（Ctrl+V / ⌘+V）してください'
+                 : '画像を保存しました。Xの投稿画面で画像を添付してください');
+    }, function(e){ say(e.message); });
+    if (!win) say('ポップアップがブロックされました。URLをコピーしてXで投稿してください');
+  });
 
   var tip = document.getElementById('tooltip');
   function showFlowTip(ev, r){

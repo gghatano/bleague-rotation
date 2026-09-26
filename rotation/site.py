@@ -9,10 +9,11 @@ TEMPLATES = Path(__file__).resolve().parent.parent / 'templates'
 LINEUP_ROWS = 6
 JST = ZoneInfo('Asia/Tokyo')
 SOURCE_URL = 'https://sports.yahoo.co.jp/basket/bleague/premier/game/{}/text'
+SITE_URL = 'https://gghatano.github.io/bleague-rotation/'
 
 
-def _jst(dt: datetime) -> str:
-    return dt.astimezone(JST).strftime('%Y/%m/%d %H:%M')
+def _jst(dt: datetime, seconds: bool = False) -> str:
+    return dt.astimezone(JST).strftime('%Y/%m/%d %H:%M:%S' if seconds else '%Y/%m/%d %H:%M')
 
 
 def short_name(name: str) -> str:
@@ -81,17 +82,27 @@ def render_game(game: dict) -> str:
     if game.get('truncated'):
         note += (f'<b class="live">{html.escape(game["truncatedAt"])} 以降は、出典の交代記録に不整合があるため表示を止めています'
                  f'（{html.escape(game["truncated"]["reason"])}）。出典で修正されれば、次の更新で表示が戻ります。</b>')
+    as_of = _jst(datetime.fromisoformat(game['generatedAt']), seconds=True)
+    state = f'試合中 {game.get("clock", "")}' if live else '試合終了'
+    chart['share'] = {
+        'title': f'{home["name"]} {game["home"]["score"]}-{game["away"]["score"]} {away["name"]}',
+        'date': f'{y}年{m}月{d}日 {game["tipoff"]}',
+        'state': state,
+        'asOf': as_of,
+        'url': f'{SITE_URL}games/{game["gameId"]}.html',
+        'file': f'rotation_{game["gameId"]}.png',
+    }
     values = {
         'TITLE': f'{t1}-{t2} ローテーション',
         'DATE': game['date'],
         'T1': t1, 'T2': t2,
         'S1': str(game['home']['score']), 'S2': str(game['away']['score']),
-        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）'
-                + (f'・<b class="live">試合中 {html.escape(game.get("clock", ""))} 時点</b>' if live else ''),
+        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）',
+        'AS_OF': (f'<b class="live">{html.escape(state)}</b>' if live else state) + f'・{as_of} 時点のデータ',
         'NOTE': note,
         'GAME_ID': html.escape(game['gameId']),
         'SOURCE_URL': html.escape(SOURCE_URL.format(game['gameId'])),
-        'FETCHED_AT': _jst(datetime.fromisoformat(game['generatedAt'])),
+        'FETCHED_AT': as_of,
         'LINEUPS': lineups,
         'DATA': _json_for_script(chart),
     }
