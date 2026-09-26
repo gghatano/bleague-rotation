@@ -118,6 +118,14 @@ class AnalyzeTest(unittest.TestCase):
         with self.assertRaises(DataError):
             run(game(q2=broken))
 
+    def test_player_names_may_contain_spaces(self):
+        swap = [li('残り5分00秒', HOME, '#5 P5 プレイヤーアウト'), li('残り5分00秒', HOME, '#21 ウィリス ジュニア プレイヤーイン'),
+                li('残り4分00秒', HOME, '#21 ウィリス ジュニア 2Pシュート インサイドペイント○(2点) レイアップ')]
+        result = run(game(swap))
+        home = team(result, HOME)
+        self.assertIn(('21', 'ウィリス ジュニア'), [(p['jersey'], p['name']) for p in home['players']])
+        self.assertEqual(result['scoring'][0][3:5], ['21', 'ウィリス ジュニア'])
+
     def test_overtime_is_unsupported(self):
         src = game() + '<span class="ba-accordion__title">延長</span><ul></ul>'
         with self.assertRaises(UnsupportedGame):

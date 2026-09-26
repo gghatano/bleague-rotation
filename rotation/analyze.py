@@ -4,11 +4,11 @@ from itertools import groupby
 
 from .parse import REGULAR_PERIOD_SEC, Event, StructureError
 
-SUB_RE = re.compile(r'#(\d+)\s+(\S+)\s+プレイヤー(イン|アウト)$')
+SUB_RE = re.compile(r'#(\d+)\s+(.+?)\s+プレイヤー(イン|アウト)$')
 SHOT_RE = re.compile(r'(2Pシュート|3Pシュート|フリースロー).*?(○|×)')
 SHOT_POINTS = {'2Pシュート': 2, '3Pシュート': 3, 'フリースロー': 1}
 SHOT_KIND = {'2Pシュート': '2P', '3Pシュート': '3P', 'フリースロー': 'FT'}
-PLAYER_RE = re.compile(r'#(\d+)\s+(\S+)\s')
+PLAYER_RE = re.compile(r'#(\d+)\s+(.+?)\s+(?:2Pシュート|3Pシュート|フリースロー)')
 
 
 class DataError(Exception):
