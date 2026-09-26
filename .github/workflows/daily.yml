@@ -3,7 +3,7 @@ name: daily
 on:
   schedule:
     - cron: '23 18 * * *'     # 03:23 JST: yesterday's games as final, committed
-    - cron: '*/15 4-13 * * *' # 13:00-22:45 JST: games in progress, deployed only
+    - cron: '7,22,37,52 4-13 * * *' # 13:00-22:45 JST: games in progress, deployed only
   workflow_dispatch:
     inputs:
       date:
@@ -28,7 +28,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '*/15 4-13 * * *') || inputs.live == true }}
+  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '7,22,37,52 4-13 * * *') || inputs.live == true }}
 
 jobs:
   update:
