@@ -2,12 +2,17 @@ name: daily
 
 on:
   schedule:
-    - cron: '0 21 * * *'  # 06:00 JST
+    - cron: '23 18 * * *'     # 03:23 JST: yesterday's games as final, committed
+    - cron: '*/15 4-13 * * *' # 13:00-22:45 JST: games in progress, deployed only
   workflow_dispatch:
     inputs:
       date:
-        description: 'YYYYMMDD（空なら前日JST）'
+        description: 'YYYYMMDD（空なら前日JST。live のときは当日）'
         required: false
+      live:
+        description: '試合中の試合も取り込み、コミットせずに公開だけする'
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ['rotation/**', 'templates/**', 'data/**']
@@ -22,9 +27,14 @@ concurrency:
   group: daily
   cancel-in-progress: false
 
+env:
+  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '*/15 4-13 * * *') || inputs.live == true }}
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.changes.outputs.deploy }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,13 +47,20 @@ jobs:
         env:
           DATE: ${{ inputs.date }}
         run: |
-          if [ -n "$DATE" ]; then
-            python -m rotation update --date "$DATE" --report report.json
+          args=(--report report.json)
+          if [ "$LIVE" = true ]; then args+=(--live); fi
+          if [ -n "$DATE" ]; then args+=(--date "$DATE"); fi
+          python -m rotation update "${args[@]}"
+      - name: Decide whether to deploy
+        id: changes
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = push ] || [ "$LIVE" != true ] || [ -n "$(git status --porcelain -- data)" ]; then
+            echo deploy=true >> "$GITHUB_OUTPUT"
           else
-            python -m rotation update --report report.json
+            echo deploy=false >> "$GITHUB_OUTPUT"
           fi
       - name: Commit data
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && env.LIVE != 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -53,19 +70,23 @@ jobs:
             git push
           fi
       - name: Open or close issues for detected problems
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && env.LIVE != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python -m rotation notify report.json --repo "$GITHUB_REPOSITORY"
       - name: Build site
+        if: steps.changes.outputs.deploy == 'true'
         run: python -m rotation build --out _site
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - if: steps.changes.outputs.deploy == 'true'
+        uses: actions/configure-pages@v5
+      - if: steps.changes.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
   deploy:
     needs: update
+    if: needs.update.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
