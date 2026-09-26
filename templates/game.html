@@ -250,6 +250,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
 .lu-margin.lu-zero{color:var(--ink-faint);}
 .lu-names{color:var(--ink);white-space:normal;min-width:220px;}
 .lu-rest td{color:var(--ink-faint);font-style:italic;}
+@media (max-width: 600px){
+  .page{padding:1.25rem .75rem 2rem;}
+  .chart-wrap{padding:.75rem .4rem .4rem;}
+  .name-label{font-size:11px;}
+  .stat-label{font-size:10px;}
+  .matchup{font-size:22px;}
+}
 </style>
 
 <div class="page">
@@ -319,9 +326,11 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     return 'Q' + period + ' 残り' + mmss(remain);
   }
 
-  var LABEL_W = 210, RIGHT_PAD = 6, ROW_H = 13, ROW_GAP = 1, BAR_H = 10, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
+  var AVAIL_W = document.getElementById('chart').clientWidth;
+  var NARROW = AVAIL_W > 0 && AVAIL_W < 560;
+  var LABEL_W = NARROW ? 138 : 210, RIGHT_PAD = 6, ROW_H = NARROW ? 16 : 13, ROW_GAP = 1, BAR_H = NARROW ? 11 : 10, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
   var MARGIN_H = 15, MARGIN_GAP = 6;
-  var CHART_W = 634;
+  var CHART_W = NARROW ? Math.max(300, AVAIL_W) : 634;
   var gameLen = DATA.periodLength * DATA.numPeriods;
   var elapsed = DATA.elapsedSec || gameLen;
   var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
@@ -549,13 +558,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
       svg.appendChild(rowBg);
       rowBgs[rowKey(ti, p.jersey, p.name)] = rowBg;
       var nameEl = document.createElementNS(svgNS,'text');
-      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + 10);
+      nameEl.setAttribute('x', 0); nameEl.setAttribute('y', rowTop + ROW_H - 3);
       nameEl.setAttribute('class','name-label');
       nameEl.textContent = '#' + p.jersey + ' ' + shortName(p.name);
       svg.appendChild(nameEl);
 
       var statEl = document.createElementNS(svgNS,'text');
-      statEl.setAttribute('x', LABEL_W - 8); statEl.setAttribute('y', rowTop + 10); statEl.setAttribute('text-anchor', 'end');
+      statEl.setAttribute('x', LABEL_W - 8); statEl.setAttribute('y', rowTop + ROW_H - 3); statEl.setAttribute('text-anchor', 'end');
       statEl.setAttribute('class','stat-label');
       var pmSpan = document.createElementNS(svgNS,'tspan');
       pmSpan.setAttribute('class', p.plusMinus > 0 ? 'stat-pm-pos' : p.plusMinus < 0 ? 'stat-pm-neg' : 'stat-pm-zero');
@@ -783,6 +792,23 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     }, function(e){ say(e.message); });
     if (!win) say('ポップアップがブロックされました。URLをコピーしてXで投稿してください');
   });
+
+  var relayoutTimer = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(relayoutTimer);
+    relayoutTimer = setTimeout(function(){
+      var w = document.getElementById('chart').clientWidth;
+      var narrow = w > 0 && w < 560;
+      if (narrow !== NARROW || (narrow && Math.abs(w - AVAIL_W) > 24)){
+        try { sessionStorage.setItem('scrollY', String(window.scrollY)); } catch (e) {}
+        location.reload();
+      }
+    }, 250);
+  });
+  try {
+    var savedY = sessionStorage.getItem('scrollY');
+    if (savedY !== null){ sessionStorage.removeItem('scrollY'); window.scrollTo(0, +savedY); }
+  } catch (e) {}
 
   var tip = document.getElementById('tooltip');
   function showFlowTip(ev, r){
