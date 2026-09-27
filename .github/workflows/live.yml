@@ -2,7 +2,8 @@ name: live
 
 on:
   schedule:
-    - cron: '7,22,37,52 4-13 * * *'  # 13:07-22:52 JST
+    - cron: '7,22,37,52 13-22 * * *'
+      timezone: 'Asia/Tokyo'
   workflow_dispatch:
 
 permissions:

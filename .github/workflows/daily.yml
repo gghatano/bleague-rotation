@@ -2,7 +2,8 @@ name: daily
 
 on:
   schedule:
-    - cron: '23 18 * * *'  # 03:23 JST
+    - cron: '23 3 * * *'
+      timezone: 'Asia/Tokyo'
   workflow_dispatch:
     inputs:
       date:
