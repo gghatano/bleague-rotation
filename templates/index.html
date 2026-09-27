@@ -17,6 +17,8 @@
   --accent-bg:#e4ecf7;
   --warn:#c15a3f;
   --live:#c0392b;
+  --t1:#3d6fb4;
+  --t2:#c8722f;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -32,6 +34,8 @@
     --accent-bg:#1f2b3d;
     --warn:#d98567;
     --live:#e8776a;
+    --t1:#7ba3e2;
+    --t2:#e2934f;
   }
 }
 :root[data-theme="dark"]{
@@ -47,6 +51,8 @@
   --accent-bg:#1f2b3d;
   --warn:#d98567;
   --live:#e8776a;
+  --t1:#7ba3e2;
+  --t2:#e2934f;
 }
 *{box-sizing:border-box;}
 body{background:var(--bg);color:var(--ink);margin:0;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
@@ -85,6 +91,8 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
 .game .go{font-size:12px;color:var(--accent);white-space:nowrap;}
 .game .live{font-size:12px;color:var(--live);font-weight:500;white-space:nowrap;}
 .game .issue{font-size:11.5px;color:var(--warn);white-space:nowrap;}
+.game .spark{grid-column:1 / -1;display:block;height:46px;margin-top:2px;}
+.game .spark svg{display:block;width:100%;height:100%;overflow:visible;}
 .game .msg{grid-column:2 / -1;font-size:11.5px;color:var(--ink-faint);}
 .empty-note{font-size:13px;color:var(--ink-faint);}
 .foot{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
@@ -212,8 +220,63 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
         '<span class="teams">' + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
         right +
         (ok ? (g.truncatedAt ? '<span class="msg">記録の不整合のため ' + esc(g.truncatedAt) + ' までを表示中</span>' : '')
-            : '<span class="msg">' + esc(g.message || '') + '</span>');
+            : '<span class="msg">' + esc(g.message || '') + '</span>') +
+        (ok ? '<span class="spark" data-game="' + esc(g.gameId) + '" aria-hidden="true"></span>' : '');
       list.appendChild(el);
+    });
+    drawSparks(selected);
+  }
+
+  var dayCache = {};
+  function loadDay(date){
+    if (!dayCache[date]){
+      dayCache[date] = fetch('days/' + date + '.json').then(function(r){ return r.ok ? r.json() : {}; }, function(){ return {}; });
+    }
+    return dayCache[date];
+  }
+  var NS = 'http://www.w3.org/2000/svg';
+  function node(name, attrs){
+    var n = document.createElementNS(NS, name);
+    Object.keys(attrs).forEach(function(k){ n.setAttribute(k, attrs[k]); });
+    return n;
+  }
+  function drawSpark(holder, data){
+    var W = 400, H = 46, mid = H / 2;
+    var pts = data.points.slice();
+    var last = pts[pts.length - 1];
+    if (last[0] < data.elapsed) pts.push([data.elapsed, last[1]]);
+    var maxAbs = pts.reduce(function(m, p){ return Math.max(m, Math.abs(p[1])); }, 0);
+    var yMax = Math.max(5, Math.ceil(maxAbs / 5) * 5);
+    function X(t){ return t / data.length * W; }
+    function Y(v){ return mid - v / yMax * (mid - 2); }
+    var svg = node('svg', {viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'none'});
+    var id = 'c' + holder.getAttribute('data-game');
+    var defs = node('defs', {});
+    var up = node('clipPath', {id: id + 'u'}), down = node('clipPath', {id: id + 'd'});
+    up.appendChild(node('rect', {x: 0, y: 0, width: W, height: mid}));
+    down.appendChild(node('rect', {x: 0, y: mid, width: W, height: mid}));
+    defs.appendChild(up); defs.appendChild(down); svg.appendChild(defs);
+    for (var q = 1; q < 4; q++){
+      svg.appendChild(node('line', {x1: X(q * 600), x2: X(q * 600), y1: 0, y2: H, stroke: 'var(--line)', 'stroke-width': 1,
+        'vector-effect': 'non-scaling-stroke'}));
+    }
+    var line = pts.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1); }).join(' ');
+    var area = line + ' L' + X(pts[pts.length - 1][0]).toFixed(1) + ',' + mid + ' L0,' + mid + ' Z';
+    svg.appendChild(node('path', {d: area, fill: 'var(--t1)', 'fill-opacity': 0.3, 'clip-path': 'url(#' + id + 'u)'}));
+    svg.appendChild(node('path', {d: area, fill: 'var(--t2)', 'fill-opacity': 0.3, 'clip-path': 'url(#' + id + 'd)'}));
+    svg.appendChild(node('line', {x1: 0, x2: W, y1: mid, y2: mid, stroke: 'var(--line-strong)', 'stroke-width': 1,
+      'vector-effect': 'non-scaling-stroke'}));
+    svg.appendChild(node('path', {d: line, fill: 'none', stroke: 'var(--ink-muted)', 'stroke-width': 1.5,
+      'stroke-linejoin': 'round', 'vector-effect': 'non-scaling-stroke'}));
+    holder.appendChild(svg);
+  }
+  function drawSparks(date){
+    loadDay(date).then(function(day){
+      if (date !== selected) return;
+      document.querySelectorAll('.spark[data-game]').forEach(function(holder){
+        var data = day[holder.getAttribute('data-game')];
+        if (data && !holder.firstChild) drawSpark(holder, data);
+      });
     });
   }
 

@@ -112,18 +112,39 @@ def render_game(game: dict) -> str:
     return page
 
 
+def margin_points(game: dict) -> list[list[int]]:
+    """Home-minus-away margin after each scoring second, starting at tip-off."""
+    points, score = [[0, 0]], [0, 0]
+    for sec, side, pts, *_ in sorted(game.get('scoring', []), key=lambda e: e[0]):
+        score[side] += pts
+        if points[-1][0] == sec:
+            points[-1][1] = score[0] - score[1]
+        else:
+            points.append([sec, score[0] - score[1]])
+    return points
+
+
 def build(data_dir: Path, out_dir: Path) -> int:
     index = json.loads((data_dir / 'games.json').read_text(encoding='utf-8'))
     if out_dir.exists():
         shutil.rmtree(out_dir)
     (out_dir / 'games').mkdir(parents=True)
+    (out_dir / 'days').mkdir()
+    days = {}
     built = 0
     for game_id, entry in index['games'].items():
         if entry['status'] not in ('ok', 'live'):
             continue
         game = json.loads((data_dir / 'games' / f'{game_id}.json').read_text(encoding='utf-8'))
         (out_dir / 'games' / f'{game_id}.html').write_text(render_game(game), encoding='utf-8')
+        days.setdefault(entry['date'], {})[game_id] = {
+            'points': margin_points(game),
+            'length': game['periodLength'] * game['numPeriods'],
+            'elapsed': game.get('elapsedSec', game['periodLength'] * game['numPeriods']),
+        }
         built += 1
+    for date, games in days.items():
+        (out_dir / 'days' / f'{date}.json').write_text(json.dumps(games, separators=(',', ':')), encoding='utf-8')
     page = (TEMPLATES / 'index.html').read_text(encoding='utf-8')
     page = page.replace('{{BUILT_AT}}', _jst(datetime.now(JST)))
     page = page.replace('{{INDEX}}', _json_for_script(index))
