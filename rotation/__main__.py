@@ -28,9 +28,13 @@ def cmd_update(args) -> int:
     store = Store(ROOT / 'data')
     fetcher = Fetcher(ROOT / 'raw')
     report = Report()
-    default = jst_date(0) if args.live else jst_date(1)
-    dates = sorted(set(args.date or [default]) | set(store.dates_to_retry()))
     season = store.index.get('seasonDates')
+    if args.live:
+        today = jst_date(0)
+        default = max((d for d in season or [] if d <= today), default=today)
+    else:
+        default = jst_date(1)
+    dates = sorted(set(args.date or [default]) | set(store.dates_to_retry()))
     for day in dates:
         if season and day not in season and not args.date:
             print(f'{day}: 試合なし')
@@ -67,7 +71,7 @@ def main() -> int:
     p = sub.add_parser('update', help='指定日（既定: 前日JST）の終了済みの試合を取得・集計する。不整合・試合中だった試合も再試行する')
     p.add_argument('--date', action='append', type=ymd, help='YYYYMMDD。複数指定可')
     p.add_argument('--report', default=str(ROOT / 'report.json'), help='見つかった問題の出力先')
-    p.add_argument('--live', action='store_true', help='試合中の試合も取り込む（日付の既定は当日JST）')
+    p.add_argument('--live', action='store_true', help='試合中の試合も取り込む（日付の既定は当日。当日が開催日でなければ直近の開催日）')
     p.set_defaults(func=cmd_update)
     p = sub.add_parser('build', help='data/ から静的サイトを生成する')
     p.add_argument('--out', default=str(ROOT / '_site'))

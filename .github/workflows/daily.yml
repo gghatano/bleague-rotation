@@ -7,12 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       date:
-        description: 'YYYYMMDD（空なら前日JST。live のときは当日）'
+        description: 'YYYYMMDD を指定するとその日を確定版として取り込みコミットする。空なら最新の開催日を試合中も含めて取り込み、公開だけする'
         required: false
-      live:
-        description: '試合中の試合も取り込み、コミットせずに公開だけする'
-        type: boolean
-        default: false
   push:
     branches: [main]
     paths: ['rotation/**', 'templates/**', 'data/**']
@@ -28,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '7,22,37,52 4-13 * * *') || inputs.live == true }}
+  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '7,22,37,52 4-13 * * *') || (github.event_name == 'workflow_dispatch' && inputs.date == '') }}
 
 jobs:
   update:
