@@ -1,0 +1,21 @@
+name: live
+
+on:
+  schedule:
+    - cron: '7,22,37,52 4-13 * * *'  # 13:07-22:52 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    uses: ./.github/workflows/pipeline.yml
+    with:
+      live: true

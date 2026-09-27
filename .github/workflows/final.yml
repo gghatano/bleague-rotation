@@ -1,0 +1,30 @@
+name: final
+
+on:
+  schedule:
+    - cron: '23 18 * * *'  # 03:23 JST
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'YYYYMMDD（空なら前日JST）。その日の試合を確定版として取り込みコミットする'
+        required: false
+  push:
+    branches: [main]
+    paths: ['rotation/**', 'templates/**', 'data/**']
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    uses: ./.github/workflows/pipeline.yml
+    with:
+      live: false
+      date: ${{ inputs.date || '' }}

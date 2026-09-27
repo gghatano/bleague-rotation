@@ -1,30 +1,19 @@
-name: daily
+name: pipeline
 
 on:
-  schedule:
-    - cron: '23 18 * * *'     # 03:23 JST: yesterday's games as final, committed
-    - cron: '7,22,37,52 4-13 * * *' # 13:00-22:45 JST: games in progress, deployed only
-  workflow_dispatch:
+  workflow_call:
     inputs:
+      live:
+        description: '試合中の試合も取り込み、コミット・issue通知をせずに公開だけする'
+        type: boolean
+        default: false
       date:
-        description: 'YYYYMMDD を指定するとその日を確定版として取り込みコミットする。空なら最新の開催日を試合中も含めて取り込み、公開だけする'
-        required: false
-  push:
-    branches: [main]
-    paths: ['rotation/**', 'templates/**', 'data/**']
-
-permissions:
-  contents: write
-  issues: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: daily
-  cancel-in-progress: false
+        description: 'YYYYMMDD。空なら既定の日付（確定版は前日、live は最新の開催日）'
+        type: string
+        default: ''
 
 env:
-  LIVE: ${{ (github.event_name == 'schedule' && github.event.schedule == '7,22,37,52 4-13 * * *') || (github.event_name == 'workflow_dispatch' && inputs.date == '') }}
+  LIVE: ${{ inputs.live }}
 
 jobs:
   update:
