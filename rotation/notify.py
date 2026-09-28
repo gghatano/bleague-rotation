@@ -5,6 +5,7 @@ from pathlib import Path
 LABELS = {
     'data': ('データ不整合', 'd93f0b', '交代記録の不整合で公開を保留している試合'),
     'structure': ('出典の構造変化', 'b60205', '出典のページを想定どおりに読み取れない'),
+    'correction': ('補正の見直し', 'fbca04', '手書きの補正が不要になった可能性がある'),
 }
 
 
@@ -56,6 +57,6 @@ def notify(report_path: Path, repo: str, dry_run: bool = False) -> None:
         if not found:
             continue
         num = str(found['number'])
-        gh.run('issue', 'comment', num, '--body', '再取得したデータで検証を通過したため、試合ページを公開しました。')
+        gh.run('issue', 'comment', num, '--body', r.get('note', '再取得したデータで検証を通過したため、試合ページを公開しました。'))
         gh.run('issue', 'close', num)
         print(f"issue #{num} を閉じた: {found['title']}")

@@ -77,6 +77,9 @@ def render_game(game: dict) -> str:
     }
     live = not chart['final']
     note = f'ソースの重複した交代記録{len(game["anomalies"])}件は無視して集計しています。' if game['anomalies'] else ''
+    if game.get('corrections'):
+        note += (f'<b class="live">出典の交代記録のうち{len(game["corrections"])}件を補正して集計しています'
+                 f'（{html.escape("、".join(game["corrections"]))}）。</b>')
     if live:
         note += '試合中のデータです。試合終了後、翌朝の更新で確定版に置き換わります。'
     if game.get('truncated'):

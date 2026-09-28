@@ -2,6 +2,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from . import corrections
 from .analyze import DataError, UnsupportedGame, analyze, clock_label
 from .fetch import Fetcher
 from .parse import ScheduledGame, StructureError, parse_play_by_play, parse_schedule
@@ -14,6 +15,7 @@ SCHEDULE_URL = 'https://sports.yahoo.co.jp/basket/bleague/premier/schedule/reg/?
 class Store:
     def __init__(self, data_dir: Path):
         self.data_dir = data_dir
+        self.corrections_dir = data_dir.parent / 'corrections'
         self.index_path = data_dir / 'games.json'
         self.index = json.loads(self.index_path.read_text(encoding='utf-8')) if self.index_path.exists() else {'games': {}}
 
@@ -79,20 +81,59 @@ def in_progress(game: ScheduledGame) -> bool:
     return game.status != FINISHED and game.home_score is not None and game.away_score is not None
 
 
+def _attempt(events, num_periods, game: ScheduledGame, final: bool):
+    """Returns (result, problem). A live result cut short by an inconsistency is
+    still usable, so it comes back together with the problem that cut it."""
+    try:
+        result = analyze(events, num_periods, game.home.name, game.away.name, final=final)
+    except DataError as e:
+        return None, e
+    computed = [t['score'] for t in result['teams']]
+    if final and computed != [game.home_score, game.away_score]:
+        return None, DataError(f'再計算した得点 {computed[0]}-{computed[1]} が公式スコア {game.home_score}-{game.away_score} と一致しない')
+    if result['truncated']:
+        return result, DataError(result['truncated']['reason'])
+    return result, None
+
+
+def _report_stale_correction(report: Report, entry: dict):
+    gid = entry['gameId']
+    report.problem('correction', f'correction {gid}',
+                   f"補正が不要になった可能性: {entry['date']} {entry['home']['name']}-{entry['away']['name']}（correction {gid}）",
+                   f'出典の記録が補正なしで検証を通るようになりました。出典側で修正された可能性があります。\n\n'
+                   f'`corrections/{gid}.json` を削除してください（現在は適用していません）。\n- 出典: {TEXT_URL.format(gid)}')
+
+
 def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, report: Report) -> dict:
     """A finished game must reproduce the official score exactly. A game in
     progress is only checked for five on court: its schedule score is fetched a
-    moment before the play-by-play and can already be a basket behind."""
+    moment before the play-by-play and can already be a basket behind.
+
+    A hand-written correction is applied only when the raw record fails, so a
+    fix the source has since made itself is never overridden."""
     final = game.status == FINISHED
     entry = _entry(game, ymd)
     previous = store.index['games'].get(game.game_id, {})
     path = store.game_path(game.game_id)
+    correction = corrections.load(store.corrections_dir, game.game_id)
+    applied = []
     try:
         events, num_periods = parse_play_by_play(fetcher.play_by_play(game.game_id), **({} if final else {'min_events': 0}))
-        result = analyze(events, num_periods, game.home.name, game.away.name, final=final)
+        result, problem = _attempt(events, num_periods, game, final)
+        if problem is None and correction:
+            _report_stale_correction(report, entry)
+        elif problem is not None and correction:
+            try:
+                fixed, fixed_problem = _attempt(corrections.apply(events, correction), num_periods, game, final)
+            except DataError as e:
+                fixed, fixed_problem = None, e
+            if fixed is not None and fixed_problem is None:
+                result, problem, applied = fixed, None, corrections.describe(correction)
+            else:
+                problem = DataError(f'{problem}（補正 corrections/{game.game_id}.json を適用しても解消しない: {fixed_problem}）')
+        if result is None:
+            raise problem
         computed = [t['score'] for t in result['teams']]
-        if final and computed != [game.home_score, game.away_score]:
-            raise DataError(f'再計算した得点 {computed[0]}-{computed[1]} が公式スコア {game.home_score}-{game.away_score} と一致しない')
         if not final:
             entry['clock'] = game.status
             if result['truncated']:
@@ -109,11 +150,16 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
         _report_game_problem(report, entry, kind, str(e))
     else:
         entry.update(status='ok' if final else 'live', anomalies=len(result['anomalies']))
+        if applied:
+            entry['corrected'] = len(applied)
         path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {**entry, **result, 'generatedAt': datetime.now(timezone.utc).isoformat(timespec='seconds')}
+        payload = {**entry, **result, 'corrections': applied,
+                   'generatedAt': datetime.now(timezone.utc).isoformat(timespec='seconds')}
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         if final and previous.get('status') == 'error':
-            report.resolved.append({'key': game_key(game.game_id), 'gameId': game.game_id})
+            note = (f'補正ファイル `corrections/{game.game_id}.json` を適用して検証を通過したため、試合ページを公開しました。'
+                    if applied else '再取得したデータで検証を通過したため、試合ページを公開しました。')
+            report.resolved.append({'key': game_key(game.game_id), 'gameId': game.game_id, 'note': note})
     store.index['games'][game.game_id] = entry
     return entry
 

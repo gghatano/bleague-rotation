@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -79,6 +80,44 @@ class StoreTest(unittest.TestCase):
         entries = process_date(self.store, FakeFetcher(schedule='<div>20260924</div><table></table>'), '20260924', report)
         self.assertEqual(entries, [])
         self.assertEqual([p['key'] for p in report.problems], ['schedule 20260924'])
+
+
+BROKEN_ELSEWHERE = game(FILLER + [li('残り6分00秒', HOME, '#8 P8 プレイヤーアウト'), li('残り6分00秒', HOME, '#7 P7 プレイヤーイン')])
+FIX = {'issue': 1, 'reason': 'test', 'replace': [
+    {'at': 'Q1 残り7:00', 'team': HOME, 'from': '#9 P9 プレイヤーアウト', 'to': '#2 P2 プレイヤーアウト'}]}
+
+
+class CorrectionTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = Path(self.tmp.name)
+        (root / 'corrections').mkdir()
+        (root / 'corrections' / '900001.json').write_text(json.dumps(FIX), encoding='utf-8')
+        self.store = Store(root / 'data')
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_correction_repairs_a_mislabeled_substitution(self):
+        report = Report()
+        entry = process_game(self.store, FakeFetcher(BAD), FINISHED, '20260927', report)
+        self.assertEqual((entry['status'], entry['corrected']), ('ok', 1))
+        saved = json.loads(self.store.game_path('900001').read_text(encoding='utf-8'))
+        self.assertEqual(saved['corrections'], ['Q1 残り7:00 H: 「#9 P9 プレイヤーアウト」→「#2 P2 プレイヤーアウト」'])
+        self.assertEqual(report.problems, [])
+
+    def test_correction_is_skipped_and_flagged_once_the_source_is_fixed(self):
+        report = Report()
+        entry = process_game(self.store, FakeFetcher(GOOD), FINISHED, '20260927', report)
+        self.assertEqual(entry['status'], 'ok')
+        self.assertNotIn('corrected', entry)
+        self.assertEqual([p['kind'] for p in report.problems], ['correction'])
+
+    def test_correction_that_matches_nothing_leaves_the_game_held(self):
+        report = Report()
+        entry = process_game(self.store, FakeFetcher(BROKEN_ELSEWHERE), FINISHED, '20260927', report)
+        self.assertEqual(entry['status'], 'error')
+        self.assertIn('補正', entry['message'])
 
 
 class NotifyTest(unittest.TestCase):
