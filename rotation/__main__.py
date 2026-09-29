@@ -12,6 +12,7 @@ from .site import build
 from .store import Report, Store, process_date
 
 ROOT = Path(__file__).resolve().parent.parent
+RECHECK_DAYS = 3
 
 
 def ymd(value: str) -> str:
@@ -32,9 +33,11 @@ def cmd_update(args) -> int:
     if args.live:
         today = jst_date(0)
         default = max((d for d in season or [] if d <= today), default=today)
+        recheck = []
     else:
         default = jst_date(1)
-    dates = sorted(set(args.date or [default]) | set(store.dates_to_retry()))
+        recheck = [] if args.date else store.dates_to_recheck(jst_date(RECHECK_DAYS), jst_date(2))
+    dates = sorted(set(args.date or [default]) | set(store.dates_to_retry()) | set(recheck))
     for day in dates:
         if season and day not in season and not args.date:
             print(f'{day}: 試合なし')
@@ -68,7 +71,7 @@ def cmd_notify(args) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(prog='python -m rotation')
     sub = parser.add_subparsers(required=True)
-    p = sub.add_parser('update', help='指定日（既定: 前日JST）の終了済みの試合を取得・集計する。不整合・試合中だった試合も再試行する')
+    p = sub.add_parser('update', help='指定日（既定: 前日JST）の終了済みの試合を取得・集計する。不整合・試合中だった試合と、2〜3日前の公開済みの試合も取り直す')
     p.add_argument('--date', action='append', type=ymd, help='YYYYMMDD。複数指定可')
     p.add_argument('--report', default=str(ROOT / 'report.json'), help='見つかった問題の出力先')
     p.add_argument('--live', action='store_true', help='試合中の試合も取り込む（日付の既定は当日。当日が開催日でなければ直近の開催日）')

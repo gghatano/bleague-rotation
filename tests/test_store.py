@@ -69,6 +69,30 @@ class StoreTest(unittest.TestCase):
         self.assertTrue(self.store.game_path('900003').exists())
         self.assertEqual(report.problems, [])
 
+    def test_refetching_unchanged_data_keeps_the_file_untouched(self):
+        process_game(self.store, FakeFetcher(GOOD), FINISHED, '20260924', Report())
+        path = self.store.game_path('900001')
+        before = path.read_text(encoding='utf-8')
+        path.write_text(before.replace('"generatedAt": "', '"generatedAt": "X'), encoding='utf-8')
+        marked = path.read_text(encoding='utf-8')
+        process_game(self.store, FakeFetcher(GOOD), FINISHED, '20260924', Report())
+        self.assertEqual(path.read_text(encoding='utf-8'), marked)
+
+    def test_changed_data_is_rewritten(self):
+        process_game(self.store, FakeFetcher(GOOD), FINISHED, '20260924', Report())
+        path = self.store.game_path('900001')
+        changed = game(FILLER + [li('残り5分00秒', HOME, '#5 P5 プレイヤーアウト'), li('残り5分00秒', HOME, '#7 P7 プレイヤーイン')])
+        process_game(self.store, FakeFetcher(changed), FINISHED, '20260924', Report())
+        self.assertIn('"P7"', path.read_text(encoding='utf-8'))
+
+    def test_recheck_picks_published_games_in_the_window(self):
+        for gid, ymd in [('1', '20260922'), ('2', '20260925'), ('3', '20260926')]:
+            process_game(self.store, FakeFetcher(GOOD), ScheduledGame(gid, '19:05', Team(HOME, '1'), Team(AWAY, '2'), 2, 2, '試合終了'),
+                         ymd, Report())
+        process_game(self.store, FakeFetcher(BAD), ScheduledGame('4', '19:05', Team(HOME, '1'), Team(AWAY, '2'), 2, 2, '試合終了'),
+                     '20260926', Report())
+        self.assertEqual(self.store.dates_to_recheck('20260925', '20260926'), ['20260925', '20260926'])
+
     def test_unreadable_play_by_play_is_a_structure_problem(self):
         report = Report()
         entry = process_game(self.store, FakeFetcher('<html>maintenance</html>'), FINISHED, '20260924', report)

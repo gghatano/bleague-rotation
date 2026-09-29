@@ -26,6 +26,12 @@ class Store:
         self.index['games'] = dict(sorted(self.index['games'].items()))
         self.index_path.write_text(json.dumps(self.index, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
 
+    def dates_to_recheck(self, first: str, last: str) -> list[str]:
+        """Dates (YYYYMMDD) in [first, last] with a published game, to pick up
+        corrections the source makes in the days after a game."""
+        return sorted({g['date'].replace('-', '') for g in self.index['games'].values()
+                       if g['status'] == 'ok' and first <= g['date'].replace('-', '') <= last})
+
     def dates_to_retry(self) -> list[str]:
         return sorted({g['date'].replace('-', '') for g in self.index['games'].values() if g['status'] in ('error', 'live')})
 
@@ -153,9 +159,11 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
         if applied:
             entry['corrected'] = len(applied)
         path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {**entry, **result, 'corrections': applied,
-                   'generatedAt': datetime.now(timezone.utc).isoformat(timespec='seconds')}
-        path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+        payload = {**entry, **result, 'corrections': applied}
+        stored = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+        if stored is None or {k: v for k, v in stored.items() if k != 'generatedAt'} != payload:
+            payload['generatedAt'] = datetime.now(timezone.utc).isoformat(timespec='seconds')
+            path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         if final and previous.get('status') == 'error':
             note = (f'補正ファイル `corrections/{game.game_id}.json` を適用して検証を通過したため、試合ページを公開しました。'
                     if applied else '再取得したデータで検証を通過したため、試合ページを公開しました。')
