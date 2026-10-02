@@ -226,7 +226,7 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
       if (ok) el.href = 'games/' + encodeURIComponent(g.gameId) + '.html';
       var right = g.status === 'live' ? '<span class="live">試合中 ' + esc(g.clock || '') + ' →</span>'
                 : ok ? '<span class="go">ローテーション →</span>'
-                     : '<span class="issue">' + (g.status === 'unsupported' ? '未対応' : 'データ確認中') + '</span>';
+                     : '<span class="issue">' + 'データ確認中' + '</span>';
       el.innerHTML =
         '<span class="time">' + esc(g.tipoff) + '</span>' +
         '<span class="teams">' + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
@@ -259,7 +259,8 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
     if (last[0] < data.elapsed) pts.push([data.elapsed, last[1]]);
     var maxAbs = pts.reduce(function(m, p){ return Math.max(m, Math.abs(p[1])); }, 0);
     var yMax = Math.max(5, Math.ceil(maxAbs / 5) * 5);
-    function X(t){ return t / data.length * W; }
+    var length = data.periods.reduce(function(a, b){ return a + b; }, 0);
+    function X(t){ return t / length * W; }
     function Y(v){ return mid - v / yMax * (mid - 2); }
     var svg = node('svg', {viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'none'});
     var id = 'c' + holder.getAttribute('data-game');
@@ -268,10 +269,12 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
     up.appendChild(node('rect', {x: 0, y: 0, width: W, height: mid}));
     down.appendChild(node('rect', {x: 0, y: mid, width: W, height: mid}));
     defs.appendChild(up); defs.appendChild(down); svg.appendChild(defs);
-    for (var q = 1; q < 4; q++){
-      svg.appendChild(node('line', {x1: X(q * 600), x2: X(q * 600), y1: 0, y2: H, stroke: 'var(--line)', 'stroke-width': 1,
+    var boundary = 0;
+    data.periods.slice(0, -1).forEach(function(len){
+      boundary += len;
+      svg.appendChild(node('line', {x1: X(boundary), x2: X(boundary), y1: 0, y2: H, stroke: 'var(--line)', 'stroke-width': 1,
         'vector-effect': 'non-scaling-stroke'}));
-    }
+    });
     var line = pts.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1); }).join(' ');
     var area = line + ' L' + X(pts[pts.length - 1][0]).toFixed(1) + ',' + mid + ' L0,' + mid + ' Z';
     svg.appendChild(node('path', {d: area, fill: 'var(--t1)', 'fill-opacity': 0.3, 'clip-path': 'url(#' + id + 'u)'}));

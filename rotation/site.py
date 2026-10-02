@@ -16,6 +16,10 @@ def _jst(dt: datetime, seconds: bool = False) -> str:
     return dt.astimezone(JST).strftime('%Y/%m/%d %H:%M:%S' if seconds else '%Y/%m/%d %H:%M')
 
 
+def periods_of(game: dict) -> list[int]:
+    return game.get('periodLengths') or [game['periodLength']] * game['numPeriods']
+
+
 def short_name(name: str) -> str:
     return name.split('・')[0]
 
@@ -66,13 +70,12 @@ def render_game(game: dict) -> str:
         lineups += f'<p class="lu-team" style="color:var(--{slot}-ink)">{html.escape(team["name"])}</p>' + _lineup_table(team['lineups'])
     lineups += '</div>'
     chart = {
-        'periodLength': game['periodLength'],
-        'numPeriods': game['numPeriods'],
+        'periods': periods_of(game),
         'teams': [{'name': t['name'], 'color': f'var(--{slot})', 'players': t['players'], 'stints': t['stints']}
                   for slot, t in (('t1', home), ('t2', away))],
         'scoring': game.get('scoring', []),
         'final': game.get('final', True),
-        'elapsedSec': game.get('elapsedSec', game['periodLength'] * game['numPeriods']),
+        'elapsedSec': game.get('elapsedSec', sum(periods_of(game))),
         'truncated': bool(game.get('truncated')),
     }
     live = not chart['final']
@@ -142,8 +145,8 @@ def build(data_dir: Path, out_dir: Path) -> int:
         (out_dir / 'games' / f'{game_id}.html').write_text(render_game(game), encoding='utf-8')
         days.setdefault(entry['date'], {})[game_id] = {
             'points': margin_points(game),
-            'length': game['periodLength'] * game['numPeriods'],
-            'elapsed': game.get('elapsedSec', game['periodLength'] * game['numPeriods']),
+            'periods': periods_of(game),
+            'elapsed': game.get('elapsedSec', sum(periods_of(game))),
         }
         built += 1
     for date, games in days.items():

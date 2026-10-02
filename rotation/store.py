@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import corrections
-from .analyze import DataError, UnsupportedGame, analyze, clock_label
+from .analyze import DataError, analyze, clock_label
 from .fetch import Fetcher
 from .parse import ScheduledGame, StructureError, parse_play_by_play, parse_schedule
 
@@ -130,7 +130,7 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
             _report_stale_correction(report, entry)
         elif problem is not None and correction:
             try:
-                fixed, fixed_problem = _attempt(corrections.apply(events, correction), num_periods, game, final)
+                fixed, fixed_problem = _attempt(corrections.apply(events, correction, num_periods), num_periods, game, final)
             except DataError as e:
                 fixed, fixed_problem = None, e
             if fixed is not None and fixed_problem is None:
@@ -143,12 +143,9 @@ def process_game(store: Store, fetcher: Fetcher, game: ScheduledGame, ymd: str, 
         if not final:
             entry['clock'] = game.status
             if result['truncated']:
-                entry['truncatedAt'] = clock_label(result['truncated']['sec'])
+                entry['truncatedAt'] = clock_label(result['truncated']['sec'], result['numPeriods'])
             else:
                 entry['home']['score'], entry['away']['score'] = computed
-    except UnsupportedGame as e:
-        entry.update(status='unsupported', message=str(e))
-        path.unlink(missing_ok=True)
     except (DataError, StructureError) as e:
         kind = 'structure' if isinstance(e, StructureError) else 'data'
         entry.update(status='error', errorKind=kind, message=str(e))

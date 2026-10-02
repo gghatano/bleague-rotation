@@ -27,11 +27,11 @@ def load(corrections_dir: Path, game_id: str) -> dict | None:
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
 
 
-def apply(events: list[Event], correction: dict) -> list[Event]:
+def apply(events: list[Event], correction: dict, num_periods: int = 4) -> list[Event]:
     events = list(events)
     for rule in correction['replace']:
         hits = [i for i, e in enumerate(events)
-                if clock_label(e.sec) == rule['at'] and e.team == rule['team'] and e.desc == rule['from']]
+                if clock_label(e.sec, num_periods) == rule['at'] and e.team == rule['team'] and e.desc == rule['from']]
         if len(hits) != 1:
             raise DataError(f"補正「{rule['at']} {rule['team']} {rule['from']}」に当たる記録が{len(hits)}件（出典が変わった可能性）")
         events[hits[0]] = dc_replace(events[hits[0]], desc=rule['to'])

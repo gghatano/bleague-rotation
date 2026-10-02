@@ -1,6 +1,6 @@
 import unittest
 
-from rotation.analyze import DataError, UnsupportedGame, analyze
+from rotation.analyze import DataError, analyze, clock_label
 from rotation.parse import StructureError, parse_play_by_play, parse_schedule
 
 
@@ -102,7 +102,7 @@ class AnalyzeTest(unittest.TestCase):
         result = analyze(events, periods, HOME, AWAY, final=False)
         self.assertEqual((result['final'], result['elapsedSec'], result['numPeriods']), (False, 820, 4))
         self.assertEqual(sum(p['totalSec'] for p in team(result, HOME)['players']), 5 * 820)
-        with self.assertRaises(UnsupportedGame):
+        with self.assertRaises(StructureError):
             analyze(events, periods, HOME, AWAY)
 
     def test_live_game_is_cut_just_before_an_inconsistency(self):
@@ -126,10 +126,37 @@ class AnalyzeTest(unittest.TestCase):
         self.assertIn(('21', 'ウィリス ジュニア'), [(p['jersey'], p['name']) for p in home['players']])
         self.assertEqual(result['scoring'][0][3:5], ['21', 'ウィリス ジュニア'])
 
-    def test_overtime_is_unsupported(self):
-        src = game() + '<span class="ba-accordion__title">延長</span><ul></ul>'
-        with self.assertRaises(UnsupportedGame):
-            run(src)
+    def overtime_page(self, live=False):
+        regular = [starters(HOME, H5) + starters(AWAY, A5), [], [], []]
+        ot1 = [li('残り5分00秒', HOME, '#1 P1 プレイヤーアウト'), li('残り5分00秒', HOME, '#6 P6 プレイヤーイン'),
+               li('残り0分10秒', HOME, '#6 P6 2Pシュート インサイドペイント○(2点) レイアップ')]
+        ot2 = [li('残り4分00秒', AWAY, '#11 P11 3Pシュート○(3点) ジャンプショット')]
+        periods = regular + [ot1, ot2]
+        titles = ['第1クォーター', '第2クォーター', '第3クォーター', '第4クォーター', 'オーバータイム1', 'オーバータイム2']
+        blocks = [f'<span class="ba-accordion__title">{t}</span><ul>{"".join(reversed(r) if live else r)}</ul>'
+                  for t, r in zip(titles, periods)]
+        return ''.join(reversed(blocks) if live else blocks)
+
+    def test_overtime_periods_are_five_minutes(self):
+        events, periods = parse_play_by_play(self.overtime_page(), min_events=0)
+        self.assertEqual(periods, 6)
+        self.assertEqual([e.sec for e in events if 'P6' in e.desc], [2400, 2690])
+        self.assertEqual(events[-1].sec, 2760)
+        result = analyze(events, periods, HOME, AWAY)
+        self.assertEqual((result['numPeriods'], result['periodLengths'], result['elapsedSec']), (6, [600] * 4 + [300] * 2, 3000))
+        self.assertEqual(sum(p['totalSec'] for p in team(result, HOME)['players']), 5 * 3000)
+        self.assertEqual([t['score'] for t in result['teams']], [2, 3])
+
+    def test_live_overtime_page_reads_the_same(self):
+        self.assertEqual(parse_play_by_play(self.overtime_page(live=True), min_events=0),
+                         parse_play_by_play(self.overtime_page(), min_events=0))
+
+    def test_clock_labels_in_overtime(self):
+        self.assertEqual(clock_label(2400), 'Q4 残り0:00')
+        self.assertEqual(clock_label(2400, 6), 'OT1 残り5:00')
+        self.assertEqual(clock_label(2690, 6), 'OT1 残り0:10')
+        self.assertEqual(clock_label(3000, 6), 'OT2 残り0:00')
+        self.assertEqual(clock_label(1500), 'Q3 残り5:00')
 
 
 class OrderTest(unittest.TestCase):

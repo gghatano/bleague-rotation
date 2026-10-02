@@ -3,6 +3,8 @@ import re
 from dataclasses import dataclass
 
 REGULAR_PERIOD_SEC = 600
+OVERTIME_SEC = 300
+REGULAR_PERIODS = 4
 MIN_EVENTS_PER_GAME = 100
 
 
@@ -46,8 +48,26 @@ def _period_rows(block: str) -> list[tuple[int, str, str]]:
     return rows
 
 
+def period_lengths(num_periods: int) -> list[int]:
+    """Four 10-minute quarters, then 5-minute overtimes."""
+    return [REGULAR_PERIOD_SEC if i < REGULAR_PERIODS else OVERTIME_SEC for i in range(num_periods)]
+
+
+def period_label(index: int) -> str:
+    return f'Q{index + 1}' if index < REGULAR_PERIODS else f'OT{index - REGULAR_PERIODS + 1}'
+
+
+def _period_number(title: str) -> int | None:
+    title = title.strip()
+    if m := re.fullmatch(r'第(\d+)クォーター', title):
+        return int(m.group(1))
+    if m := re.fullmatch(r'オーバータイム(\d+)', title):
+        return REGULAR_PERIODS + int(m.group(1))
+    return None
+
+
 def _is_newest_first(titles: list[str], periods: list[list[tuple[int, str, str]]]) -> bool:
-    numbers = [int(m.group(1)) for t in titles if (m := re.fullmatch(r'第(\d+)クォーター', t.strip()))]
+    numbers = [n for t in titles if (n := _period_number(t)) is not None]
     if len(numbers) >= 2 and numbers[0] != numbers[-1]:
         return numbers[0] > numbers[-1]
     rows = periods[0] if periods else []
@@ -67,13 +87,16 @@ def parse_play_by_play(src: str, min_events: int = MIN_EVENTS_PER_GAME) -> tuple
     if _is_newest_first(titles, periods):
         titles.reverse()
         periods = [rows[::-1] for rows in reversed(periods)]
-    events = []
-    for period_idx, (title, rows) in enumerate(zip(titles, periods)):
+    events, start = [], 0
+    for title, rows, length in zip(titles, periods, period_lengths(len(titles))):
         remains = [r for r, _, _ in rows]
         if remains != sorted(remains, reverse=True):
             raise StructureError(f'{title.strip()} のイベントが残り時間の順に並んでいない')
+        if remains and remains[0] > length:
+            raise StructureError(f'{title.strip()} の残り時間 {remains[0]}秒 がピリオドの長さ {length}秒 を超えている')
         for remain, team, desc in rows:
-            events.append(Event(period_idx * REGULAR_PERIOD_SEC + REGULAR_PERIOD_SEC - remain, team, desc))
+            events.append(Event(start + length - remain, team, desc))
+        start += length
     if len(events) < min_events:
         raise StructureError(f'テキスト速報から読めたイベントが{len(events)}件しかない')
     return events, len(titles)

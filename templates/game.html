@@ -318,12 +318,15 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     var m = Math.floor(sec/60), s = sec%60;
     return m + ':' + (s<10?'0':'') + s;
   }
+  var PERIODS = DATA.periods;
+  var PERIOD_STARTS = PERIODS.reduce(function(acc, len, i){ acc.push(i ? acc[i - 1] + PERIODS[i - 1] : 0); return acc; }, []);
+  function periodLabel(i){ return i < 4 ? 'Q' + (i + 1) : 'OT' + (i - 3); }
   function clockLabel(globalSec){
-    var period = Math.min(DATA.numPeriods, Math.floor(globalSec / DATA.periodLength) + 1);
-    var inPeriod = globalSec - (period-1)*DATA.periodLength;
-    var remain = DATA.periodLength - inPeriod;
-    if(remain < 0) remain = 0;
-    return 'Q' + period + ' 残り' + mmss(remain);
+    for (var i = 0; i < PERIODS.length; i++){
+      if (globalSec < PERIOD_STARTS[i] + PERIODS[i] || i === PERIODS.length - 1){
+        return periodLabel(i) + ' 残り' + mmss(Math.max(PERIOD_STARTS[i] + PERIODS[i] - globalSec, 0));
+      }
+    }
   }
 
   var AVAIL_W = document.getElementById('chart').clientWidth;
@@ -331,7 +334,7 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   var LABEL_W = NARROW ? 138 : 210, RIGHT_PAD = 6, ROW_H = NARROW ? 16 : 13, ROW_GAP = 1, BAR_H = NARROW ? 11 : 10, TEAM_GAP = 22, TOP_PAD = 26, BOTTOM_PAD = 20;
   var MARGIN_H = 15, MARGIN_GAP = 6;
   var CHART_W = NARROW ? Math.max(300, AVAIL_W) : 634;
-  var gameLen = DATA.periodLength * DATA.numPeriods;
+  var gameLen = PERIODS.reduce(function(a, b){ return a + b; }, 0);
   var elapsed = DATA.elapsedSec || gameLen;
   var x0 = LABEL_W, xw = CHART_W - LABEL_W - RIGHT_PAD;
   function X(sec){ return x0 + (sec/gameLen)*xw; }
@@ -353,7 +356,8 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   function flowLabel(t){
     if (t === 0) return '試合開始';
     if (DATA.final === false && t === elapsed) return clockLabel(t) + ' 時点（最新）';
-    return t % DATA.periodLength === 0 ? 'Q' + (t / DATA.periodLength) + ' 終了' : clockLabel(t) + ' 時点';
+    var ended = PERIOD_STARTS.map(function(st, i){ return st + PERIODS[i]; }).indexOf(t);
+    return ended >= 0 ? periodLabel(ended) + ' 終了' : clockLabel(t) + ' 時点';
   }
   function el(name, attrs){
     var node = document.createElementNS(svgNS, name);
@@ -604,17 +608,16 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
   timeBand.setAttribute('y', TOP_PAD - 12);
   timeBand.setAttribute('height', chartBottom - (TOP_PAD - 12));
 
-  for(var q=0; q<=DATA.numPeriods; q++){
-    var gx = X(q*DATA.periodLength);
+  for(var q=0; q<=PERIODS.length; q++){
+    var gx = X(q < PERIODS.length ? PERIOD_STARTS[q] : gameLen);
     var line = document.createElementNS(svgNS,'line');
     line.setAttribute('x1', gx.toFixed(1)); line.setAttribute('x2', gx.toFixed(1));
     line.setAttribute('y1', TOP_PAD - 12); line.setAttribute('y2', chartBottom);
     line.setAttribute('stroke', 'var(--line-strong)'); line.setAttribute('stroke-width', 1);
     svg.insertBefore(line, svg.firstChild);
   }
-  for(var m=1; m<DATA.numPeriods*2; m++){
-    if(m % 2 === 0) continue;
-    var mx = X(m*DATA.periodLength/2);
+  for(var m=0; m<PERIODS.length; m++){
+    var mx = X(PERIOD_STARTS[m] + PERIODS[m]/2);
     var mline = document.createElementNS(svgNS,'line');
     mline.setAttribute('x1', mx.toFixed(1)); mline.setAttribute('x2', mx.toFixed(1));
     mline.setAttribute('y1', TOP_PAD - 12); mline.setAttribute('y2', chartBottom);
@@ -623,13 +626,13 @@ svg text{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;}
     svg.insertBefore(mline, svg.firstChild);
   }
 
-  for(var qi=0; qi<DATA.numPeriods; qi++){
-    var lx = (X(qi*DATA.periodLength) + X((qi+1)*DATA.periodLength))/2;
+  for(var qi=0; qi<PERIODS.length; qi++){
+    var lx = X(PERIOD_STARTS[qi] + PERIODS[qi]/2);
     var qlabel = document.createElementNS(svgNS,'text');
     qlabel.setAttribute('x', lx.toFixed(1)); qlabel.setAttribute('y', chartBottom + 15);
     qlabel.setAttribute('text-anchor','middle'); qlabel.setAttribute('class','axis-label');
     qlabel.setAttribute('font-size','10.5'); qlabel.setAttribute('fill','var(--ink-faint)');
-    qlabel.textContent = 'Q' + (qi+1);
+    qlabel.textContent = periodLabel(qi);
     svg.appendChild(qlabel);
   }
 

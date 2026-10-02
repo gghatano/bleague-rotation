@@ -2,7 +2,7 @@ import re
 from collections import defaultdict
 from itertools import groupby
 
-from .parse import REGULAR_PERIOD_SEC, Event, StructureError
+from .parse import REGULAR_PERIOD_SEC, REGULAR_PERIODS, Event, StructureError, period_label, period_lengths
 
 SUB_RE = re.compile(r'#(\d+)\s+(.+?)\s+プレイヤー(イン|アウト)$')
 SHOT_RE = re.compile(r'(2Pシュート|3Pシュート|フリースロー).*?(○|×)')
@@ -17,14 +17,16 @@ class DataError(Exception):
         self.sec = sec
 
 
-class UnsupportedGame(Exception):
-    pass
-
-
-def clock_label(sec: int) -> str:
-    period = min(sec // REGULAR_PERIOD_SEC, 3) + 1
-    remain = period * REGULAR_PERIOD_SEC - sec
-    return f'Q{period} 残り{remain // 60}:{remain % 60:02d}'
+def clock_label(sec: int, num_periods: int = REGULAR_PERIODS) -> str:
+    """'Q2 残り3:21' / 'OT1 残り0:45'. A boundary second reads as the start of
+    the next period, except the final whistle, which reads as the last one's end."""
+    start = 0
+    lengths = period_lengths(max(num_periods, REGULAR_PERIODS))
+    for i, length in enumerate(lengths):
+        if sec < start + length or i == len(lengths) - 1:
+            remain = max(start + length - sec, 0)
+            return f'{period_label(i)} 残り{remain // 60}:{remain % 60:02d}'
+        start += length
 
 
 def points_of(desc: str) -> int:
@@ -32,7 +34,7 @@ def points_of(desc: str) -> int:
     return SHOT_POINTS[m.group(1)] if m and m.group(2) == '○' else 0
 
 
-def reconstruct(events: list[Event], teams: list[str], game_end: int):
+def reconstruct(events: list[Event], teams: list[str], game_end: int, num_periods: int = REGULAR_PERIODS):
     """Replays substitutions into per-player on-court intervals.
 
     A duplicate IN for a player already on court, or an OUT for one already off,
@@ -61,7 +63,7 @@ def reconstruct(events: list[Event], teams: list[str], game_end: int):
         for team, court in on_court.items():
             if len(court) != 5:
                 names = '、'.join(f'#{j} {n}' for j, n in court)
-                raise DataError(f'{team}: {clock_label(sec)} 時点でコート上が{len(court)}人（{names}）', sec)
+                raise DataError(f'{team}: {clock_label(sec, num_periods)} 時点でコート上が{len(court)}人（{names}）', sec)
     for team, court in on_court.items():
         for key, start in court.items():
             intervals[team].append((key, start, game_end))
@@ -113,10 +115,10 @@ def _lineups(stints):
 def analyze(events: list[Event], num_periods: int, home: str, away: str, final: bool = True) -> dict:
     """Rebuilds a game. With final=False the game is still in progress: it may
     have fewer than four periods, and every open stint ends at the latest play."""
-    regular = 4
-    if num_periods > regular or (final and num_periods != regular):
-        raise UnsupportedGame(f'ピリオド数{num_periods}（延長戦）は未対応')
-    game_end = regular * REGULAR_PERIOD_SEC if final else max(e.sec for e in events)
+    if final and num_periods < REGULAR_PERIODS:
+        raise StructureError(f'試合終了なのにピリオドが{num_periods}個しかない')
+    axis = period_lengths(max(num_periods, REGULAR_PERIODS))
+    game_end = sum(period_lengths(num_periods)) if final else max(e.sec for e in events)
     teams = [home, away]
     if not any(SUB_RE.match(e.desc) for e in events):
         raise StructureError('交代（プレイヤーイン/アウト）の記録を1件も読めない')
@@ -127,7 +129,7 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
         raise DataError(f'日程にないチーム名がテキストに出現: {sorted(unknown)}')
     truncated = None
     try:
-        intervals, anomalies = reconstruct(events, teams, game_end)
+        intervals, anomalies = reconstruct(events, teams, game_end, num_periods)
     except DataError as e:
         # A live feed is often corrected within minutes; until then show the part before the break.
         if final or not e.sec:
@@ -135,7 +137,7 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
         truncated = {'sec': e.sec, 'reason': str(e)}
         events = [ev for ev in events if ev.sec < e.sec]
         game_end = e.sec
-        intervals, anomalies = reconstruct(events, teams, game_end)
+        intervals, anomalies = reconstruct(events, teams, game_end, num_periods)
     result = []
     for team, opp in ((home, away), (away, home)):
         stints = _stints(team, opp, events, intervals[team], game_end)
@@ -154,5 +156,5 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
         player = PLAYER_RE.match(e.desc)
         scoring.append([e.sec, side[e.team], p, player.group(1) if player else '', player.group(2) if player else '',
                         SHOT_KIND[SHOT_RE.search(e.desc).group(1)]])
-    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': regular, 'final': final, 'elapsedSec': game_end,
+    return {'periodLength': REGULAR_PERIOD_SEC, 'numPeriods': len(axis), 'periodLengths': axis, 'final': final, 'elapsedSec': game_end,
             'truncated': truncated, 'teams': result, 'scoring': scoring, 'anomalies': anomalies}
