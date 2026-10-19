@@ -1,0 +1,14 @@
+name = "bleague-rotation-live-trigger"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+# UTC。JST 13:00〜22:45 に15分毎（live.yml の旧 schedule と同じ時間帯）
+[triggers]
+crons = ["*/15 4-13 * * *"]
+
+[vars]
+GITHUB_REPO = "gghatano/bleague-rotation"
+WORKFLOW = "live.yml"
+REF = "main"
+
+# GITHUB_TOKEN は secret で渡す: npx wrangler secret put GITHUB_TOKEN
