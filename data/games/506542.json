@@ -1,0 +1,3166 @@
+{
+ "gameId": "506542",
+ "date": "2026-11-01",
+ "tipoff": "14:05",
+ "home": {
+  "name": "神戸",
+  "teamId": "718",
+  "score": 90
+ },
+ "away": {
+  "name": "長崎",
+  "teamId": "2488",
+  "score": 87
+ },
+ "status": "ok",
+ "anomalies": [],
+ "periodLength": 600,
+ "numPeriods": 4,
+ "periodLengths": [
+  600,
+  600,
+  600,
+  600
+ ],
+ "final": true,
+ "elapsedSec": 2400,
+ "truncated": null,
+ "teams": [
+  {
+   "name": "神戸",
+   "score": 90,
+   "players": [
+    {
+     "jersey": "4",
+     "name": "寺園",
+     "totalSec": 1528,
+     "intervals": [
+      [
+       0,
+       360
+      ],
+      [
+       600,
+       958
+      ],
+      [
+       1200,
+       1463
+      ],
+      [
+       1610,
+       1970
+      ],
+      [
+       2110,
+       2297
+      ]
+     ],
+     "plusMinus": 4
+    },
+    {
+     "jersey": "23",
+     "name": "チャイルズ",
+     "totalSec": 2180,
+     "intervals": [
+      [
+       0,
+       360
+      ],
+      [
+       451,
+       918
+      ],
+      [
+       958,
+       1598
+      ],
+      [
+       1687,
+       2400
+      ]
+     ],
+     "plusMinus": 2
+    },
+    {
+     "jersey": "00",
+     "name": "アイマク",
+     "totalSec": 2034,
+     "intervals": [
+      [
+       0,
+       451
+      ],
+      [
+       697,
+       958
+      ],
+      [
+       992,
+       1512
+      ],
+      [
+       1598,
+       2400
+      ]
+     ],
+     "plusMinus": 7
+    },
+    {
+     "jersey": "12",
+     "name": "木村",
+     "totalSec": 1721,
+     "intervals": [
+      [
+       0,
+       451
+      ],
+      [
+       819,
+       992
+      ],
+      [
+       1200,
+       2297
+      ]
+     ],
+     "plusMinus": 4
+    },
+    {
+     "jersey": "17",
+     "name": "山口",
+     "totalSec": 1052,
+     "intervals": [
+      [
+       0,
+       451
+      ],
+      [
+       784,
+       992
+      ],
+      [
+       1200,
+       1490
+      ],
+      [
+       2297,
+       2400
+      ]
+     ],
+     "plusMinus": -3
+    },
+    {
+     "jersey": "3",
+     "name": "小川",
+     "totalSec": 872,
+     "intervals": [
+      [
+       360,
+       600
+      ],
+      [
+       958,
+       1200
+      ],
+      [
+       1463,
+       1610
+      ],
+      [
+       1970,
+       2110
+      ],
+      [
+       2297,
+       2400
+      ]
+     ],
+     "plusMinus": -1
+    },
+    {
+     "jersey": "8",
+     "name": "八村",
+     "totalSec": 586,
+     "intervals": [
+      [
+       360,
+       697
+      ],
+      [
+       918,
+       992
+      ],
+      [
+       1512,
+       1687
+      ]
+     ],
+     "plusMinus": -3
+    },
+    {
+     "jersey": "30",
+     "name": "金田",
+     "totalSec": 1272,
+     "intervals": [
+      [
+       451,
+       784
+      ],
+      [
+       992,
+       1200
+      ],
+      [
+       1490,
+       1598
+      ],
+      [
+       1777,
+       2400
+      ]
+     ],
+     "plusMinus": 9
+    },
+    {
+     "jersey": "22",
+     "name": "サレー",
+     "totalSec": 755,
+     "intervals": [
+      [
+       451,
+       819
+      ],
+      [
+       992,
+       1200
+      ],
+      [
+       1598,
+       1777
+      ]
+     ],
+     "plusMinus": -4
+    }
+   ],
+   "stints": [
+    {
+     "start": 0,
+     "end": 360,
+     "for": 12,
+     "against": 9,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ]
+    },
+    {
+     "start": 360,
+     "end": 451,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      }
+     ]
+    },
+    {
+     "start": 451,
+     "end": 600,
+     "for": 7,
+     "against": 3,
+     "margin": 4,
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ]
+    },
+    {
+     "start": 600,
+     "end": 697,
+     "for": 2,
+     "against": 3,
+     "margin": -1,
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      }
+     ]
+    },
+    {
+     "start": 697,
+     "end": 784,
+     "for": 4,
+     "against": 3,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      }
+     ]
+    },
+    {
+     "start": 784,
+     "end": 819,
+     "for": 0,
+     "against": 3,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ]
+    },
+    {
+     "start": 819,
+     "end": 918,
+     "for": 4,
+     "against": 4,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ]
+    },
+    {
+     "start": 918,
+     "end": 958,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ]
+    },
+    {
+     "start": 958,
+     "end": 992,
+     "for": 0,
+     "against": 2,
+     "margin": -2,
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ]
+    },
+    {
+     "start": 992,
+     "end": 1200,
+     "for": 4,
+     "against": 7,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ]
+    },
+    {
+     "start": 1200,
+     "end": 1463,
+     "for": 8,
+     "against": 13,
+     "margin": -5,
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ]
+    },
+    {
+     "start": 1463,
+     "end": 1490,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ]
+    },
+    {
+     "start": 1490,
+     "end": 1512,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ]
+    },
+    {
+     "start": 1512,
+     "end": 1598,
+     "for": 2,
+     "against": 7,
+     "margin": -5,
+     "lineup": [
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ]
+    },
+    {
+     "start": 1598,
+     "end": 1610,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      }
+     ]
+    },
+    {
+     "start": 1610,
+     "end": 1687,
+     "for": 5,
+     "against": 7,
+     "margin": -2,
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      }
+     ]
+    },
+    {
+     "start": 1687,
+     "end": 1777,
+     "for": 4,
+     "against": 4,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ]
+    },
+    {
+     "start": 1777,
+     "end": 1970,
+     "for": 11,
+     "against": 5,
+     "margin": 6,
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      }
+     ]
+    },
+    {
+     "start": 1970,
+     "end": 2110,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      }
+     ]
+    },
+    {
+     "start": 2110,
+     "end": 2297,
+     "for": 6,
+     "against": 4,
+     "margin": 2,
+     "lineup": [
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      }
+     ]
+    },
+    {
+     "start": 2297,
+     "end": 2400,
+     "for": 7,
+     "against": 6,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      }
+     ]
+    }
+   ],
+   "lineups": [
+    {
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ],
+     "sec": 722,
+     "for": 24,
+     "against": 26,
+     "margin": -2,
+     "stints": 3
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      }
+     ],
+     "sec": 380,
+     "for": 17,
+     "against": 9,
+     "margin": 8,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ],
+     "sec": 208,
+     "for": 4,
+     "against": 7,
+     "margin": -3,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ],
+     "sec": 162,
+     "for": 6,
+     "against": 2,
+     "margin": 4,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ],
+     "sec": 149,
+     "for": 7,
+     "against": 3,
+     "margin": 4,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      }
+     ],
+     "sec": 103,
+     "for": 7,
+     "against": 6,
+     "margin": 1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      }
+     ],
+     "sec": 97,
+     "for": 2,
+     "against": 3,
+     "margin": -1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      }
+     ],
+     "sec": 91,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ],
+     "sec": 90,
+     "for": 4,
+     "against": 4,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      }
+     ],
+     "sec": 87,
+     "for": 4,
+     "against": 3,
+     "margin": 1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ],
+     "sec": 86,
+     "for": 2,
+     "against": 7,
+     "margin": -5,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      }
+     ],
+     "sec": 77,
+     "for": 5,
+     "against": 7,
+     "margin": -2,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ],
+     "sec": 40,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ],
+     "sec": 35,
+     "for": 0,
+     "against": 3,
+     "margin": -3,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ],
+     "sec": 34,
+     "for": 0,
+     "against": 2,
+     "margin": -2,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      }
+     ],
+     "sec": 27,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      }
+     ],
+     "sec": 12,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "stints": 1
+    }
+   ]
+  },
+  {
+   "name": "長崎",
+   "score": 87,
+   "players": [
+    {
+     "jersey": "7",
+     "name": "ブラントリー",
+     "totalSec": 1977,
+     "intervals": [
+      [
+       0,
+       360
+      ],
+      [
+       451,
+       654
+      ],
+      [
+       784,
+       1380
+      ],
+      [
+       1488,
+       1800
+      ],
+      [
+       1894,
+       2400
+      ]
+     ],
+     "plusMinus": 7
+    },
+    {
+     "jersey": "9",
+     "name": "森川",
+     "totalSec": 1871,
+     "intervals": [
+      [
+       0,
+       360
+      ],
+      [
+       451,
+       784
+      ],
+      [
+       958,
+       1488
+      ],
+      [
+       1598,
+       1777
+      ],
+      [
+       1800,
+       1894
+      ],
+      [
+       2025,
+       2400
+      ]
+     ],
+     "plusMinus": -8
+    },
+    {
+     "jersey": "11",
+     "name": "熊谷",
+     "totalSec": 1659,
+     "intervals": [
+      [
+       0,
+       360
+      ],
+      [
+       593,
+       918
+      ],
+      [
+       1057,
+       1488
+      ],
+      [
+       1687,
+       1800
+      ],
+      [
+       1970,
+       2400
+      ]
+     ],
+     "plusMinus": -3
+    },
+    {
+     "jersey": "20",
+     "name": "ランドルフ",
+     "totalSec": 1884,
+     "intervals": [
+      [
+       0,
+       451
+      ],
+      [
+       784,
+       1598
+      ],
+      [
+       1687,
+       1800
+      ],
+      [
+       1894,
+       2400
+      ]
+     ],
+     "plusMinus": 6
+    },
+    {
+     "jersey": "34",
+     "name": "アギラール",
+     "totalSec": 1844,
+     "intervals": [
+      [
+       0,
+       451
+      ],
+      [
+       654,
+       958
+      ],
+      [
+       1057,
+       1488
+      ],
+      [
+       1687,
+       1970
+      ],
+      [
+       2025,
+       2400
+      ]
+     ],
+     "plusMinus": -14
+    },
+    {
+     "jersey": "32",
+     "name": "田中",
+     "totalSec": 423,
+     "intervals": [
+      [
+       360,
+       451
+      ],
+      [
+       654,
+       784
+      ],
+      [
+       1380,
+       1488
+      ],
+      [
+       1800,
+       1894
+      ]
+     ],
+     "plusMinus": -10
+    },
+    {
+     "jersey": "10",
+     "name": "永野",
+     "totalSec": 741,
+     "intervals": [
+      [
+       360,
+       593
+      ],
+      [
+       918,
+       1057
+      ],
+      [
+       1488,
+       1687
+      ],
+      [
+       1800,
+       1970
+      ]
+     ],
+     "plusMinus": 0
+    },
+    {
+     "jersey": "13",
+     "name": "星川",
+     "totalSec": 1045,
+     "intervals": [
+      [
+       360,
+       958
+      ],
+      [
+       1488,
+       1687
+      ],
+      [
+       1777,
+       2025
+      ]
+     ],
+     "plusMinus": -4
+    },
+    {
+     "jersey": "77",
+     "name": "土屋",
+     "totalSec": 556,
+     "intervals": [
+      [
+       451,
+       654
+      ],
+      [
+       958,
+       1057
+      ],
+      [
+       1488,
+       1687
+      ],
+      [
+       1970,
+       2025
+      ]
+     ],
+     "plusMinus": 11
+    }
+   ],
+   "stints": [
+    {
+     "start": 0,
+     "end": 360,
+     "for": 9,
+     "against": 12,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ]
+    },
+    {
+     "start": 360,
+     "end": 451,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ]
+    },
+    {
+     "start": 451,
+     "end": 593,
+     "for": 3,
+     "against": 5,
+     "margin": -2,
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ]
+    },
+    {
+     "start": 593,
+     "end": 654,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ]
+    },
+    {
+     "start": 654,
+     "end": 784,
+     "for": 3,
+     "against": 6,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ]
+    },
+    {
+     "start": 784,
+     "end": 918,
+     "for": 7,
+     "against": 4,
+     "margin": 3,
+     "lineup": [
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 918,
+     "end": 958,
+     "for": 0,
+     "against": 3,
+     "margin": -3,
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 958,
+     "end": 1057,
+     "for": 6,
+     "against": 0,
+     "margin": 6,
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 1057,
+     "end": 1380,
+     "for": 11,
+     "against": 7,
+     "margin": 4,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 1380,
+     "end": 1488,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 1488,
+     "end": 1598,
+     "for": 9,
+     "against": 5,
+     "margin": 4,
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ]
+    },
+    {
+     "start": 1598,
+     "end": 1687,
+     "for": 7,
+     "against": 5,
+     "margin": 2,
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ]
+    },
+    {
+     "start": 1687,
+     "end": 1777,
+     "for": 4,
+     "against": 4,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ]
+    },
+    {
+     "start": 1777,
+     "end": 1800,
+     "for": 1,
+     "against": 0,
+     "margin": 1,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ]
+    },
+    {
+     "start": 1800,
+     "end": 1894,
+     "for": 0,
+     "against": 7,
+     "margin": -7,
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ]
+    },
+    {
+     "start": 1894,
+     "end": 1970,
+     "for": 4,
+     "against": 4,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ]
+    },
+    {
+     "start": 1970,
+     "end": 2025,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      }
+     ]
+    },
+    {
+     "start": 2025,
+     "end": 2400,
+     "for": 10,
+     "against": 16,
+     "margin": -6,
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ]
+    }
+   ],
+   "lineups": [
+    {
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ],
+     "sec": 1148,
+     "for": 34,
+     "against": 39,
+     "margin": -5,
+     "stints": 4
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ],
+     "sec": 231,
+     "for": 10,
+     "against": 10,
+     "margin": 0,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ],
+     "sec": 157,
+     "for": 8,
+     "against": 4,
+     "margin": 4,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      }
+     ],
+     "sec": 130,
+     "for": 3,
+     "against": 6,
+     "margin": -3,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ],
+     "sec": 116,
+     "for": 4,
+     "against": 7,
+     "margin": -3,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      }
+     ],
+     "sec": 110,
+     "for": 9,
+     "against": 5,
+     "margin": 4,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ],
+     "sec": 108,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      }
+     ],
+     "sec": 99,
+     "for": 6,
+     "against": 0,
+     "margin": 6,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ],
+     "sec": 94,
+     "for": 0,
+     "against": 7,
+     "margin": -7,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
+      },
+      {
+       "jersey": "34",
+       "name": "アギラール"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ],
+     "sec": 91,
+     "for": 5,
+     "against": 5,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      },
+      {
+       "jersey": "13",
+       "name": "星川"
+      }
+     ],
+     "sec": 61,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
+      }
+     ],
+     "sec": 55,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "stints": 1
+    }
+   ]
+  }
+ ],
+ "scoring": [
+  [
+   43,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   50,
+   0,
+   2,
+   "23",
+   "チャイルズ",
+   "2P"
+  ],
+  [
+   147,
+   0,
+   2,
+   "12",
+   "木村",
+   "2P"
+  ],
+  [
+   164,
+   1,
+   3,
+   "11",
+   "熊谷",
+   "3P"
+  ],
+  [
+   183,
+   0,
+   3,
+   "4",
+   "寺園",
+   "3P"
+  ],
+  [
+   250,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   289,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   310,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   324,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   369,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   392,
+   1,
+   2,
+   "10",
+   "永野",
+   "2P"
+  ],
+  [
+   414,
+   1,
+   3,
+   "13",
+   "星川",
+   "3P"
+  ],
+  [
+   441,
+   0,
+   3,
+   "3",
+   "小川",
+   "3P"
+  ],
+  [
+   480,
+   0,
+   3,
+   "22",
+   "サレー",
+   "3P"
+  ],
+  [
+   535,
+   1,
+   3,
+   "13",
+   "星川",
+   "3P"
+  ],
+  [
+   559,
+   0,
+   2,
+   "23",
+   "チャイルズ",
+   "2P"
+  ],
+  [
+   599,
+   0,
+   2,
+   "23",
+   "チャイルズ",
+   "2P"
+  ],
+  [
+   614,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   614,
+   1,
+   1,
+   "7",
+   "ブラントリー",
+   "FT"
+  ],
+  [
+   654,
+   0,
+   1,
+   "8",
+   "八村",
+   "FT"
+  ],
+  [
+   654,
+   0,
+   1,
+   "8",
+   "八村",
+   "FT"
+  ],
+  [
+   705,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   725,
+   1,
+   1,
+   "11",
+   "熊谷",
+   "FT"
+  ],
+  [
+   744,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   768,
+   1,
+   2,
+   "13",
+   "星川",
+   "2P"
+  ],
+  [
+   806,
+   1,
+   3,
+   "20",
+   "ランドルフ",
+   "3P"
+  ],
+  [
+   826,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   843,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   892,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   915,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   925,
+   0,
+   3,
+   "8",
+   "八村",
+   "3P"
+  ],
+  [
+   969,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   992,
+   1,
+   1,
+   "20",
+   "ランドルフ",
+   "FT"
+  ],
+  [
+   992,
+   1,
+   1,
+   "20",
+   "ランドルフ",
+   "FT"
+  ],
+  [
+   1035,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   1057,
+   0,
+   1,
+   "23",
+   "チャイルズ",
+   "FT"
+  ],
+  [
+   1071,
+   0,
+   1,
+   "00",
+   "アイマク",
+   "FT"
+  ],
+  [
+   1084,
+   1,
+   1,
+   "20",
+   "ランドルフ",
+   "FT"
+  ],
+  [
+   1104,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   1160,
+   1,
+   2,
+   "9",
+   "森川",
+   "2P"
+  ],
+  [
+   1246,
+   1,
+   3,
+   "7",
+   "ブラントリー",
+   "3P"
+  ],
+  [
+   1319,
+   1,
+   2,
+   "9",
+   "森川",
+   "2P"
+  ],
+  [
+   1328,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   1344,
+   1,
+   3,
+   "9",
+   "森川",
+   "3P"
+  ],
+  [
+   1380,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   1392,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   1423,
+   0,
+   2,
+   "23",
+   "チャイルズ",
+   "2P"
+  ],
+  [
+   1445,
+   1,
+   3,
+   "34",
+   "アギラール",
+   "3P"
+  ],
+  [
+   1497,
+   1,
+   2,
+   "77",
+   "土屋",
+   "2P"
+  ],
+  [
+   1505,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   1523,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   1543,
+   0,
+   2,
+   "8",
+   "八村",
+   "2P"
+  ],
+  [
+   1562,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   1562,
+   1,
+   1,
+   "20",
+   "ランドルフ",
+   "FT"
+  ],
+  [
+   1582,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   1610,
+   1,
+   3,
+   "10",
+   "永野",
+   "3P"
+  ],
+  [
+   1619,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   1640,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   1650,
+   1,
+   2,
+   "13",
+   "星川",
+   "2P"
+  ],
+  [
+   1674,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   1692,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   1706,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   1749,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   1762,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   1777,
+   1,
+   1,
+   "20",
+   "ランドルフ",
+   "FT"
+  ],
+  [
+   1818,
+   0,
+   3,
+   "30",
+   "金田",
+   "3P"
+  ],
+  [
+   1851,
+   0,
+   1,
+   "23",
+   "チャイルズ",
+   "FT"
+  ],
+  [
+   1851,
+   0,
+   1,
+   "23",
+   "チャイルズ",
+   "FT"
+  ],
+  [
+   1879,
+   0,
+   2,
+   "23",
+   "チャイルズ",
+   "2P"
+  ],
+  [
+   1894,
+   1,
+   1,
+   "10",
+   "永野",
+   "FT"
+  ],
+  [
+   1894,
+   1,
+   1,
+   "10",
+   "永野",
+   "FT"
+  ],
+  [
+   1915,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   1937,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   1956,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   2025,
+   0,
+   1,
+   "00",
+   "アイマク",
+   "FT"
+  ],
+  [
+   2084,
+   0,
+   2,
+   "12",
+   "木村",
+   "2P"
+  ],
+  [
+   2110,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   2128,
+   0,
+   1,
+   "23",
+   "チャイルズ",
+   "FT"
+  ],
+  [
+   2129,
+   0,
+   2,
+   "00",
+   "アイマク",
+   "2P"
+  ],
+  [
+   2195,
+   0,
+   3,
+   "12",
+   "木村",
+   "3P"
+  ],
+  [
+   2223,
+   1,
+   2,
+   "7",
+   "ブラントリー",
+   "2P"
+  ],
+  [
+   2297,
+   0,
+   2,
+   "4",
+   "寺園",
+   "2P"
+  ],
+  [
+   2313,
+   0,
+   2,
+   "30",
+   "金田",
+   "2P"
+  ],
+  [
+   2320,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ],
+  [
+   2345,
+   0,
+   3,
+   "30",
+   "金田",
+   "3P"
+  ],
+  [
+   2354,
+   1,
+   2,
+   "20",
+   "ランドルフ",
+   "2P"
+  ],
+  [
+   2370,
+   1,
+   2,
+   "34",
+   "アギラール",
+   "2P"
+  ]
+ ],
+ "corrections": [],
+ "generatedAt": "2026-11-01T22:11:02+00:00"
+}
