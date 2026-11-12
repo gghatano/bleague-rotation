@@ -1,9 +1,7 @@
 name: live
 
+# 起動は Cloudflare Workers の Cron Trigger から workflow_dispatch で行う（workers/live-trigger）
 on:
-  schedule:
-    - cron: '7,22,37,52 13-22 * * *'
-      timezone: 'Asia/Tokyo'
   workflow_dispatch:
 
 permissions:
