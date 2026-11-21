@@ -16,6 +16,12 @@
  "anomalies": [],
  "periodLength": 600,
  "numPeriods": 4,
+ "periodLengths": [
+  600,
+  600,
+  600,
+  600
+ ],
  "final": true,
  "elapsedSec": 2400,
  "truncated": null,
@@ -195,7 +201,7 @@
     {
      "jersey": "5",
      "name": "土家",
-     "totalSec": 1007,
+     "totalSec": 1008,
      "intervals": [
       [
        194,
@@ -211,7 +217,7 @@
       ],
       [
        2152,
-       2321
+       2322
       ],
       [
        2365,
@@ -275,7 +281,7 @@
     {
      "jersey": "27",
      "name": "東海林",
-     "totalSec": 753,
+     "totalSec": 752,
      "intervals": [
       [
        384,
@@ -294,7 +300,7 @@
        2152
       ],
       [
-       2321,
+       2322,
        2400
       ]
      ],
@@ -349,7 +355,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 3
+     },
+     "def": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 194,
@@ -378,7 +396,19 @@
        "jersey": "15",
        "name": "河田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 227,
@@ -407,7 +437,19 @@
        "jersey": "22",
        "name": "トビン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 4,
+      "oreb": 1,
+      "tov": 2
+     },
+     "def": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 2,
+      "tov": 3
+     }
     },
     {
      "start": 384,
@@ -436,7 +478,19 @@
        "jersey": "27",
        "name": "東海林"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 4,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 461,
@@ -465,7 +519,19 @@
        "jersey": "6",
        "name": "古川"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 5,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 592,
@@ -494,7 +560,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 600,
@@ -523,7 +601,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 722,
@@ -552,7 +642,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 827,
@@ -581,7 +683,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 5,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 885,
@@ -610,7 +724,19 @@
        "jersey": "5",
        "name": "土家"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 907,
@@ -639,7 +765,19 @@
        "jersey": "5",
        "name": "土家"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 933,
@@ -668,7 +806,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 944,
@@ -697,7 +847,19 @@
        "jersey": "13",
        "name": "リー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1033,
@@ -726,7 +888,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 2
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1095,
@@ -755,7 +929,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 2,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1186,
@@ -784,7 +970,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1200,
@@ -813,7 +1011,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 7,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1397,
@@ -842,7 +1052,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1404,
@@ -871,7 +1093,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1436,
@@ -900,7 +1134,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1473,
@@ -929,7 +1175,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1578,
@@ -958,7 +1216,19 @@
        "jersey": "5",
        "name": "土家"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1614,
@@ -987,7 +1257,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1681,
@@ -1016,7 +1298,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1872,
@@ -1045,7 +1339,19 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1939,
@@ -1074,7 +1380,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2002,
@@ -1103,7 +1421,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 2068,
@@ -1132,7 +1462,19 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2152,
@@ -1161,11 +1503,23 @@
        "jersey": "3",
        "name": "ドンリー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2240,
-     "end": 2321,
+     "end": 2322,
      "for": 3,
      "against": 4,
      "margin": -1,
@@ -1190,10 +1544,22 @@
        "jersey": "24",
        "name": "ダウム"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
-     "start": 2321,
+     "start": 2322,
      "end": 2365,
      "for": 1,
      "against": 0,
@@ -1219,7 +1585,19 @@
        "jersey": "27",
        "name": "東海林"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2365,
@@ -1248,7 +1626,19 @@
        "jersey": "27",
        "name": "東海林"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2380,
@@ -1277,7 +1667,19 @@
        "jersey": "00",
        "name": "ハリス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     }
    ],
    "lineups": [
@@ -1594,7 +1996,7 @@
        "name": "ダウム"
       }
      ],
-     "sec": 81,
+     "sec": 82,
      "for": 3,
      "against": 4,
      "margin": -1,
@@ -1694,35 +2096,6 @@
        "name": "ハリス"
       },
       {
-       "jersey": "3",
-       "name": "ドンリー"
-      },
-      {
-       "jersey": "6",
-       "name": "古川"
-      },
-      {
-       "jersey": "24",
-       "name": "ダウム"
-      },
-      {
-       "jersey": "27",
-       "name": "東海林"
-      }
-     ],
-     "sec": 64,
-     "for": 3,
-     "against": 2,
-     "margin": 1,
-     "stints": 2
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "00",
-       "name": "ハリス"
-      },
-      {
        "jersey": "15",
        "name": "河田"
       },
@@ -1744,6 +2117,35 @@
      "against": 2,
      "margin": 3,
      "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "ハリス"
+      },
+      {
+       "jersey": "3",
+       "name": "ドンリー"
+      },
+      {
+       "jersey": "6",
+       "name": "古川"
+      },
+      {
+       "jersey": "24",
+       "name": "ダウム"
+      },
+      {
+       "jersey": "27",
+       "name": "東海林"
+      }
+     ],
+     "sec": 63,
+     "for": 3,
+     "against": 2,
+     "margin": 1,
+     "stints": 2
     },
     {
      "lineup": [
@@ -2342,7 +2744,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 3
+     }
     },
     {
      "start": 194,
@@ -2371,7 +2785,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 258,
@@ -2400,7 +2826,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 2,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 4,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 338,
@@ -2429,7 +2867,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 384,
@@ -2458,7 +2908,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 399,
@@ -2487,7 +2949,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 440,
@@ -2516,7 +2990,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 2
+     },
+     "def": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 530,
@@ -2545,7 +3031,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 580,
@@ -2574,7 +3072,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 592,
@@ -2603,7 +3113,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 600,
@@ -2632,7 +3154,19 @@
        "jersey": "3",
        "name": "岡田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 7,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 807,
@@ -2661,7 +3195,19 @@
        "jersey": "28",
        "name": "野﨑"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 827,
@@ -2690,7 +3236,19 @@
        "jersey": "28",
        "name": "野﨑"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 841,
@@ -2719,7 +3277,19 @@
        "jersey": "28",
        "name": "野﨑"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 3,
+      "tov": 0
+     }
     },
     {
      "start": 857,
@@ -2748,7 +3318,19 @@
        "jersey": "21",
        "name": "ウィリス ジュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 907,
@@ -2777,7 +3359,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 933,
@@ -2806,7 +3400,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 8,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 6,
+      "fta": 4,
+      "oreb": 3,
+      "tov": 3
+     }
     },
     {
      "start": 1170,
@@ -2835,7 +3441,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 1186,
@@ -2864,7 +3482,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1200,
@@ -2893,7 +3523,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 1361,
@@ -2922,7 +3564,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1436,
@@ -2951,7 +3605,19 @@
        "jersey": "6",
        "name": "アンゴラ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 2
+     }
     },
     {
      "start": 1533,
@@ -2980,7 +3646,19 @@
        "jersey": "24",
        "name": "ラシード"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 5,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 3,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 1681,
@@ -3009,7 +3687,19 @@
        "jersey": "7",
        "name": "宮本"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1800,
@@ -3038,7 +3728,19 @@
        "jersey": "34",
        "name": "盛實"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1939,
@@ -3067,7 +3769,19 @@
        "jersey": "34",
        "name": "盛實"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 1970,
@@ -3096,7 +3810,19 @@
        "jersey": "34",
        "name": "盛實"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 2040,
@@ -3125,7 +3851,19 @@
        "jersey": "25",
        "name": "葛原"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 2152,
@@ -3154,7 +3892,19 @@
        "jersey": "25",
        "name": "葛原"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 2240,
@@ -3183,7 +3933,19 @@
        "jersey": "17",
        "name": "田中"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 2365,
@@ -3212,7 +3974,19 @@
        "jersey": "17",
        "name": "田中"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2380,
@@ -3241,7 +4015,19 @@
        "jersey": "11",
        "name": "宇都"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     }
    ],
    "lineups": [
@@ -4890,5 +5676,5 @@
   ]
  ],
  "corrections": [],
- "generatedAt": "2026-09-28T12:59:39+00:00"
+ "generatedAt": "2026-11-21T13:20:30+00:00"
 }

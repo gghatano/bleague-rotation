@@ -9,6 +9,10 @@ SHOT_RE = re.compile(r'(2Pシュート|3Pシュート|フリースロー).*?(○
 SHOT_POINTS = {'2Pシュート': 2, '3Pシュート': 3, 'フリースロー': 1}
 SHOT_KIND = {'2Pシュート': '2P', '3Pシュート': '3P', 'フリースロー': 'FT'}
 PLAYER_RE = re.compile(r'#(\d+)\s+(.+?)\s+(?:2Pシュート|3Pシュート|フリースロー)')
+OREB_RE = re.compile(r'オフェンスリバウンド\(')  # チームオフェンスリバウンド も含む
+TOV_RE = re.compile(r'ターンオーバー\(\d+本\)')  # チームターンオーバー も含む。「ポインツオフターンオーバー」は得点の付記なので除く
+BOX_KEYS = ('fga', 'fta', 'oreb', 'tov')
+FT_WEIGHT = 0.44
 
 
 class DataError(Exception):
@@ -32,6 +36,23 @@ def clock_label(sec: int, num_periods: int = REGULAR_PERIODS) -> str:
 def points_of(desc: str) -> int:
     m = SHOT_RE.search(desc)
     return SHOT_POINTS[m.group(1)] if m and m.group(2) == '○' else 0
+
+
+def box_of(desc: str) -> dict:
+    """The possession-ending ingredients one play adds to its team's count."""
+    box = dict.fromkeys(BOX_KEYS, 0)
+    if m := SHOT_RE.search(desc):
+        box['fta' if m.group(1) == 'フリースロー' else 'fga'] = 1
+    elif OREB_RE.search(desc):
+        box['oreb'] = 1
+    elif TOV_RE.search(desc):
+        box['tov'] = 1
+    return box
+
+
+def possessions(box: dict) -> float:
+    """FGA + 0.44*FTA - OREB + TOV: the usual estimate from box counts."""
+    return box['fga'] + FT_WEIGHT * box['fta'] - box['oreb'] + box['tov']
 
 
 def reconstruct(events: list[Event], teams: list[str], game_end: int, num_periods: int = REGULAR_PERIODS):
@@ -73,12 +94,15 @@ def reconstruct(events: list[Event], teams: list[str], game_end: int, num_period
 def _stints(team, opp, events, intervals, game_end):
     bounds = sorted({0, game_end} | {e.sec for e in events if e.team == team and SUB_RE.match(e.desc)})
     scoring = [(e.sec, e.team, p) for e in events if (p := points_of(e.desc))]
+    plays = [(e.sec, e.team, b) for e in events if any((b := box_of(e.desc)).values())]
     stints = []
     for start, end in zip(bounds, bounds[1:]):
         lineup = [{'jersey': j, 'name': n} for (j, n), a, b in intervals if a <= start and end <= b]
         pf = sum(p for s, t, p in scoring if t == team and start <= s < end)
         pa = sum(p for s, t, p in scoring if t == opp and start <= s < end)
-        stints.append({'start': start, 'end': end, 'for': pf, 'against': pa, 'margin': pf - pa, 'lineup': lineup})
+        box = {side: {k: sum(b[k] for s, t, b in plays if t == who and start <= s < end) for k in BOX_KEYS}
+               for side, who in (('off', team), ('def', opp))}
+        stints.append({'start': start, 'end': end, 'for': pf, 'against': pa, 'margin': pf - pa, 'lineup': lineup, **box})
     return stints
 
 
