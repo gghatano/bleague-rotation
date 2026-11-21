@@ -33,7 +33,7 @@
     {
      "jersey": "2",
      "name": "ラモス",
-     "totalSec": 1520,
+     "totalSec": 1565,
      "intervals": [
       [
        0,
@@ -44,7 +44,7 @@
        600
       ],
       [
-       920,
+       875,
        1421
       ],
       [
@@ -52,7 +52,7 @@
        2400
       ]
      ],
-     "plusMinus": 8
+     "plusMinus": 10
     },
     {
      "jersey": "15",
@@ -129,7 +129,7 @@
     {
      "jersey": "3",
      "name": "クラーク",
-     "totalSec": 1715,
+     "totalSec": 1670,
      "intervals": [
       [
        0,
@@ -137,7 +137,7 @@
       ],
       [
        600,
-       920
+       875
       ],
       [
        1080,
@@ -148,7 +148,7 @@
        2400
       ]
      ],
-     "plusMinus": 2
+     "plusMinus": 0
     },
     {
      "jersey": "18",
@@ -315,7 +315,19 @@
        "jersey": "3",
        "name": "クラーク"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 2
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 3
+     }
     },
     {
      "start": 188,
@@ -344,7 +356,19 @@
        "jersey": "3",
        "name": "クラーク"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 208,
@@ -373,7 +397,19 @@
        "jersey": "12",
        "name": "市場"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 320,
@@ -402,7 +438,19 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 0
+     }
     },
     {
      "start": 369,
@@ -431,7 +479,19 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 423,
@@ -460,7 +520,19 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 531,
@@ -489,7 +561,19 @@
        "jersey": "16",
        "name": "大崎"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 600,
@@ -518,7 +602,19 @@
        "jersey": "30",
        "name": "富永"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 764,
@@ -547,43 +643,26 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 875,
-     "end": 920,
-     "for": 2,
-     "against": 0,
-     "margin": 2,
-     "lineup": [
-      {
-       "jersey": "3",
-       "name": "クラーク"
-      },
-      {
-       "jersey": "15",
-       "name": "島谷"
-      },
-      {
-       "jersey": "30",
-       "name": "富永"
-      },
-      {
-       "jersey": "21",
-       "name": "ハーラー"
-      },
-      {
-       "jersey": "7",
-       "name": "ボールデン"
-      }
-     ]
-    },
-    {
-     "start": 920,
      "end": 1016,
-     "for": 8,
+     "for": 10,
      "against": 4,
-     "margin": 4,
+     "margin": 6,
      "lineup": [
       {
        "jersey": "15",
@@ -605,7 +684,19 @@
        "jersey": "2",
        "name": "ラモス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 2
+     }
     },
     {
      "start": 1016,
@@ -634,7 +725,19 @@
        "jersey": "2",
        "name": "ラモス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 2
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1080,
@@ -663,7 +766,19 @@
        "jersey": "3",
        "name": "クラーク"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1113,
@@ -692,7 +807,19 @@
        "jersey": "30",
        "name": "富永"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 5,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 1200,
@@ -721,7 +848,19 @@
        "jersey": "30",
        "name": "富永"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1388,
@@ -750,7 +889,19 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1421,
@@ -779,7 +930,19 @@
        "jersey": "21",
        "name": "ハーラー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 6,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1615,
@@ -808,7 +971,19 @@
        "jersey": "7",
        "name": "ボールデン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1747,
@@ -837,7 +1012,19 @@
        "jersey": "16",
        "name": "大崎"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1800,
@@ -866,7 +1053,19 @@
        "jersey": "2",
        "name": "ラモス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 5,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1904,
@@ -895,7 +1094,19 @@
        "jersey": "30",
        "name": "富永"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1963,
@@ -924,7 +1135,19 @@
        "jersey": "3",
        "name": "クラーク"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2007,
@@ -953,7 +1176,19 @@
        "jersey": "12",
        "name": "市場"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 2062,
@@ -982,7 +1217,19 @@
        "jersey": "12",
        "name": "市場"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 4
+     },
+     "def": {
+      "fga": 6,
+      "fta": 6,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 2313,
@@ -1011,7 +1258,19 @@
        "jersey": "7",
        "name": "ボールデン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 4,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     }
    ],
    "lineups": [
@@ -1163,6 +1422,35 @@
     {
      "lineup": [
       {
+       "jersey": "15",
+       "name": "島谷"
+      },
+      {
+       "jersey": "30",
+       "name": "富永"
+      },
+      {
+       "jersey": "21",
+       "name": "ハーラー"
+      },
+      {
+       "jersey": "7",
+       "name": "ボールデン"
+      },
+      {
+       "jersey": "2",
+       "name": "ラモス"
+      }
+     ],
+     "sec": 141,
+     "for": 10,
+     "against": 4,
+     "margin": 6,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
        "jersey": "12",
        "name": "市場"
       },
@@ -1303,35 +1591,6 @@
      "for": 3,
      "against": 3,
      "margin": 0,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "15",
-       "name": "島谷"
-      },
-      {
-       "jersey": "30",
-       "name": "富永"
-      },
-      {
-       "jersey": "21",
-       "name": "ハーラー"
-      },
-      {
-       "jersey": "7",
-       "name": "ボールデン"
-      },
-      {
-       "jersey": "2",
-       "name": "ラモス"
-      }
-     ],
-     "sec": 96,
-     "for": 8,
-     "against": 4,
-     "margin": 4,
      "stints": 1
     },
     {
@@ -1535,35 +1794,6 @@
      "for": 0,
      "against": 0,
      "margin": 0,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "3",
-       "name": "クラーク"
-      },
-      {
-       "jersey": "15",
-       "name": "島谷"
-      },
-      {
-       "jersey": "30",
-       "name": "富永"
-      },
-      {
-       "jersey": "21",
-       "name": "ハーラー"
-      },
-      {
-       "jersey": "7",
-       "name": "ボールデン"
-      }
-     ],
-     "sec": 45,
-     "for": 2,
-     "against": 0,
-     "margin": 2,
      "stints": 1
     },
     {
@@ -1909,7 +2139,19 @@
        "jersey": "10",
        "name": "レイマン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 3
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 2
+     }
     },
     {
      "start": 188,
@@ -1938,7 +2180,19 @@
        "jersey": "10",
        "name": "レイマン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 320,
@@ -1967,7 +2221,19 @@
        "jersey": "32",
        "name": "シェーファー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 369,
@@ -1996,7 +2262,19 @@
        "jersey": "32",
        "name": "シェーファー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 572,
@@ -2025,7 +2303,19 @@
        "jersey": "9",
        "name": "エル ダーウィッチ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 600,
@@ -2054,7 +2344,19 @@
        "jersey": "45",
        "name": "ブース"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 730,
@@ -2083,7 +2385,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 7,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 2
+     }
     },
     {
      "start": 920,
@@ -2112,7 +2426,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 7,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 2
+     }
     },
     {
      "start": 1080,
@@ -2141,7 +2467,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 5,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1199,
@@ -2170,7 +2508,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1200,
@@ -2199,7 +2549,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 8,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1459,
@@ -2228,7 +2590,19 @@
        "jersey": "3",
        "name": "岡島"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1479,
@@ -2257,7 +2631,19 @@
        "jersey": "3",
        "name": "岡島"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     }
     },
     {
      "start": 1564,
@@ -2286,7 +2672,19 @@
        "jersey": "3",
        "name": "岡島"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1630,
@@ -2315,7 +2713,19 @@
        "jersey": "3",
        "name": "岡島"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     }
     },
     {
      "start": 1747,
@@ -2344,7 +2754,19 @@
        "jersey": "10",
        "name": "レイマン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     }
     },
     {
      "start": 1800,
@@ -2373,7 +2795,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 0
+     }
     },
     {
      "start": 1821,
@@ -2402,7 +2836,19 @@
        "jersey": "8",
        "name": "カルバー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 3,
+      "tov": 0
+     }
     },
     {
      "start": 1963,
@@ -2431,7 +2877,19 @@
        "jersey": "7",
        "name": "船生"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 8,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 7,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 3
+     }
     },
     {
      "start": 2269,
@@ -2460,7 +2918,19 @@
        "jersey": "3",
        "name": "岡島"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 4,
+      "oreb": 1,
+      "tov": 1
+     }
     },
     {
      "start": 2377,
@@ -2489,7 +2959,19 @@
        "jersey": "32",
        "name": "シェーファー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     }
     }
    ],
    "lineups": [
@@ -3750,5 +4232,5 @@
   ]
  ],
  "corrections": [],
- "generatedAt": "2026-10-04T21:37:16+00:00"
+ "generatedAt": "2026-11-21T13:22:07+00:00"
 }
