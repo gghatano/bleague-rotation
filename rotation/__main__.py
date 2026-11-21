@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 
 from .fetch import Fetcher
 from .notify import notify
+from .ratings import load_games, player_ratings, team_ratings, write
 from .site import build
 from .store import Report, Store, process_date
 
@@ -61,6 +62,29 @@ def cmd_build(args) -> int:
     return 0
 
 
+def cmd_ratings(args) -> int:
+    games = load_games(ROOT / 'data')
+    rows = team_ratings(games) if args.teams else player_ratings(games, args.min_minutes)
+    if args.out:
+        write(rows, Path(args.out))
+        print(f'{len(games)} 試合から {len(rows)} 行を {args.out} に出力')
+        return 0
+    if args.teams:
+        for r in rows:
+            print(f"{r['team']:6} pace {r['pace']:5.1f}  ORtg {r['ortg']:6.1f}  DRtg {r['drtg']:6.1f}  Net {r['net']:+6.1f}")
+        return 0
+    for r in rows[:args.top] + ([None] + rows[-args.top:] if len(rows) > 2 * args.top else rows[args.top:]):
+        if r is None:
+            print('...')
+            continue
+        v = lambda k, spec: format(r[k], spec) if r[k] is not None else '–'
+        print(f"{r['team']:6}#{r['jersey']:>3} {r['name']:10} {r['onMin']:5.0f}分 | "
+              f"on {v('onORtg', '6.1f')}/{v('onDRtg', '6.1f')} ({v('onNet', '+6.1f')}) | "
+              f"off {v('offORtg', '6.1f')}/{v('offDRtg', '6.1f')} ({v('offNet', '+6.1f')}) | "
+              f"差 O {v('diffORtg', '+5.1f')} D {v('diffDRtg', '+5.1f')} Net {v('diffNet', '+5.1f')}")
+    return 0
+
+
 def cmd_notify(args) -> int:
     if not args.repo:
         raise SystemExit('--repo か環境変数 GITHUB_REPOSITORY でリポジトリを指定してください')
@@ -79,6 +103,12 @@ def main() -> int:
     p = sub.add_parser('build', help='data/ から静的サイトを生成する')
     p.add_argument('--out', default=str(ROOT / '_site'))
     p.set_defaults(func=cmd_build)
+    p = sub.add_parser('ratings', help='シーズンの on/off レーティング（100ポゼッションあたりの ORtg/DRtg）を集計する')
+    p.add_argument('--min-minutes', type=float, default=150, help='対象にする出場分数の下限（既定 150）')
+    p.add_argument('--teams', action='store_true', help='選手ではなくチーム単位で出す')
+    p.add_argument('--top', type=int, default=15, help='画面表示で上下に出す人数')
+    p.add_argument('--out', help='.json か .csv に全行を書き出す')
+    p.set_defaults(func=cmd_ratings)
     p = sub.add_parser('notify', help='update のレポートをもとに GitHub issue を作成・クローズする')
     p.add_argument('report')
     p.add_argument('--repo', default=os.environ.get('GITHUB_REPOSITORY'))
