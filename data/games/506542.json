@@ -56,7 +56,7 @@
        2297
       ]
      ],
-     "plusMinus": 4
+     "plusMinus": 11
     },
     {
      "jersey": "23",
@@ -80,7 +80,7 @@
        2400
       ]
      ],
-     "plusMinus": 4
+     "plusMinus": 2
     },
     {
      "jersey": "00",
@@ -124,7 +124,7 @@
        2297
       ]
      ],
-     "plusMinus": 4
+     "plusMinus": 6
     },
     {
      "jersey": "17",
@@ -148,7 +148,7 @@
        2400
       ]
      ],
-     "plusMinus": -3
+     "plusMinus": -5
     },
     {
      "jersey": "3",
@@ -176,7 +176,7 @@
        2400
       ]
      ],
-     "plusMinus": -1
+     "plusMinus": -8
     },
     {
      "jersey": "8",
@@ -196,7 +196,7 @@
        1687
       ]
      ],
-     "plusMinus": -5
+     "plusMinus": -3
     },
     {
      "jersey": "30",
@@ -249,19 +249,14 @@
      "end": 360,
      "for": 12,
      "against": 9,
-     "margin": 3,
      "lineup": [
-      {
-       "jersey": "4",
-       "name": "寺園"
-      },
-      {
-       "jersey": "23",
-       "name": "チャイルズ"
-      },
       {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "12",
@@ -270,6 +265,10 @@
       {
        "jersey": "17",
        "name": "山口"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
       }
      ],
      "off": {
@@ -283,14 +282,14 @@
       "fta": 0,
       "oreb": 0,
       "tov": 2
-     }
+     },
+     "margin": 3
     },
     {
      "start": 360,
      "end": 451,
      "for": 5,
      "against": 5,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "00",
@@ -324,14 +323,14 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 451,
      "end": 600,
      "for": 7,
      "against": 3,
-     "margin": 4,
      "lineup": [
       {
        "jersey": "3",
@@ -342,16 +341,16 @@
        "name": "八村"
       },
       {
-       "jersey": "30",
-       "name": "金田"
-      },
-      {
        "jersey": "22",
        "name": "サレー"
       },
       {
        "jersey": "23",
        "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       }
      ],
      "off": {
@@ -365,22 +364,18 @@
       "fta": 0,
       "oreb": 0,
       "tov": 2
-     }
+     },
+     "margin": 4
     },
     {
      "start": 600,
      "end": 697,
      "for": 2,
      "against": 3,
-     "margin": -1,
      "lineup": [
       {
        "jersey": "8",
        "name": "八村"
-      },
-      {
-       "jersey": "30",
-       "name": "金田"
       },
       {
        "jersey": "22",
@@ -389,6 +384,10 @@
       {
        "jersey": "23",
        "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       },
       {
        "jersey": "4",
@@ -406,19 +405,15 @@
       "fta": 1,
       "oreb": 0,
       "tov": 1
-     }
+     },
+     "margin": -1
     },
     {
      "start": 697,
      "end": 784,
      "for": 4,
      "against": 3,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "30",
-       "name": "金田"
-      },
       {
        "jersey": "22",
        "name": "サレー"
@@ -428,33 +423,37 @@
        "name": "チャイルズ"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
+       "jersey": "30",
+       "name": "金田"
       },
       {
        "jersey": "4",
        "name": "寺園"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       }
      ],
      "off": {
       "fga": 2,
       "fta": 0,
       "oreb": 0,
-      "tov": 0
+      "tov": 1
      },
      "def": {
       "fga": 2,
       "fta": 2,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": 1
     },
     {
      "start": 784,
      "end": 819,
      "for": 0,
      "against": 3,
-     "margin": -3,
      "lineup": [
       {
        "jersey": "22",
@@ -465,12 +464,12 @@
        "name": "チャイルズ"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
        "jersey": "4",
        "name": "寺園"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "17",
@@ -481,41 +480,41 @@
       "fga": 0,
       "fta": 0,
       "oreb": 0,
-      "tov": 1
+      "tov": 0
      },
      "def": {
       "fga": 1,
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -3
     },
     {
      "start": 819,
      "end": 918,
      "for": 4,
-     "against": 2,
-     "margin": 2,
+     "against": 4,
      "lineup": [
       {
        "jersey": "23",
        "name": "チャイルズ"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
        "jersey": "4",
        "name": "寺園"
       },
       {
-       "jersey": "12",
-       "name": "木村"
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "17",
        "name": "山口"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
       }
      ],
      "off": {
@@ -525,79 +524,38 @@
       "tov": 0
      },
      "def": {
-      "fga": 2,
+      "fga": 3,
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 918,
      "end": 958,
      "for": 3,
-     "against": 2,
-     "margin": 1,
+     "against": 0,
      "lineup": [
-      {
-       "jersey": "00",
-       "name": "アイマク"
-      },
       {
        "jersey": "4",
        "name": "寺園"
       },
       {
-       "jersey": "8",
-       "name": "八村"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
-      },
-      {
-       "jersey": "17",
-       "name": "山口"
-      }
-     ],
-     "off": {
-      "fga": 1,
-      "fta": 0,
-      "oreb": 0,
-      "tov": 0
-     },
-     "def": {
-      "fga": 2,
-      "fta": 0,
-      "oreb": 0,
-      "tov": 0
-     }
-    },
-    {
-     "start": 958,
-     "end": 992,
-     "for": 0,
-     "against": 2,
-     "margin": -2,
-     "lineup": [
-      {
-       "jersey": "8",
-       "name": "八村"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "17",
        "name": "山口"
       },
       {
-       "jersey": "3",
-       "name": "小川"
+       "jersey": "12",
+       "name": "木村"
       },
       {
-       "jersey": "23",
-       "name": "チャイルズ"
+       "jersey": "8",
+       "name": "八村"
       }
      ],
      "off": {
@@ -611,18 +569,67 @@
       "fta": 0,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": 3
+    },
+    {
+     "start": 958,
+     "end": 992,
+     "for": 0,
+     "against": 2,
+     "lineup": [
+      {
+       "jersey": "17",
+       "name": "山口"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "8",
+       "name": "八村"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      }
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
     },
     {
      "start": 992,
      "end": 1200,
      "for": 4,
      "against": 7,
-     "margin": -3,
      "lineup": [
       {
        "jersey": "3",
        "name": "小川"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "22",
@@ -631,18 +638,10 @@
       {
        "jersey": "30",
        "name": "金田"
-      },
-      {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
-       "jersey": "23",
-       "name": "チャイルズ"
       }
      ],
      "off": {
-      "fga": 7,
+      "fga": 8,
       "fta": 4,
       "oreb": 4,
       "tov": 0
@@ -652,38 +651,38 @@
       "fta": 4,
       "oreb": 0,
       "tov": 1
-     }
+     },
+     "margin": -3
     },
     {
      "start": 1200,
      "end": 1463,
      "for": 8,
      "against": 13,
-     "margin": -5,
      "lineup": [
       {
-       "jersey": "4",
-       "name": "寺園"
-      },
-      {
-       "jersey": "17",
-       "name": "山口"
+       "jersey": "23",
+       "name": "チャイルズ"
       },
       {
        "jersey": "00",
        "name": "アイマク"
       },
       {
-       "jersey": "23",
-       "name": "チャイルズ"
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "12",
        "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
       }
      ],
      "off": {
-      "fga": 8,
+      "fga": 7,
       "fta": 0,
       "oreb": 0,
       "tov": 1
@@ -693,34 +692,34 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -5
     },
     {
      "start": 1463,
      "end": 1490,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
       {
-       "jersey": "17",
-       "name": "山口"
+       "jersey": "23",
+       "name": "チャイルズ"
       },
       {
        "jersey": "00",
        "name": "アイマク"
       },
       {
-       "jersey": "23",
-       "name": "チャイルズ"
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
       },
       {
        "jersey": "3",
        "name": "小川"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
       }
      ],
      "off": {
@@ -734,34 +733,34 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 1490,
      "end": 1512,
      "for": 3,
      "against": 2,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "00",
-       "name": "アイマク"
-      },
       {
        "jersey": "23",
        "name": "チャイルズ"
       },
       {
-       "jersey": "30",
-       "name": "金田"
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
       },
       {
        "jersey": "3",
        "name": "小川"
       },
       {
-       "jersey": "12",
-       "name": "木村"
+       "jersey": "30",
+       "name": "金田"
       }
      ],
      "off": {
@@ -775,34 +774,34 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 1
     },
     {
      "start": 1512,
      "end": 1598,
      "for": 2,
      "against": 7,
-     "margin": -5,
      "lineup": [
       {
        "jersey": "23",
        "name": "チャイルズ"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
       },
       {
        "jersey": "30",
        "name": "金田"
       },
       {
-       "jersey": "3",
-       "name": "小川"
-      },
-      {
        "jersey": "8",
        "name": "八村"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
       }
      ],
      "off": {
@@ -816,15 +815,19 @@
       "fta": 1,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -5
     },
     {
      "start": 1598,
      "end": 1610,
      "for": 0,
-     "against": 0,
-     "margin": 0,
+     "against": 3,
      "lineup": [
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
       {
        "jersey": "3",
        "name": "小川"
@@ -834,16 +837,12 @@
        "name": "八村"
       },
       {
-       "jersey": "22",
-       "name": "サレー"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
-      },
-      {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
       }
      ],
      "off": {
@@ -853,22 +852,30 @@
       "tov": 0
      },
      "def": {
-      "fga": 0,
+      "fga": 1,
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -3
     },
     {
      "start": 1610,
      "end": 1687,
      "for": 5,
-     "against": 7,
-     "margin": -2,
+     "against": 4,
      "lineup": [
+      {
+       "jersey": "12",
+       "name": "木村"
+      },
       {
        "jersey": "8",
        "name": "八村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "22",
@@ -877,14 +884,6 @@
       {
        "jersey": "4",
        "name": "寺園"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
-      },
-      {
-       "jersey": "00",
-       "name": "アイマク"
       }
      ],
      "off": {
@@ -894,27 +893,19 @@
       "tov": 0
      },
      "def": {
-      "fga": 3,
+      "fga": 2,
       "fta": 1,
       "oreb": 1,
-      "tov": 0
-     }
+      "tov": 1
+     },
+     "margin": 1
     },
     {
      "start": 1687,
      "end": 1777,
      "for": 4,
      "against": 4,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "22",
-       "name": "サレー"
-      },
-      {
-       "jersey": "4",
-       "name": "寺園"
-      },
       {
        "jersey": "12",
        "name": "木村"
@@ -922,6 +913,14 @@
       {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "23",
@@ -938,20 +937,16 @@
       "fga": 3,
       "fta": 0,
       "oreb": 1,
-      "tov": 1
-     }
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 1777,
      "end": 1970,
      "for": 11,
      "against": 5,
-     "margin": 6,
      "lineup": [
-      {
-       "jersey": "4",
-       "name": "寺園"
-      },
       {
        "jersey": "12",
        "name": "木村"
@@ -959,6 +954,10 @@
       {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "23",
@@ -980,19 +979,15 @@
       "fta": 4,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 6
     },
     {
      "start": 1970,
      "end": 2110,
      "for": 3,
-     "against": 0,
-     "margin": 3,
+     "against": 2,
      "lineup": [
-      {
-       "jersey": "3",
-       "name": "小川"
-      },
       {
        "jersey": "12",
        "name": "木村"
@@ -1008,6 +1003,10 @@
       {
        "jersey": "30",
        "name": "金田"
+      },
+      {
+       "jersey": "3",
+       "name": "小川"
       }
      ],
      "off": {
@@ -1017,59 +1016,100 @@
       "tov": 0
      },
      "def": {
-      "fga": 4,
+      "fga": 5,
       "fta": 0,
       "oreb": 1,
       "tov": 1
-     }
+     },
+     "margin": 1
     },
     {
      "start": 2110,
      "end": 2297,
-     "for": 6,
-     "against": 4,
-     "margin": 2,
+     "for": 8,
+     "against": 2,
      "lineup": [
       {
        "jersey": "12",
        "name": "木村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      }
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 2,
+      "oreb": 2,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": 6
+    },
+    {
+     "start": 2297,
+     "end": 2297,
+     "for": 0,
+     "against": 0,
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       },
       {
        "jersey": "4",
        "name": "寺園"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
-       "jersey": "23",
-       "name": "チャイルズ"
-      },
-      {
-       "jersey": "30",
-       "name": "金田"
+       "jersey": "17",
+       "name": "山口"
       }
      ],
      "off": {
-      "fga": 5,
-      "fta": 2,
-      "oreb": 2,
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
       "tov": 0
      },
      "def": {
-      "fga": 5,
+      "fga": 0,
       "fta": 0,
-      "oreb": 1,
-      "tov": 1
-     }
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 2297,
      "end": 2400,
-     "for": 7,
+     "for": 5,
      "against": 6,
-     "margin": 1,
      "lineup": [
       {
        "jersey": "00",
@@ -1093,7 +1133,7 @@
       }
      ],
      "off": {
-      "fga": 3,
+      "fga": 2,
       "fta": 0,
       "oreb": 0,
       "tov": 3
@@ -1103,23 +1143,20 @@
       "fta": 0,
       "oreb": 0,
       "tov": 2
-     }
+     },
+     "margin": -1
     }
    ],
    "lineups": [
     {
      "lineup": [
       {
-       "jersey": "4",
-       "name": "寺園"
-      },
-      {
-       "jersey": "23",
-       "name": "チャイルズ"
-      },
-      {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "12",
@@ -1128,20 +1165,20 @@
       {
        "jersey": "17",
        "name": "山口"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
       }
      ],
      "sec": 722,
      "for": 24,
-     "against": 24,
-     "margin": 0,
+     "against": 26,
+     "margin": -2,
      "stints": 3
     },
     {
      "lineup": [
-      {
-       "jersey": "4",
-       "name": "寺園"
-      },
       {
        "jersey": "12",
        "name": "木村"
@@ -1149,6 +1186,10 @@
       {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "23",
@@ -1160,9 +1201,9 @@
       }
      ],
      "sec": 380,
-     "for": 17,
-     "against": 9,
-     "margin": 8,
+     "for": 19,
+     "against": 7,
+     "margin": 12,
      "stints": 2
     },
     {
@@ -1172,20 +1213,20 @@
        "name": "小川"
       },
       {
-       "jersey": "22",
-       "name": "サレー"
-      },
-      {
-       "jersey": "30",
-       "name": "金田"
+       "jersey": "23",
+       "name": "チャイルズ"
       },
       {
        "jersey": "00",
        "name": "アイマク"
       },
       {
-       "jersey": "23",
-       "name": "チャイルズ"
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       }
      ],
      "sec": 208,
@@ -1197,30 +1238,30 @@
     {
      "lineup": [
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
        "jersey": "23",
        "name": "チャイルズ"
       },
       {
-       "jersey": "30",
-       "name": "金田"
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "12",
+       "name": "木村"
       },
       {
        "jersey": "3",
        "name": "小川"
       },
       {
-       "jersey": "12",
-       "name": "木村"
+       "jersey": "30",
+       "name": "金田"
       }
      ],
      "sec": 162,
      "for": 6,
-     "against": 2,
-     "margin": 4,
+     "against": 4,
+     "margin": 2,
      "stints": 2
     },
     {
@@ -1234,16 +1275,16 @@
        "name": "八村"
       },
       {
-       "jersey": "30",
-       "name": "金田"
-      },
-      {
        "jersey": "22",
        "name": "サレー"
       },
       {
        "jersey": "23",
        "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       }
      ],
      "sec": 149,
@@ -1276,9 +1317,9 @@
       }
      ],
      "sec": 103,
-     "for": 7,
+     "for": 5,
      "against": 6,
-     "margin": 1,
+     "margin": -1,
      "stints": 1
     },
     {
@@ -1288,16 +1329,16 @@
        "name": "八村"
       },
       {
-       "jersey": "30",
-       "name": "金田"
-      },
-      {
        "jersey": "22",
        "name": "サレー"
       },
       {
        "jersey": "23",
        "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
       },
       {
        "jersey": "4",
@@ -1342,20 +1383,20 @@
     {
      "lineup": [
       {
-       "jersey": "22",
-       "name": "サレー"
-      },
-      {
-       "jersey": "4",
-       "name": "寺園"
-      },
-      {
        "jersey": "12",
        "name": "木村"
       },
       {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
       },
       {
        "jersey": "23",
@@ -1371,10 +1412,6 @@
     {
      "lineup": [
       {
-       "jersey": "30",
-       "name": "金田"
-      },
-      {
        "jersey": "22",
        "name": "サレー"
       },
@@ -1383,12 +1420,16 @@
        "name": "チャイルズ"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
+       "jersey": "30",
+       "name": "金田"
       },
       {
        "jersey": "4",
        "name": "寺園"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       }
      ],
      "sec": 87,
@@ -1404,20 +1445,20 @@
        "name": "チャイルズ"
       },
       {
-       "jersey": "30",
-       "name": "金田"
+       "jersey": "12",
+       "name": "木村"
       },
       {
        "jersey": "3",
        "name": "小川"
       },
       {
-       "jersey": "8",
-       "name": "八村"
+       "jersey": "30",
+       "name": "金田"
       },
       {
-       "jersey": "12",
-       "name": "木村"
+       "jersey": "8",
+       "name": "八村"
       }
      ],
      "sec": 86,
@@ -1429,8 +1470,16 @@
     {
      "lineup": [
       {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
        "jersey": "8",
        "name": "八村"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "22",
@@ -1439,49 +1488,41 @@
       {
        "jersey": "4",
        "name": "寺園"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
-      },
-      {
-       "jersey": "00",
-       "name": "アイマク"
       }
      ],
      "sec": 77,
      "for": 5,
-     "against": 7,
-     "margin": -2,
+     "against": 4,
+     "margin": 1,
      "stints": 1
     },
     {
      "lineup": [
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
        "jersey": "4",
        "name": "寺園"
       },
       {
-       "jersey": "8",
-       "name": "八村"
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
       },
       {
        "jersey": "12",
        "name": "木村"
       },
       {
-       "jersey": "17",
-       "name": "山口"
+       "jersey": "8",
+       "name": "八村"
       }
      ],
      "sec": 40,
      "for": 3,
-     "against": 2,
-     "margin": 1,
+     "against": 0,
+     "margin": 3,
      "stints": 1
     },
     {
@@ -1495,12 +1536,12 @@
        "name": "チャイルズ"
       },
       {
-       "jersey": "00",
-       "name": "アイマク"
-      },
-      {
        "jersey": "4",
        "name": "寺園"
+      },
+      {
+       "jersey": "00",
+       "name": "アイマク"
       },
       {
        "jersey": "17",
@@ -1516,16 +1557,16 @@
     {
      "lineup": [
       {
-       "jersey": "8",
-       "name": "八村"
+       "jersey": "17",
+       "name": "山口"
       },
       {
        "jersey": "12",
        "name": "木村"
       },
       {
-       "jersey": "17",
-       "name": "山口"
+       "jersey": "8",
+       "name": "八村"
       },
       {
        "jersey": "3",
@@ -1545,24 +1586,24 @@
     {
      "lineup": [
       {
-       "jersey": "17",
-       "name": "山口"
+       "jersey": "23",
+       "name": "チャイルズ"
       },
       {
        "jersey": "00",
        "name": "アイマク"
       },
       {
-       "jersey": "23",
-       "name": "チャイルズ"
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
       },
       {
        "jersey": "3",
        "name": "小川"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
       }
      ],
      "sec": 27,
@@ -1574,6 +1615,10 @@
     {
      "lineup": [
       {
+       "jersey": "12",
+       "name": "木村"
+      },
+      {
        "jersey": "3",
        "name": "小川"
       },
@@ -1582,19 +1627,44 @@
        "name": "八村"
       },
       {
-       "jersey": "22",
-       "name": "サレー"
-      },
-      {
-       "jersey": "12",
-       "name": "木村"
-      },
-      {
        "jersey": "00",
        "name": "アイマク"
+      },
+      {
+       "jersey": "22",
+       "name": "サレー"
       }
      ],
      "sec": 12,
+     "for": 0,
+     "against": 3,
+     "margin": -3,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "00",
+       "name": "アイマク"
+      },
+      {
+       "jersey": "23",
+       "name": "チャイルズ"
+      },
+      {
+       "jersey": "30",
+       "name": "金田"
+      },
+      {
+       "jersey": "4",
+       "name": "寺園"
+      },
+      {
+       "jersey": "17",
+       "name": "山口"
+      }
+     ],
+     "sec": 0,
      "for": 0,
      "against": 0,
      "margin": 0,
@@ -1692,7 +1762,7 @@
        2400
       ]
      ],
-     "plusMinus": -5
+     "plusMinus": -3
     },
     {
      "jersey": "20",
@@ -1744,7 +1814,7 @@
        2400
       ]
      ],
-     "plusMinus": -14
+     "plusMinus": -12
     },
     {
      "jersey": "32",
@@ -1792,7 +1862,7 @@
        1970
       ]
      ],
-     "plusMinus": 2
+     "plusMinus": 0
     },
     {
      "jersey": "13",
@@ -1836,7 +1906,7 @@
        2025
       ]
      ],
-     "plusMinus": 11
+     "plusMinus": 9
     }
    ],
    "stints": [
@@ -1845,7 +1915,6 @@
      "end": 360,
      "for": 9,
      "against": 12,
-     "margin": -3,
      "lineup": [
       {
        "jersey": "7",
@@ -1879,22 +1948,18 @@
       "fta": 0,
       "oreb": 2,
       "tov": 1
-     }
+     },
+     "margin": -3
     },
     {
      "start": 360,
      "end": 451,
      "for": 5,
      "against": 5,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "20",
        "name": "ランドルフ"
-      },
-      {
-       "jersey": "32",
-       "name": "田中"
       },
       {
        "jersey": "34",
@@ -1907,6 +1972,10 @@
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "off": {
@@ -1920,34 +1989,34 @@
       "fta": 0,
       "oreb": 1,
       "tov": 1
-     }
+     },
+     "margin": 0
     },
     {
      "start": 451,
      "end": 593,
      "for": 3,
      "against": 5,
-     "margin": -2,
      "lineup": [
       {
        "jersey": "10",
        "name": "永野"
       },
       {
-       "jersey": "7",
-       "name": "ブラントリー"
+       "jersey": "13",
+       "name": "星川"
       },
       {
-       "jersey": "77",
-       "name": "土屋"
+       "jersey": "7",
+       "name": "ブラントリー"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "off": {
@@ -1961,34 +2030,34 @@
       "fta": 0,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": -2
     },
     {
      "start": 593,
      "end": 654,
      "for": 3,
-     "against": 2,
-     "margin": 1,
+     "against": 4,
      "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
       {
        "jersey": "7",
        "name": "ブラントリー"
-      },
-      {
-       "jersey": "77",
-       "name": "土屋"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "11",
-       "name": "熊谷"
+       "jersey": "77",
+       "name": "土屋"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "11",
+       "name": "熊谷"
       }
      ],
      "off": {
@@ -1999,33 +2068,33 @@
      },
      "def": {
       "fga": 2,
-      "fta": 0,
+      "fta": 2,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -1
     },
     {
      "start": 654,
      "end": 784,
      "for": 3,
-     "against": 6,
-     "margin": -3,
+     "against": 4,
      "lineup": [
+      {
+       "jersey": "13",
+       "name": "星川"
+      },
       {
        "jersey": "9",
        "name": "森川"
-      },
-      {
-       "jersey": "32",
-       "name": "田中"
       },
       {
        "jersey": "11",
        "name": "熊谷"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "32",
+       "name": "田中"
       },
       {
        "jersey": "34",
@@ -2040,25 +2109,25 @@
      },
      "def": {
       "fga": 3,
-      "fta": 2,
+      "fta": 0,
       "oreb": 0,
-      "tov": 0
-     }
+      "tov": 1
+     },
+     "margin": -1
     },
     {
      "start": 784,
      "end": 918,
-     "for": 5,
+     "for": 7,
      "against": 4,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "11",
-       "name": "熊谷"
-      },
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
       },
       {
        "jersey": "34",
@@ -2074,7 +2143,7 @@
       }
      ],
      "off": {
-      "fga": 3,
+      "fga": 4,
       "fta": 0,
       "oreb": 0,
       "tov": 0
@@ -2083,15 +2152,15 @@
       "fga": 3,
       "fta": 0,
       "oreb": 0,
-      "tov": 1
-     }
+      "tov": 0
+     },
+     "margin": 3
     },
     {
      "start": 918,
      "end": 958,
-     "for": 2,
+     "for": 0,
      "against": 3,
-     "margin": -1,
      "lineup": [
       {
        "jersey": "13",
@@ -2102,22 +2171,22 @@
        "name": "アギラール"
       },
       {
-       "jersey": "10",
-       "name": "永野"
-      },
-      {
        "jersey": "7",
        "name": "ブラントリー"
       },
       {
        "jersey": "20",
        "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
       }
      ],
      "off": {
-      "fga": 2,
+      "fga": 1,
       "fta": 0,
-      "oreb": 0,
+      "oreb": 1,
       "tov": 0
      },
      "def": {
@@ -2125,40 +2194,40 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -3
     },
     {
      "start": 958,
      "end": 1057,
      "for": 6,
      "against": 0,
-     "margin": 6,
      "lineup": [
-      {
-       "jersey": "10",
-       "name": "永野"
-      },
-      {
-       "jersey": "77",
-       "name": "土屋"
-      },
       {
        "jersey": "7",
        "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "20",
-       "name": "ランドルフ"
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "off": {
       "fga": 2,
       "fta": 2,
-      "oreb": 1,
+      "oreb": 0,
       "tov": 0
      },
      "def": {
@@ -2166,18 +2235,22 @@
       "fta": 0,
       "oreb": 2,
       "tov": 0
-     }
+     },
+     "margin": 6
     },
     {
      "start": 1057,
      "end": 1380,
-     "for": 11,
+     "for": 13,
      "against": 7,
-     "margin": 4,
      "lineup": [
       {
        "jersey": "7",
        "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
       },
       {
        "jersey": "9",
@@ -2190,14 +2263,10 @@
       {
        "jersey": "34",
        "name": "アギラール"
-      },
-      {
-       "jersey": "20",
-       "name": "ランドルフ"
       }
      ],
      "off": {
-      "fga": 6,
+      "fga": 7,
       "fta": 2,
       "oreb": 0,
       "tov": 1
@@ -2207,15 +2276,19 @@
       "fta": 4,
       "oreb": 2,
       "tov": 1
-     }
+     },
+     "margin": 6
     },
     {
      "start": 1380,
      "end": 1488,
-     "for": 5,
+     "for": 3,
      "against": 5,
-     "margin": 0,
      "lineup": [
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
       {
        "jersey": "9",
        "name": "森川"
@@ -2225,20 +2298,16 @@
        "name": "熊谷"
       },
       {
-       "jersey": "32",
-       "name": "田中"
-      },
-      {
        "jersey": "34",
        "name": "アギラール"
       },
       {
-       "jersey": "20",
-       "name": "ランドルフ"
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "off": {
-      "fga": 4,
+      "fga": 3,
       "fta": 0,
       "oreb": 0,
       "tov": 0
@@ -2248,18 +2317,22 @@
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": -2
     },
     {
      "start": 1488,
      "end": 1598,
      "for": 9,
      "against": 5,
-     "margin": 4,
      "lineup": [
       {
        "jersey": "20",
        "name": "ランドルフ"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
       },
       {
        "jersey": "10",
@@ -2272,10 +2345,6 @@
       {
        "jersey": "77",
        "name": "土屋"
-      },
-      {
-       "jersey": "7",
-       "name": "ブラントリー"
       }
      ],
      "off": {
@@ -2289,15 +2358,19 @@
       "fta": 2,
       "oreb": 0,
       "tov": 1
-     }
+     },
+     "margin": 4
     },
     {
      "start": 1598,
      "end": 1687,
      "for": 7,
      "against": 5,
-     "margin": 2,
      "lineup": [
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
+      },
       {
        "jersey": "10",
        "name": "永野"
@@ -2313,39 +2386,35 @@
       {
        "jersey": "9",
        "name": "森川"
-      },
-      {
-       "jersey": "7",
-       "name": "ブラントリー"
       }
      ],
      "off": {
       "fga": 3,
       "fta": 1,
       "oreb": 1,
-      "tov": 0
+      "tov": 1
      },
      "def": {
       "fga": 2,
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 2
     },
     {
      "start": 1687,
      "end": 1777,
      "for": 4,
      "against": 4,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "9",
-       "name": "森川"
-      },
       {
        "jersey": "7",
        "name": "ブラントリー"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
       },
       {
        "jersey": "11",
@@ -2364,21 +2433,21 @@
       "fga": 3,
       "fta": 0,
       "oreb": 1,
-      "tov": 1
+      "tov": 0
      },
      "def": {
       "fga": 3,
       "fta": 0,
       "oreb": 0,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 1777,
      "end": 1800,
      "for": 1,
      "against": 0,
-     "margin": 1,
      "lineup": [
       {
        "jersey": "7",
@@ -2412,27 +2481,15 @@
       "fta": 0,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": 1
     },
     {
      "start": 1800,
      "end": 1894,
      "for": 0,
      "against": 7,
-     "margin": -7,
      "lineup": [
-      {
-       "jersey": "9",
-       "name": "森川"
-      },
-      {
-       "jersey": "32",
-       "name": "田中"
-      },
-      {
-       "jersey": "10",
-       "name": "永野"
-      },
       {
        "jersey": "34",
        "name": "アギラール"
@@ -2440,6 +2497,18 @@
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "off": {
@@ -2453,19 +2522,15 @@
       "fta": 2,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": -7
     },
     {
      "start": 1894,
      "end": 1970,
      "for": 4,
      "against": 4,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "10",
-       "name": "永野"
-      },
       {
        "jersey": "34",
        "name": "アギラール"
@@ -2473,6 +2538,10 @@
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
       },
       {
        "jersey": "7",
@@ -2494,22 +2563,18 @@
       "fta": 0,
       "oreb": 3,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 1970,
      "end": 2025,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "13",
        "name": "星川"
-      },
-      {
-       "jersey": "77",
-       "name": "土屋"
       },
       {
        "jersey": "7",
@@ -2522,6 +2587,10 @@
       {
        "jersey": "11",
        "name": "熊谷"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "off": {
@@ -2535,14 +2604,14 @@
       "fta": 0,
       "oreb": 1,
       "tov": 0
-     }
+     },
+     "margin": 0
     },
     {
      "start": 2025,
      "end": 2400,
      "for": 10,
      "against": 16,
-     "margin": -6,
      "lineup": [
       {
        "jersey": "7",
@@ -2576,7 +2645,8 @@
       "fta": 4,
       "oreb": 2,
       "tov": 3
-     }
+     },
+     "margin": -6
     }
    ],
    "lineups": [
@@ -2604,9 +2674,9 @@
       }
      ],
      "sec": 1148,
-     "for": 34,
+     "for": 36,
      "against": 39,
-     "margin": -5,
+     "margin": -3,
      "stints": 4
     },
     {
@@ -2616,20 +2686,20 @@
        "name": "永野"
       },
       {
-       "jersey": "7",
-       "name": "ブラントリー"
+       "jersey": "13",
+       "name": "星川"
       },
       {
-       "jersey": "77",
-       "name": "土屋"
+       "jersey": "7",
+       "name": "ブラントリー"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "sec": 231,
@@ -2641,12 +2711,12 @@
     {
      "lineup": [
       {
-       "jersey": "11",
-       "name": "熊谷"
-      },
-      {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "11",
+       "name": "熊谷"
       },
       {
        "jersey": "34",
@@ -2662,28 +2732,28 @@
       }
      ],
      "sec": 157,
-     "for": 6,
+     "for": 8,
      "against": 4,
-     "margin": 2,
+     "margin": 4,
      "stints": 2
     },
     {
      "lineup": [
       {
-       "jersey": "9",
-       "name": "森川"
+       "jersey": "13",
+       "name": "星川"
       },
       {
-       "jersey": "32",
-       "name": "田中"
+       "jersey": "9",
+       "name": "森川"
       },
       {
        "jersey": "11",
        "name": "熊谷"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "32",
+       "name": "田中"
       },
       {
        "jersey": "34",
@@ -2692,8 +2762,8 @@
      ],
      "sec": 130,
      "for": 3,
-     "against": 6,
-     "margin": -3,
+     "against": 4,
+     "margin": -1,
      "stints": 1
     },
     {
@@ -2707,22 +2777,22 @@
        "name": "アギラール"
       },
       {
-       "jersey": "10",
-       "name": "永野"
-      },
-      {
        "jersey": "7",
        "name": "ブラントリー"
       },
       {
        "jersey": "20",
        "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
       }
      ],
      "sec": 116,
-     "for": 6,
+     "for": 4,
      "against": 7,
-     "margin": -1,
+     "margin": -3,
      "stints": 2
     },
     {
@@ -2730,6 +2800,10 @@
       {
        "jersey": "20",
        "name": "ランドルフ"
+      },
+      {
+       "jersey": "7",
+       "name": "ブラントリー"
       },
       {
        "jersey": "10",
@@ -2742,10 +2816,6 @@
       {
        "jersey": "77",
        "name": "土屋"
-      },
-      {
-       "jersey": "7",
-       "name": "ブラントリー"
       }
      ],
      "sec": 110,
@@ -2757,6 +2827,10 @@
     {
      "lineup": [
       {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
        "jersey": "9",
        "name": "森川"
       },
@@ -2765,45 +2839,41 @@
        "name": "熊谷"
       },
       {
-       "jersey": "32",
-       "name": "田中"
-      },
-      {
        "jersey": "34",
        "name": "アギラール"
       },
       {
-       "jersey": "20",
-       "name": "ランドルフ"
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "sec": 108,
-     "for": 5,
+     "for": 3,
      "against": 5,
-     "margin": 0,
+     "margin": -2,
      "stints": 1
     },
     {
      "lineup": [
       {
-       "jersey": "10",
-       "name": "永野"
-      },
-      {
-       "jersey": "77",
-       "name": "土屋"
-      },
-      {
        "jersey": "7",
        "name": "ブラントリー"
+      },
+      {
+       "jersey": "20",
+       "name": "ランドルフ"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "20",
-       "name": "ランドルフ"
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "sec": 99,
@@ -2815,24 +2885,24 @@
     {
      "lineup": [
       {
-       "jersey": "9",
-       "name": "森川"
-      },
-      {
-       "jersey": "32",
-       "name": "田中"
-      },
-      {
-       "jersey": "10",
-       "name": "永野"
-      },
-      {
        "jersey": "34",
        "name": "アギラール"
       },
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "9",
+       "name": "森川"
+      },
+      {
+       "jersey": "10",
+       "name": "永野"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "sec": 94,
@@ -2848,10 +2918,6 @@
        "name": "ランドルフ"
       },
       {
-       "jersey": "32",
-       "name": "田中"
-      },
-      {
        "jersey": "34",
        "name": "アギラール"
       },
@@ -2862,6 +2928,10 @@
       {
        "jersey": "13",
        "name": "星川"
+      },
+      {
+       "jersey": "32",
+       "name": "田中"
       }
      ],
      "sec": 91,
@@ -2873,30 +2943,30 @@
     {
      "lineup": [
       {
-       "jersey": "7",
-       "name": "ブラントリー"
+       "jersey": "13",
+       "name": "星川"
       },
       {
-       "jersey": "77",
-       "name": "土屋"
+       "jersey": "7",
+       "name": "ブラントリー"
       },
       {
        "jersey": "9",
        "name": "森川"
       },
       {
-       "jersey": "11",
-       "name": "熊谷"
+       "jersey": "77",
+       "name": "土屋"
       },
       {
-       "jersey": "13",
-       "name": "星川"
+       "jersey": "11",
+       "name": "熊谷"
       }
      ],
      "sec": 61,
      "for": 3,
-     "against": 2,
-     "margin": 1,
+     "against": 4,
+     "margin": -1,
      "stints": 1
     },
     {
@@ -2904,10 +2974,6 @@
       {
        "jersey": "13",
        "name": "星川"
-      },
-      {
-       "jersey": "77",
-       "name": "土屋"
       },
       {
        "jersey": "7",
@@ -2920,6 +2986,10 @@
       {
        "jersey": "11",
        "name": "熊谷"
+      },
+      {
+       "jersey": "77",
+       "name": "土屋"
       }
      ],
      "sec": 55,
@@ -3630,5 +3700,5 @@
   ]
  ],
  "corrections": [],
- "generatedAt": "2026-11-21T13:32:01+00:00"
+ "generatedAt": "2026-11-22T06:33:11+00:00"
 }
