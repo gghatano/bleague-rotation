@@ -33,7 +33,7 @@
     {
      "jersey": "5",
      "name": "田口",
-     "totalSec": 750,
+     "totalSec": 742,
      "intervals": [
       [
        0,
@@ -45,15 +45,19 @@
       ],
       [
        1148,
+       1192
+      ],
+      [
+       1200,
        1485
       ]
      ],
-     "plusMinus": 2
+     "plusMinus": 3
     },
     {
      "jersey": "6",
      "name": "赤穂",
-     "totalSec": 1593,
+     "totalSec": 1601,
      "intervals": [
       [
        0,
@@ -65,10 +69,6 @@
       ],
       [
        1148,
-       1192
-      ],
-      [
-       1200,
        1522
       ],
       [
@@ -84,7 +84,7 @@
        2400
       ]
      ],
-     "plusMinus": 8
+     "plusMinus": 11
     },
     {
      "jersey": "0",
@@ -108,7 +108,7 @@
        2370
       ]
      ],
-     "plusMinus": 13
+     "plusMinus": 12
     },
     {
      "jersey": "13",
@@ -132,7 +132,7 @@
        2382
       ]
      ],
-     "plusMinus": 8
+     "plusMinus": 10
     },
     {
      "jersey": "10",
@@ -156,7 +156,7 @@
        2400
       ]
      ],
-     "plusMinus": 3
+     "plusMinus": 5
     },
     {
      "jersey": "12",
@@ -188,7 +188,7 @@
        2400
       ]
      ],
-     "plusMinus": -1
+     "plusMinus": 0
     },
     {
      "jersey": "11",
@@ -212,7 +212,7 @@
        2400
       ]
      ],
-     "plusMinus": 5
+     "plusMinus": 3
     },
     {
      "jersey": "18",
@@ -240,7 +240,7 @@
        2400
       ]
      ],
-     "plusMinus": 0
+     "plusMinus": -5
     },
     {
      "jersey": "17",
@@ -264,7 +264,7 @@
        2281
       ]
      ],
-     "plusMinus": 7
+     "plusMinus": 6
     }
    ],
    "stints": [
@@ -273,8 +273,11 @@
      "end": 217,
      "for": 9,
      "against": 10,
-     "margin": -1,
      "lineup": [
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
       {
        "jersey": "5",
        "name": "田口"
@@ -284,178 +287,246 @@
        "name": "赤穂"
       },
       {
-       "jersey": "0",
-       "name": "マーフィージュニア"
+       "jersey": "10",
+       "name": "ウェッツェル"
       },
       {
        "jersey": "13",
        "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 7,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": -1
     },
     {
      "start": 217,
      "end": 255,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
       {
        "jersey": "0",
        "name": "マーフィージュニア"
       },
       {
-       "jersey": "13",
-       "name": "スミス"
+       "jersey": "6",
+       "name": "赤穂"
       },
       {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
        "jersey": "12",
        "name": "元田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 255,
      "end": 374,
      "for": 5,
      "against": 5,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "0",
        "name": "マーフィージュニア"
       },
       {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 374,
      "end": 422,
      "for": 1,
      "against": 0,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "12",
        "name": "元田"
       },
       {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
        "jersey": "18",
        "name": "岩屋"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 3,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 422,
      "end": 531,
      "for": 2,
      "against": 6,
-     "margin": -4,
      "lineup": [
       {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "17",
-       "name": "中山"
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
        "jersey": "18",
        "name": "岩屋"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -4
     },
     {
      "start": 531,
      "end": 600,
-     "for": 3,
+     "for": 5,
      "against": 2,
-     "margin": 1,
      "lineup": [
       {
-       "jersey": "17",
-       "name": "中山"
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
        "jersey": "18",
        "name": "岩屋"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       },
       {
        "jersey": "6",
        "name": "赤穂"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 3
     },
     {
      "start": 600,
      "end": 726,
-     "for": 4,
+     "for": 2,
      "against": 4,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "11",
-       "name": "ジャオ"
-      },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
       },
       {
        "jersey": "18",
@@ -469,22 +540,30 @@
        "jersey": "13",
        "name": "スミス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 2
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
     },
     {
      "start": 726,
      "end": 811,
      "for": 2,
      "against": 5,
-     "margin": -3,
      "lineup": [
       {
        "jersey": "18",
        "name": "岩屋"
-      },
-      {
-       "jersey": "5",
-       "name": "田口"
       },
       {
        "jersey": "6",
@@ -495,59 +574,75 @@
        "name": "スミス"
       },
       {
+       "jersey": "5",
+       "name": "田口"
+      },
+      {
        "jersey": "10",
        "name": "ウェッツェル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": -3
     },
     {
      "start": 811,
      "end": 922,
      "for": 6,
      "against": 3,
-     "margin": 3,
      "lineup": [
-      {
-       "jersey": "5",
-       "name": "田口"
-      },
       {
        "jersey": "6",
        "name": "赤穂"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
       },
       {
        "jersey": "13",
        "name": "スミス"
       },
       {
+       "jersey": "5",
+       "name": "田口"
+      },
+      {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 3,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 3
     },
     {
      "start": 922,
      "end": 1097,
      "for": 2,
      "against": 0,
-     "margin": 2,
      "lineup": [
-      {
-       "jersey": "17",
-       "name": "中山"
-      },
-      {
-       "jersey": "11",
-       "name": "ジャオ"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
       {
        "jersey": "13",
        "name": "スミス"
@@ -555,16 +650,52 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 4,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 2
+     },
+     "margin": 2
     },
     {
      "start": 1097,
      "end": 1148,
      "for": 2,
      "against": 2,
-     "margin": 0,
      "lineup": [
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "10",
+       "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -572,11 +703,28 @@
       {
        "jersey": "12",
        "name": "元田"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
+      }
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 0
+     },
+     "margin": 0
+    },
+    {
+     "start": 1148,
+     "end": 1192,
+     "for": 3,
+     "against": 2,
+     "lineup": [
       {
        "jersey": "13",
        "name": "スミス"
@@ -584,164 +732,215 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "5",
+       "name": "田口"
+      },
+      {
+       "jersey": "6",
+       "name": "赤穂"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
-     "start": 1148,
-     "end": 1192,
-     "for": 2,
+     "start": 1192,
+     "end": 1200,
+     "for": 1,
      "against": 2,
-     "margin": 0,
      "lineup": [
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "10",
+       "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
       {
        "jersey": "6",
        "name": "赤穂"
       },
       {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "5",
-       "name": "田口"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
-      }
-     ]
-    },
-    {
-     "start": 1192,
-     "end": 1200,
-     "for": 2,
-     "against": 0,
-     "margin": 2,
-     "lineup": [
-      {
        "jersey": "12",
        "name": "元田"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "5",
-       "name": "田口"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 1200,
      "end": 1485,
      "for": 9,
-     "against": 8,
-     "margin": 1,
+     "against": 6,
      "lineup": [
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "5",
-       "name": "田口"
-      },
       {
        "jersey": "13",
        "name": "スミス"
+      },
+      {
+       "jersey": "10",
+       "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
       },
       {
        "jersey": "6",
        "name": "赤穂"
       },
       {
-       "jersey": "10",
-       "name": "ウェッツェル"
+       "jersey": "5",
+       "name": "田口"
       }
-     ]
+     ],
+     "off": {
+      "fga": 8,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 10,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": 3
     },
     {
      "start": 1485,
      "end": 1494,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "13",
        "name": "スミス"
       },
       {
-       "jersey": "6",
-       "name": "赤穂"
-      },
-      {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "18",
-       "name": "岩屋"
+       "jersey": "6",
+       "name": "赤穂"
       },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 0
     },
     {
      "start": 1494,
      "end": 1522,
      "for": 3,
      "against": 0,
-     "margin": 3,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
       {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "17",
-       "name": "中山"
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "18",
        "name": "岩屋"
       },
       {
-       "jersey": "12",
-       "name": "元田"
+       "jersey": "17",
+       "name": "中山"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 3
     },
     {
      "start": 1522,
      "end": 1627,
      "for": 5,
      "against": 6,
-     "margin": -1,
      "lineup": [
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
       },
       {
        "jersey": "17",
@@ -750,24 +949,36 @@
       {
        "jersey": "11",
        "name": "ジャオ"
-      },
-      {
-       "jersey": "18",
-       "name": "岩屋"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 1627,
      "end": 1696,
      "for": 3,
      "against": 4,
-     "margin": -1,
      "lineup": [
+      {
+       "jersey": "12",
+       "name": "元田"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
+      },
       {
        "jersey": "17",
        "name": "中山"
@@ -777,92 +988,235 @@
        "name": "ジャオ"
       },
       {
-       "jersey": "18",
-       "name": "岩屋"
-      },
+       "jersey": "6",
+       "name": "赤穂"
+      }
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
+    },
+    {
+     "start": 1696,
+     "end": 1696,
+     "for": 0,
+     "against": 0,
+     "lineup": [
       {
        "jersey": "12",
        "name": "元田"
       },
       {
+       "jersey": "18",
+       "name": "岩屋"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
        "jersey": "6",
        "name": "赤穂"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 1696,
      "end": 1740,
      "for": 2,
-     "against": 0,
-     "margin": 2,
+     "against": 2,
      "lineup": [
+      {
+       "jersey": "12",
+       "name": "元田"
+      },
       {
        "jersey": "18",
        "name": "岩屋"
       },
       {
-       "jersey": "10",
-       "name": "ウェッツェル"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
+       "jersey": "6",
+       "name": "赤穂"
       },
       {
        "jersey": "13",
        "name": "スミス"
       },
       {
-       "jersey": "6",
-       "name": "赤穂"
+       "jersey": "10",
+       "name": "ウェッツェル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 0
     },
     {
      "start": 1740,
      "end": 1989,
-     "for": 11,
-     "against": 14,
-     "margin": -3,
+     "for": 13,
+     "against": 12,
      "lineup": [
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
-      },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "6",
+       "name": "赤穂"
       },
       {
        "jersey": "13",
        "name": "スミス"
       },
       {
-       "jersey": "6",
-       "name": "赤穂"
+       "jersey": "10",
+       "name": "ウェッツェル"
       },
       {
        "jersey": "0",
        "name": "マーフィージュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 8,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 7,
+      "fta": 3,
+      "oreb": 2,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 1989,
      "end": 2072,
-     "for": 5,
+     "for": 3,
      "against": 2,
-     "margin": 3,
      "lineup": [
       {
        "jersey": "12",
        "name": "元田"
       },
       {
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
        "jersey": "13",
        "name": "スミス"
       },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      }
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 1
+    },
+    {
+     "start": 2072,
+     "end": 2072,
+     "for": 3,
+     "against": 0,
+     "lineup": [
+      {
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
+      }
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 3
+    },
+    {
+     "start": 2072,
+     "end": 2104,
+     "for": 0,
+     "against": 0,
+     "lineup": [
       {
        "jersey": "6",
        "name": "赤穂"
@@ -874,115 +1228,118 @@
       {
        "jersey": "11",
        "name": "ジャオ"
-      }
-     ]
-    },
-    {
-     "start": 2072,
-     "end": 2104,
-     "for": 3,
-     "against": 0,
-     "margin": 3,
-     "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
-      {
-       "jersey": "18",
-       "name": "岩屋"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
       },
       {
        "jersey": "17",
        "name": "中山"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
+       "jersey": "18",
+       "name": "岩屋"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 0
     },
     {
      "start": 2104,
      "end": 2199,
      "for": 3,
      "against": 2,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "18",
-       "name": "岩屋"
-      },
       {
        "jersey": "0",
        "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "17",
-       "name": "中山"
       },
       {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
+       "jersey": "17",
+       "name": "中山"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
+      },
+      {
        "jersey": "10",
        "name": "ウェッツェル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 2199,
      "end": 2281,
      "for": 3,
-     "against": 0,
-     "margin": 3,
+     "against": 3,
      "lineup": [
       {
        "jersey": "0",
        "name": "マーフィージュニア"
       },
       {
-       "jersey": "17",
-       "name": "中山"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
+       "jersey": "17",
+       "name": "中山"
+      },
+      {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 2281,
      "end": 2313,
      "for": 3,
-     "against": 3,
-     "margin": 0,
+     "against": 2,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -990,28 +1347,40 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 2313,
      "end": 2328,
      "for": 0,
-     "against": 3,
-     "margin": -3,
+     "against": 1,
      "lineup": [
-      {
-       "jersey": "18",
-       "name": "岩屋"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1019,24 +1388,40 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 2328,
      "end": 2363,
-     "for": 0,
+     "for": 2,
      "against": 0,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1044,28 +1429,40 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "6",
        "name": "赤穂"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 2
     },
     {
      "start": 2363,
      "end": 2370,
      "for": 2,
      "against": 3,
-     "margin": -1,
      "lineup": [
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1073,24 +1470,40 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "6",
        "name": "赤穂"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 2370,
      "end": 2382,
-     "for": 2,
+     "for": 1,
      "against": 0,
-     "margin": 2,
      "lineup": [
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1098,6 +1511,10 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "6",
@@ -1107,14 +1524,26 @@
        "jersey": "18",
        "name": "岩屋"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 2382,
      "end": 2400,
-     "for": 1,
+     "for": 0,
      "against": 2,
-     "margin": -1,
      "lineup": [
       {
        "jersey": "11",
@@ -1136,12 +1565,29 @@
        "jersey": "12",
        "name": "元田"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
     }
    ],
    "lineups": [
     {
      "lineup": [
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
       {
        "jersey": "5",
        "name": "田口"
@@ -1151,67 +1597,51 @@
        "name": "赤穂"
       },
       {
-       "jersey": "0",
-       "name": "マーフィージュニア"
+       "jersey": "10",
+       "name": "ウェッツェル"
       },
       {
        "jersey": "13",
        "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
       }
      ],
      "sec": 657,
-     "for": 26,
-     "against": 23,
-     "margin": 3,
+     "for": 27,
+     "against": 21,
+     "margin": 6,
      "stints": 4
     },
     {
      "lineup": [
       {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
        "jersey": "6",
        "name": "赤穂"
       },
       {
-       "jersey": "0",
-       "name": "マーフィージュニア"
+       "jersey": "10",
+       "name": "ウェッツェル"
       },
       {
        "jersey": "13",
        "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
       },
       {
        "jersey": "12",
        "name": "元田"
       }
      ],
-     "sec": 287,
-     "for": 11,
+     "sec": 295,
+     "for": 14,
      "against": 14,
-     "margin": -3,
-     "stints": 2
+     "margin": 0,
+     "stints": 3
     },
     {
      "lineup": [
-      {
-       "jersey": "17",
-       "name": "中山"
-      },
-      {
-       "jersey": "11",
-       "name": "ジャオ"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
       {
        "jersey": "13",
        "name": "スミス"
@@ -1219,12 +1649,24 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       }
      ],
      "sec": 257,
      "for": 5,
-     "against": 0,
-     "margin": 5,
+     "against": 3,
+     "margin": 2,
      "stints": 2
     },
     {
@@ -1234,20 +1676,20 @@
        "name": "ウェッツェル"
       },
       {
-       "jersey": "17",
-       "name": "中山"
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
        "jersey": "18",
        "name": "岩屋"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       }
      ],
      "sec": 214,
@@ -1263,20 +1705,20 @@
        "name": "マーフィージュニア"
       },
       {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
        "jersey": "10",
        "name": "ウェッツェル"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
       }
      ],
      "sec": 170,
@@ -1288,20 +1730,20 @@
     {
      "lineup": [
       {
-       "jersey": "17",
-       "name": "中山"
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "11",
        "name": "ジャオ"
       },
       {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
        "jersey": "18",
        "name": "岩屋"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       },
       {
        "jersey": "6",
@@ -1309,20 +1751,20 @@
       }
      ],
      "sec": 138,
-     "for": 6,
+     "for": 8,
      "against": 6,
-     "margin": 0,
+     "margin": 2,
      "stints": 2
     },
     {
      "lineup": [
       {
-       "jersey": "11",
-       "name": "ジャオ"
-      },
-      {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
       },
       {
        "jersey": "18",
@@ -1338,28 +1780,28 @@
       }
      ],
      "sec": 126,
-     "for": 4,
+     "for": 2,
      "against": 4,
-     "margin": 0,
-     "stints": 1
+     "margin": -2,
+     "stints": 2
     },
     {
      "lineup": [
       {
-       "jersey": "18",
-       "name": "岩屋"
-      },
-      {
        "jersey": "0",
        "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
       },
       {
        "jersey": "17",
        "name": "中山"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
+       "jersey": "18",
+       "name": "岩屋"
       },
       {
        "jersey": "10",
@@ -1379,16 +1821,16 @@
        "name": "岩屋"
       },
       {
-       "jersey": "5",
-       "name": "田口"
-      },
-      {
        "jersey": "6",
        "name": "赤穂"
       },
       {
        "jersey": "13",
        "name": "スミス"
+      },
+      {
+       "jersey": "5",
+       "name": "田口"
       },
       {
        "jersey": "10",
@@ -1408,12 +1850,12 @@
        "name": "元田"
       },
       {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
        "jersey": "6",
        "name": "赤穂"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "0",
@@ -1425,25 +1867,13 @@
       }
      ],
      "sec": 83,
-     "for": 5,
+     "for": 3,
      "against": 2,
-     "margin": 3,
+     "margin": 1,
      "stints": 1
     },
     {
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1451,11 +1881,52 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
       }
      ],
      "sec": 67,
-     "for": 3,
-     "against": 3,
+     "for": 5,
+     "against": 2,
+     "margin": 3,
+     "stints": 2
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "12",
+       "name": "元田"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
+      }
+     ],
+     "sec": 63,
+     "for": 1,
+     "against": 1,
      "margin": 0,
      "stints": 2
     },
@@ -1470,51 +1941,22 @@
        "name": "ウェッツェル"
       },
       {
-       "jersey": "11",
-       "name": "ジャオ"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "18",
-       "name": "岩屋"
-      }
-     ],
-     "sec": 63,
-     "for": 1,
-     "against": 3,
-     "margin": -2,
-     "stints": 2
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
        "jersey": "6",
        "name": "赤穂"
       },
       {
-       "jersey": "10",
-       "name": "ウェッツェル"
+       "jersey": "12",
+       "name": "元田"
       },
       {
        "jersey": "18",
        "name": "岩屋"
-      },
-      {
-       "jersey": "12",
-       "name": "元田"
       }
      ],
      "sec": 53,
      "for": 2,
-     "against": 0,
-     "margin": 2,
+     "against": 2,
+     "margin": 0,
      "stints": 2
     },
     {
@@ -1522,39 +1964,14 @@
       {
        "jersey": "6",
        "name": "赤穂"
-      },
-      {
-       "jersey": "18",
-       "name": "岩屋"
       },
       {
        "jersey": "0",
        "name": "マーフィージュニア"
       },
       {
-       "jersey": "17",
-       "name": "中山"
-      },
-      {
        "jersey": "11",
        "name": "ジャオ"
-      }
-     ],
-     "sec": 32,
-     "for": 3,
-     "against": 0,
-     "margin": 3,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "6",
-       "name": "赤穂"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
       },
       {
        "jersey": "17",
@@ -1563,10 +1980,35 @@
       {
        "jersey": "18",
        "name": "岩屋"
+      }
+     ],
+     "sec": 32,
+     "for": 0,
+     "against": 0,
+     "margin": 0,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "10",
+       "name": "ウェッツェル"
+      },
+      {
+       "jersey": "6",
+       "name": "赤穂"
       },
       {
        "jersey": "12",
        "name": "元田"
+      },
+      {
+       "jersey": "18",
+       "name": "岩屋"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
       }
      ],
      "sec": 28,
@@ -1599,17 +2041,13 @@
       }
      ],
      "sec": 18,
-     "for": 1,
+     "for": 0,
      "against": 2,
-     "margin": -1,
+     "margin": -2,
      "stints": 1
     },
     {
      "lineup": [
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1617,6 +2055,10 @@
       {
        "jersey": "10",
        "name": "ウェッツェル"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
       },
       {
        "jersey": "6",
@@ -1628,50 +2070,13 @@
       }
      ],
      "sec": 12,
-     "for": 2,
+     "for": 1,
      "against": 0,
-     "margin": 2,
+     "margin": 1,
      "stints": 1
     },
     {
      "lineup": [
-      {
-       "jersey": "12",
-       "name": "元田"
-      },
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "5",
-       "name": "田口"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
-      {
-       "jersey": "10",
-       "name": "ウェッツェル"
-      }
-     ],
-     "sec": 8,
-     "for": 2,
-     "against": 0,
-     "margin": 2,
-     "stints": 1
-    },
-    {
-     "lineup": [
-      {
-       "jersey": "0",
-       "name": "マーフィージュニア"
-      },
-      {
-       "jersey": "13",
-       "name": "スミス"
-      },
       {
        "jersey": "11",
        "name": "ジャオ"
@@ -1681,14 +2086,51 @@
        "name": "ウェッツェル"
       },
       {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
        "jersey": "6",
        "name": "赤穂"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
       }
      ],
      "sec": 7,
      "for": 2,
      "against": 3,
      "margin": -1,
+     "stints": 1
+    },
+    {
+     "lineup": [
+      {
+       "jersey": "6",
+       "name": "赤穂"
+      },
+      {
+       "jersey": "13",
+       "name": "スミス"
+      },
+      {
+       "jersey": "0",
+       "name": "マーフィージュニア"
+      },
+      {
+       "jersey": "11",
+       "name": "ジャオ"
+      },
+      {
+       "jersey": "17",
+       "name": "中山"
+      }
+     ],
+     "sec": 0,
+     "for": 3,
+     "against": 0,
+     "margin": 3,
      "stints": 1
     }
    ]
@@ -1723,7 +2165,7 @@
        1800
       ]
      ],
-     "plusMinus": 4
+     "plusMinus": 0
     },
     {
      "jersey": "21",
@@ -1751,7 +2193,7 @@
        2350
       ]
      ],
-     "plusMinus": 1
+     "plusMinus": -1
     },
     {
      "jersey": "33",
@@ -1843,7 +2285,7 @@
        2400
       ]
      ],
-     "plusMinus": -4
+     "plusMinus": -6
     },
     {
      "jersey": "31",
@@ -1871,7 +2313,7 @@
        2400
       ]
      ],
-     "plusMinus": -9
+     "plusMinus": -7
     },
     {
      "jersey": "18",
@@ -1915,7 +2357,7 @@
        2199
       ]
      ],
-     "plusMinus": -11
+     "plusMinus": -9
     },
     {
      "jersey": "30",
@@ -1943,7 +2385,7 @@
        2400
       ]
      ],
-     "plusMinus": -9
+     "plusMinus": -5
     }
    ],
    "stints": [
@@ -1952,8 +2394,15 @@
      "end": 182,
      "for": 10,
      "against": 6,
-     "margin": 4,
      "lineup": [
+      {
+       "jersey": "2",
+       "name": "リバース"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
+      },
       {
        "jersey": "14",
        "name": "佐藤"
@@ -1965,32 +2414,28 @@
       {
        "jersey": "33",
        "name": "並里"
-      },
-      {
-       "jersey": "2",
-       "name": "リバース"
-      },
-      {
-       "jersey": "6",
-       "name": "新井"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": 4
     },
     {
      "start": 182,
      "end": 233,
      "for": 0,
      "against": 3,
-     "margin": -3,
      "lineup": [
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "33",
-       "name": "並里"
-      },
       {
        "jersey": "2",
        "name": "リバース"
@@ -2000,17 +2445,37 @@
        "name": "新井"
       },
       {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
        "jersey": "31",
        "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": -3
     },
     {
      "start": 233,
      "end": 374,
      "for": 5,
      "against": 5,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "2",
@@ -2032,14 +2497,26 @@
        "jersey": "34",
        "name": "リチャードソン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 374,
      "end": 531,
      "for": 6,
      "against": 3,
-     "margin": 3,
      "lineup": [
       {
        "jersey": "31",
@@ -2050,211 +2527,295 @@
        "name": "森井"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "34",
        "name": "リチャードソン"
       },
       {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 3,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": 3
     },
     {
      "start": 531,
      "end": 592,
      "for": 2,
      "against": 3,
-     "margin": -1,
      "lineup": [
-      {
-       "jersey": "14",
-       "name": "佐藤"
-      },
       {
        "jersey": "18",
        "name": "森井"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "34",
        "name": "リチャードソン"
       },
       {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
+      },
+      {
+       "jersey": "14",
+       "name": "佐藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 592,
      "end": 600,
      "for": 0,
-     "against": 0,
-     "margin": 0,
+     "against": 2,
      "lineup": [
+      {
+       "jersey": "34",
+       "name": "リチャードソン"
+      },
+      {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
       {
        "jersey": "30",
        "name": "須藤"
       },
       {
-       "jersey": "34",
-       "name": "リチャードソン"
+       "jersey": "2",
+       "name": "リバース"
       },
       {
        "jersey": "33",
        "name": "並里"
-      },
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "2",
-       "name": "リバース"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
     },
     {
      "start": 600,
      "end": 639,
      "for": 0,
-     "against": 4,
-     "margin": -4,
+     "against": 2,
      "lineup": [
       {
        "jersey": "34",
        "name": "リチャードソン"
       },
       {
-       "jersey": "33",
-       "name": "並里"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
     },
     {
      "start": 639,
      "end": 838,
      "for": 9,
      "against": 6,
-     "margin": 3,
      "lineup": [
-      {
-       "jersey": "33",
-       "name": "並里"
-      },
       {
        "jersey": "21",
        "name": "コッツァー"
-      },
-      {
-       "jersey": "6",
-       "name": "新井"
       },
       {
        "jersey": "2",
        "name": "リバース"
       },
       {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
+      },
+      {
        "jersey": "31",
        "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 9,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 3
+     },
+     "margin": 3
     },
     {
      "start": 838,
      "end": 870,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "21",
        "name": "コッツァー"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
+       "jersey": "6",
+       "name": "新井"
       },
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 0
     },
     {
      "start": 870,
      "end": 913,
      "for": 3,
      "against": 0,
-     "margin": 3,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "新井"
-      },
       {
        "jersey": "2",
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
+       "jersey": "6",
+       "name": "新井"
       },
       {
        "jersey": "31",
        "name": "ベル"
       },
       {
+       "jersey": "18",
+       "name": "森井"
+      },
+      {
        "jersey": "34",
        "name": "リチャードソン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": 3
     },
     {
      "start": 913,
      "end": 1018,
      "for": 0,
      "against": 4,
-     "margin": -4,
      "lineup": [
       {
        "jersey": "2",
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       },
       {
        "jersey": "34",
@@ -2264,22 +2825,34 @@
        "jersey": "14",
        "name": "佐藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 6,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": -4
     },
     {
      "start": 1018,
      "end": 1044,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "18",
-       "name": "森井"
-      },
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       },
       {
        "jersey": "34",
@@ -2293,14 +2866,26 @@
        "jersey": "21",
        "name": "コッツァー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 1044,
      "end": 1097,
      "for": 0,
      "against": 0,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "34",
@@ -2311,37 +2896,49 @@
        "name": "佐藤"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "33",
        "name": "並里"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 1097,
      "end": 1160,
      "for": 4,
      "against": 2,
-     "margin": 2,
      "lineup": [
       {
        "jersey": "14",
        "name": "佐藤"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "33",
@@ -2351,23 +2948,68 @@
        "jersey": "2",
        "name": "リバース"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 2,
+      "oreb": 2,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 2
     },
     {
      "start": 1160,
      "end": 1200,
-     "for": 0,
+     "for": 2,
      "against": 4,
-     "margin": -4,
      "lineup": [
+      {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
       {
        "jersey": "30",
        "name": "須藤"
       },
       {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
+       "jersey": "2",
+       "name": "リバース"
+      },
+      {
        "jersey": "31",
        "name": "ベル"
-      },
+      }
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 4,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -2
+    },
+    {
+     "start": 1200,
+     "end": 1306,
+     "for": 4,
+     "against": 5,
+     "lineup": [
       {
        "jersey": "21",
        "name": "コッツァー"
@@ -2379,16 +3021,7 @@
       {
        "jersey": "2",
        "name": "リバース"
-      }
-     ]
-    },
-    {
-     "start": 1200,
-     "end": 1306,
-     "for": 6,
-     "against": 5,
-     "margin": 1,
-     "lineup": [
+      },
       {
        "jersey": "6",
        "name": "新井"
@@ -2396,32 +3029,28 @@
       {
        "jersey": "14",
        "name": "佐藤"
-      },
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "33",
-       "name": "並里"
-      },
-      {
-       "jersey": "2",
-       "name": "リバース"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 1306,
      "end": 1382,
      "for": 0,
      "against": 2,
-     "margin": -2,
      "lineup": [
-      {
-       "jersey": "14",
-       "name": "佐藤"
-      },
       {
        "jersey": "21",
        "name": "コッツァー"
@@ -2435,17 +3064,33 @@
        "name": "リバース"
       },
       {
+       "jersey": "14",
+       "name": "佐藤"
+      },
+      {
        "jersey": "31",
        "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": -2
     },
     {
      "start": 1382,
      "end": 1485,
      "for": 2,
      "against": 2,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "21",
@@ -2467,82 +3112,114 @@
        "jersey": "30",
        "name": "須藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     },
     {
      "start": 1485,
      "end": 1587,
      "for": 3,
      "against": 6,
-     "margin": -3,
      "lineup": [
       {
        "jersey": "2",
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
       },
       {
-       "jersey": "34",
-       "name": "リチャードソン"
-      },
-      {
        "jersey": "30",
        "name": "須藤"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
+      },
+      {
+       "jersey": "34",
+       "name": "リチャードソン"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": -3
     },
     {
      "start": 1587,
      "end": 1696,
      "for": 7,
      "against": 5,
-     "margin": 2,
      "lineup": [
-      {
-       "jersey": "18",
-       "name": "森井"
-      },
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       },
       {
        "jersey": "34",
        "name": "リチャードソン"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 2
     },
     {
      "start": 1696,
      "end": 1740,
-     "for": 0,
+     "for": 2,
      "against": 2,
-     "margin": -2,
      "lineup": [
       {
        "jersey": "30",
        "name": "須藤"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       },
@@ -2551,26 +3228,34 @@
        "name": "リバース"
       },
       {
+       "jersey": "6",
+       "name": "新井"
+      },
+      {
        "jersey": "33",
        "name": "並里"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 1
+     },
+     "margin": 0
     },
     {
      "start": 1740,
      "end": 1786,
-     "for": 3,
+     "for": 1,
      "against": 3,
-     "margin": 0,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
-       "jersey": "14",
-       "name": "佐藤"
-      },
       {
        "jersey": "21",
        "name": "コッツァー"
@@ -2580,51 +3265,79 @@
        "name": "リバース"
       },
       {
+       "jersey": "6",
+       "name": "新井"
+      },
+      {
        "jersey": "33",
        "name": "並里"
+      },
+      {
+       "jersey": "14",
+       "name": "佐藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 0
+     },
+     "margin": -2
     },
     {
      "start": 1786,
      "end": 1800,
      "for": 4,
      "against": 0,
-     "margin": 4,
      "lineup": [
+      {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
+      {
+       "jersey": "2",
+       "name": "リバース"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
+      },
       {
        "jersey": "14",
        "name": "佐藤"
       },
       {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "2",
-       "name": "リバース"
-      },
-      {
-       "jersey": "33",
-       "name": "並里"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 4
     },
     {
      "start": 1800,
      "end": 1989,
      "for": 7,
-     "against": 8,
-     "margin": -1,
+     "against": 10,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "新井"
-      },
       {
        "jersey": "21",
        "name": "コッツァー"
@@ -2640,52 +3353,84 @@
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
       }
-     ]
+     ],
+     "off": {
+      "fga": 6,
+      "fta": 0,
+      "oreb": 2,
+      "tov": 0
+     },
+     "def": {
+      "fga": 5,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -3
     },
     {
      "start": 1989,
      "end": 2057,
      "for": 2,
-     "against": 5,
-     "margin": -3,
+     "against": 3,
      "lineup": [
       {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
+       "jersey": "31",
+       "name": "ベル"
       },
       {
        "jersey": "30",
        "name": "須藤"
       },
       {
-       "jersey": "33",
-       "name": "並里"
-      },
-      {
        "jersey": "34",
        "name": "リチャードソン"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 2057,
      "end": 2104,
      "for": 0,
      "against": 3,
-     "margin": -3,
      "lineup": [
-      {
-       "jersey": "30",
-       "name": "須藤"
-      },
       {
        "jersey": "33",
        "name": "並里"
+      },
+      {
+       "jersey": "31",
+       "name": "ベル"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "34",
@@ -2694,20 +3439,32 @@
       {
        "jersey": "6",
        "name": "新井"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
       }
-     ]
+     ],
+     "off": {
+      "fga": 0,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 1
+     },
+     "def": {
+      "fga": 1,
+      "fta": 3,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -3
     },
     {
      "start": 2104,
      "end": 2199,
      "for": 2,
      "against": 3,
-     "margin": -1,
      "lineup": [
+      {
+       "jersey": "31",
+       "name": "ベル"
+      },
       {
        "jersey": "34",
        "name": "リチャードソン"
@@ -2717,59 +3474,75 @@
        "name": "新井"
       },
       {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "21",
+       "name": "コッツァー"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 2,
+      "fta": 0,
+      "oreb": 1,
+      "tov": 1
+     },
+     "margin": -1
     },
     {
      "start": 2199,
      "end": 2216,
      "for": 0,
      "against": 1,
-     "margin": -1,
      "lineup": [
-      {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
       },
       {
        "jersey": "2",
        "name": "リバース"
       },
       {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
+      {
        "jersey": "30",
        "name": "須藤"
       }
-     ]
+     ],
+     "off": {
+      "fga": 1,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 2,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": -1
     },
     {
      "start": 2216,
      "end": 2350,
      "for": 6,
      "against": 5,
-     "margin": 1,
      "lineup": [
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
       {
        "jersey": "31",
        "name": "ベル"
@@ -2779,6 +3552,10 @@
        "name": "リバース"
       },
       {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
+      {
        "jersey": "30",
        "name": "須藤"
       },
@@ -2786,14 +3563,26 @@
        "jersey": "33",
        "name": "並里"
       }
-     ]
+     ],
+     "off": {
+      "fga": 4,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 4,
+      "fta": 0,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 1
     },
     {
      "start": 2350,
      "end": 2400,
      "for": 5,
      "against": 5,
-     "margin": 0,
      "lineup": [
       {
        "jersey": "31",
@@ -2815,20 +3604,25 @@
        "jersey": "6",
        "name": "新井"
       }
-     ]
+     ],
+     "off": {
+      "fga": 3,
+      "fta": 1,
+      "oreb": 0,
+      "tov": 0
+     },
+     "def": {
+      "fga": 0,
+      "fta": 6,
+      "oreb": 0,
+      "tov": 0
+     },
+     "margin": 0
     }
    ],
    "lineups": [
     {
      "lineup": [
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "33",
-       "name": "並里"
-      },
       {
        "jersey": "2",
        "name": "リバース"
@@ -2836,6 +3630,14 @@
       {
        "jersey": "6",
        "name": "新井"
+      },
+      {
+       "jersey": "21",
+       "name": "コッツァー"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
       },
       {
        "jersey": "31",
@@ -2844,12 +3646,20 @@
      ],
      "sec": 439,
      "for": 16,
-     "against": 17,
-     "margin": -1,
+     "against": 19,
+     "margin": -3,
      "stints": 3
     },
     {
      "lineup": [
+      {
+       "jersey": "2",
+       "name": "リバース"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
+      },
       {
        "jersey": "14",
        "name": "佐藤"
@@ -2861,35 +3671,23 @@
       {
        "jersey": "33",
        "name": "並里"
-      },
-      {
-       "jersey": "2",
-       "name": "リバース"
-      },
-      {
-       "jersey": "6",
-       "name": "新井"
       }
      ],
      "sec": 334,
-     "for": 19,
+     "for": 15,
      "against": 14,
-     "margin": 5,
+     "margin": 1,
      "stints": 3
     },
     {
      "lineup": [
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "33",
@@ -2898,12 +3696,16 @@
       {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "31",
+       "name": "ベル"
       }
      ],
      "sec": 277,
-     "for": 8,
+     "for": 10,
      "against": 11,
-     "margin": -3,
+     "margin": -1,
      "stints": 3
     },
     {
@@ -2917,16 +3719,16 @@
        "name": "森井"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "34",
        "name": "リチャードソン"
       },
       {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       }
      ],
      "sec": 266,
@@ -2971,12 +3773,12 @@
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       },
       {
        "jersey": "34",
@@ -3000,20 +3802,20 @@
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
       },
       {
-       "jersey": "34",
-       "name": "リチャードソン"
-      },
-      {
        "jersey": "30",
        "name": "須藤"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
+      },
+      {
+       "jersey": "34",
+       "name": "リチャードソン"
       }
      ],
      "sec": 102,
@@ -3025,6 +3827,10 @@
     {
      "lineup": [
       {
+       "jersey": "31",
+       "name": "ベル"
+      },
+      {
        "jersey": "34",
        "name": "リチャードソン"
       },
@@ -3033,16 +3839,12 @@
        "name": "新井"
       },
       {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "21",
+       "name": "コッツァー"
       }
      ],
      "sec": 95,
@@ -3054,10 +3856,6 @@
     {
      "lineup": [
       {
-       "jersey": "14",
-       "name": "佐藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       },
@@ -3068,6 +3866,10 @@
       {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "14",
+       "name": "佐藤"
       },
       {
        "jersey": "31",
@@ -3087,26 +3889,26 @@
        "name": "リバース"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "33",
        "name": "並里"
       },
       {
-       "jersey": "34",
-       "name": "リチャードソン"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
+      },
+      {
+       "jersey": "34",
+       "name": "リチャードソン"
       }
      ],
      "sec": 68,
      "for": 2,
-     "against": 5,
-     "margin": -3,
+     "against": 3,
+     "margin": -1,
      "stints": 1
     },
     {
@@ -3116,12 +3918,12 @@
        "name": "佐藤"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "33",
@@ -3141,16 +3943,8 @@
     {
      "lineup": [
       {
-       "jersey": "14",
-       "name": "佐藤"
-      },
-      {
        "jersey": "18",
        "name": "森井"
-      },
-      {
-       "jersey": "30",
-       "name": "須藤"
       },
       {
        "jersey": "34",
@@ -3159,6 +3953,14 @@
       {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
+      },
+      {
+       "jersey": "14",
+       "name": "佐藤"
       }
      ],
      "sec": 61,
@@ -3178,12 +3980,12 @@
        "name": "佐藤"
       },
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "33",
@@ -3228,12 +4030,16 @@
     {
      "lineup": [
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "33",
        "name": "並里"
+      },
+      {
+       "jersey": "31",
+       "name": "ベル"
+      },
+      {
+       "jersey": "30",
+       "name": "須藤"
       },
       {
        "jersey": "34",
@@ -3242,10 +4048,6 @@
       {
        "jersey": "6",
        "name": "新井"
-      },
-      {
-       "jersey": "31",
-       "name": "ベル"
       }
      ],
      "sec": 47,
@@ -3261,10 +4063,6 @@
        "name": "須藤"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       },
@@ -3273,14 +4071,18 @@
        "name": "リバース"
       },
       {
+       "jersey": "6",
+       "name": "新井"
+      },
+      {
        "jersey": "33",
        "name": "並里"
       }
      ],
      "sec": 44,
-     "for": 0,
+     "for": 2,
      "against": 2,
-     "margin": -2,
+     "margin": 0,
      "stints": 1
     },
     {
@@ -3290,26 +4092,26 @@
        "name": "リチャードソン"
       },
       {
-       "jersey": "33",
-       "name": "並里"
-      },
-      {
        "jersey": "21",
        "name": "コッツァー"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
+      },
+      {
+       "jersey": "6",
+       "name": "新井"
       }
      ],
      "sec": 39,
      "for": 0,
-     "against": 4,
-     "margin": -4,
+     "against": 2,
+     "margin": -2,
      "stints": 1
     },
     {
@@ -3319,20 +4121,20 @@
        "name": "コッツァー"
       },
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
        "jersey": "2",
        "name": "リバース"
       },
       {
-       "jersey": "18",
-       "name": "森井"
+       "jersey": "6",
+       "name": "新井"
       },
       {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       }
      ],
      "sec": 32,
@@ -3344,12 +4146,12 @@
     {
      "lineup": [
       {
-       "jersey": "18",
-       "name": "森井"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
+      },
+      {
+       "jersey": "18",
+       "name": "森井"
       },
       {
        "jersey": "34",
@@ -3373,20 +4175,20 @@
     {
      "lineup": [
       {
-       "jersey": "6",
-       "name": "新井"
-      },
-      {
-       "jersey": "21",
-       "name": "コッツァー"
-      },
-      {
        "jersey": "31",
        "name": "ベル"
       },
       {
+       "jersey": "6",
+       "name": "新井"
+      },
+      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "21",
+       "name": "コッツァー"
       },
       {
        "jersey": "30",
@@ -3402,30 +4204,30 @@
     {
      "lineup": [
       {
-       "jersey": "30",
-       "name": "須藤"
-      },
-      {
        "jersey": "34",
        "name": "リチャードソン"
-      },
-      {
-       "jersey": "33",
-       "name": "並里"
       },
       {
        "jersey": "21",
        "name": "コッツァー"
       },
       {
+       "jersey": "30",
+       "name": "須藤"
+      },
+      {
        "jersey": "2",
        "name": "リバース"
+      },
+      {
+       "jersey": "33",
+       "name": "並里"
       }
      ],
      "sec": 8,
      "for": 0,
-     "against": 0,
-     "margin": 0,
+     "against": 2,
+     "margin": -2,
      "stints": 1
     }
    ]
@@ -3449,7 +4251,7 @@
    "2P"
   ],
   [
-   89,
+   94,
    1,
    2,
    "33",
@@ -3601,7 +4403,7 @@
    "2P"
   ],
   [
-   620,
+   613,
    0,
    2,
    "13",
@@ -3633,7 +4435,7 @@
    "2P"
   ],
   [
-   758,
+   761,
    1,
    3,
    "31",
@@ -4202,5 +5004,5 @@
   ]
  ],
  "corrections": [],
- "generatedAt": "2026-10-24T20:57:35+00:00"
+ "generatedAt": "2026-11-22T06:33:11+00:00"
 }

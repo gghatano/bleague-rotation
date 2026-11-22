@@ -200,3 +200,83 @@ class ScheduleTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class BoxTest(unittest.TestCase):
+    def test_box_of_vocabulary(self):
+        from rotation.analyze import box_of
+        cases = {
+            '#3 P3 2Pシュート インサイドペイント× レイアップ': 'fga',
+            '#3 P3 3Pシュート○(3点) ジャンプショット ポインツオフターンオーバー': 'fga',
+            '#3 P3 フリースロー× 1/2': 'fta',
+            '#3 P3 オフェンスリバウンド(1-0-1)': 'oreb',
+            'チームオフェンスリバウンド(1-1-2)': 'oreb',
+            '#3 P3 ターンオーバー(2本) バッドパス': 'tov',
+            'チームターンオーバー(1本) 24秒バイオレーション': 'tov',
+        }
+        for desc, key in cases.items():
+            box = box_of(desc)
+            self.assertEqual(box[key], 1, desc)
+            self.assertEqual(sum(box.values()), 1, desc)
+        for desc in ('#3 P3 ディフェンスリバウンド(0-1-1)', 'チームディフェンスリバウンド(0-1-1)',
+                     '#3 P3 スティール(1本)', '#3 P3 アシスト(1本)', '#3 P3 プレイヤーイン'):
+            self.assertEqual(sum(box_of(desc).values()), 0, desc)
+
+    def test_possessions_formula(self):
+        from rotation.analyze import possessions
+        self.assertAlmostEqual(possessions({'fga': 60, 'fta': 25, 'oreb': 10, 'tov': 12}), 73.0)
+
+    def test_stint_box_goes_to_the_lineup_on_court(self):
+        swap = [
+            li('残り8分00秒', HOME, '#1 P1 3Pシュート× ジャンプショット'),
+            li('残り8分00秒', HOME, 'チームオフェンスリバウンド(1-1-2)'),
+            li('残り7分00秒', AWAY, '#11 P11 ターンオーバー(1本) バッドパス'),
+            li('残り5分00秒', HOME, '#1 P1 プレイヤーアウト'),
+            li('残り5分00秒', HOME, '#6 P6 プレイヤーイン'),
+            li('残り4分00秒', HOME, '#6 P6 フリースロー○(1点) 1/1'),
+        ]
+        home = team(run(game(swap)), HOME)
+        first, second = home['stints'][0], home['stints'][1]
+        self.assertEqual(first['off'], {'fga': 1, 'fta': 0, 'oreb': 1, 'tov': 0})
+        self.assertEqual(first['def'], {'fga': 0, 'fta': 0, 'oreb': 0, 'tov': 1})
+        self.assertEqual(second['off']['fta'], 1)
+        self.assertEqual(second['off']['fga'], 1)  # BASELINE_SCORING の最終盤のシュート
+
+
+class PlayOrderTest(unittest.TestCase):
+    """A play belongs to the five on court when it was logged, not to whoever
+    is on court at the end of its second (official +/- agrees)."""
+
+    def test_free_throw_before_substitution_in_same_second(self):
+        rows = [
+            li('残り5分00秒', HOME, '#1 P1 フリースロー○(1点) 1/2'),
+            li('残り5分00秒', HOME, '#1 P1 プレイヤーアウト'),
+            li('残り5分00秒', HOME, '#6 P6 プレイヤーイン'),
+            li('残り5分00秒', HOME, '#2 P2 フリースロー○(1点) 2/2'),
+        ]
+        home = team(run(game(rows)), HOME)
+        pm = {p['jersey']: p['plusMinus'] for p in home['players']}
+        self.assertEqual(pm['1'], 1)
+        self.assertEqual(pm['6'], 1 + 2 - 2)  # 2本目のFTと、最終盤の得点の応酬
+        self.assertEqual(home['stints'][0]['off']['fta'], 1)
+
+    def test_play_at_final_whistle_is_kept(self):
+        rows = [li('残り0分00秒', HOME, '#1 P1 3Pシュート○(3点) ジャンプショット')]
+        home = team(run(page(starters(HOME, H5) + starters(AWAY, A5), [], [], BASELINE_SCORING + rows)), HOME)
+        self.assertEqual(sum(s['for'] for s in home['stints']), home['score'])
+        self.assertEqual(sum(s['off']['fga'] for s in home['stints']), 2)
+
+    def test_play_between_two_pair_swaps_gets_a_zero_second_stint(self):
+        rows = [
+            li('残り5分00秒', HOME, '#1 P1 プレイヤーアウト'),
+            li('残り5分00秒', HOME, '#6 P6 プレイヤーイン'),
+            li('残り5分00秒', HOME, '#6 P6 フリースロー○(1点) 1/1'),
+            li('残り5分00秒', HOME, '#2 P2 プレイヤーアウト'),
+            li('残り5分00秒', HOME, '#7 P7 プレイヤーイン'),
+        ]
+        home = team(run(game(rows)), HOME)
+        middle = home['stints'][1]
+        self.assertEqual((middle['start'], middle['end'], middle['for']), (300, 300, 1))
+        self.assertEqual({p['jersey'] for p in middle['lineup']}, {'6', '2', '3', '4', '5'})
+        pm = {p['jersey']: p['plusMinus'] for p in home['players']}
+        self.assertEqual((pm['2'], pm['7']), (1, 0))

@@ -9,6 +9,10 @@ SHOT_RE = re.compile(r'(2Pシュート|3Pシュート|フリースロー).*?(○
 SHOT_POINTS = {'2Pシュート': 2, '3Pシュート': 3, 'フリースロー': 1}
 SHOT_KIND = {'2Pシュート': '2P', '3Pシュート': '3P', 'フリースロー': 'FT'}
 PLAYER_RE = re.compile(r'#(\d+)\s+(.+?)\s+(?:2Pシュート|3Pシュート|フリースロー)')
+OREB_RE = re.compile(r'オフェンスリバウンド\(')  # チームオフェンスリバウンド も含む
+TOV_RE = re.compile(r'ターンオーバー\(\d+本\)')  # チームターンオーバー も含む。「ポインツオフターンオーバー」は得点の付記なので除く
+BOX_KEYS = ('fga', 'fta', 'oreb', 'tov')
+FT_WEIGHT = 0.44
 
 
 class DataError(Exception):
@@ -32,6 +36,23 @@ def clock_label(sec: int, num_periods: int = REGULAR_PERIODS) -> str:
 def points_of(desc: str) -> int:
     m = SHOT_RE.search(desc)
     return SHOT_POINTS[m.group(1)] if m and m.group(2) == '○' else 0
+
+
+def box_of(desc: str) -> dict:
+    """The possession-ending ingredients one play adds to its team's count."""
+    box = dict.fromkeys(BOX_KEYS, 0)
+    if m := SHOT_RE.search(desc):
+        box['fta' if m.group(1) == 'フリースロー' else 'fga'] = 1
+    elif OREB_RE.search(desc):
+        box['oreb'] = 1
+    elif TOV_RE.search(desc):
+        box['tov'] = 1
+    return box
+
+
+def possessions(box: dict) -> float:
+    """FGA + 0.44*FTA - OREB + TOV: the usual estimate from box counts."""
+    return box['fga'] + FT_WEIGHT * box['fta'] - box['oreb'] + box['tov']
 
 
 def reconstruct(events: list[Event], teams: list[str], game_end: int, num_periods: int = REGULAR_PERIODS):
@@ -70,15 +91,39 @@ def reconstruct(events: list[Event], teams: list[str], game_end: int, num_period
     return intervals, anomalies
 
 
-def _stints(team, opp, events, intervals, game_end):
-    bounds = sorted({0, game_end} | {e.sec for e in events if e.team == team and SUB_RE.match(e.desc)})
-    scoring = [(e.sec, e.team, p) for e in events if (p := points_of(e.desc))]
-    stints = []
-    for start, end in zip(bounds, bounds[1:]):
-        lineup = [{'jersey': j, 'name': n} for (j, n), a, b in intervals if a <= start and end <= b]
-        pf = sum(p for s, t, p in scoring if t == team and start <= s < end)
-        pa = sum(p for s, t, p in scoring if t == opp and start <= s < end)
-        stints.append({'start': start, 'end': end, 'for': pf, 'against': pa, 'margin': pf - pa, 'lineup': lineup})
+def _stints(team, opp, events, game_end):
+    """Splits the team's game into runs of one five, following the order of the
+    play-by-play rather than the clock: a substitution and a free throw often
+    share a second, and the play belongs to whoever was on court when it was
+    logged. A new stint opens each time the court is back to five and the five
+    differ, so a pair swapped mid-batch can leave a stint of zero seconds; it
+    still owns the plays logged inside it. Plays logged while a batch has the
+    court at four or six stay with the five before it. Duplicate INs and OUTs
+    are skipped as in reconstruct()."""
+    court, stints = {}, []
+    for e in events:
+        if e.team == team and (m := SUB_RE.match(e.desc)):
+            key = (m.group(1), m.group(2))
+            if m.group(3) == 'イン':
+                court.setdefault(key, None)
+            else:
+                court.pop(key, None)
+            if len(court) == 5 and (not stints or set(court) != stints[-1]['keys']):
+                if stints:
+                    stints[-1]['end'] = e.sec
+                stints.append({'start': e.sec, 'end': game_end, 'for': 0, 'against': 0, 'keys': set(court),
+                               'lineup': [{'jersey': j, 'name': n} for j, n in court],
+                               'off': dict.fromkeys(BOX_KEYS, 0), 'def': dict.fromkeys(BOX_KEYS, 0)})
+            continue
+        if not stints or e.team not in (team, opp):
+            continue
+        st, mine = stints[-1], e.team == team
+        st['for' if mine else 'against'] += points_of(e.desc)
+        for k, v in box_of(e.desc).items():
+            st['off' if mine else 'def'][k] += v
+    for st in stints:
+        del st['keys']
+        st['margin'] = st['for'] - st['against']
     return stints
 
 
@@ -140,7 +185,7 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
         intervals, anomalies = reconstruct(events, teams, game_end, num_periods)
     result = []
     for team, opp in ((home, away), (away, home)):
-        stints = _stints(team, opp, events, intervals[team], game_end)
+        stints = _stints(team, opp, events, game_end)
         result.append({
             'name': team,
             'score': sum(points_of(e.desc) for e in events if e.team == team),
