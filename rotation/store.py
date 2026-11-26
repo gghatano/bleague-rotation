@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import corrections
+from . import corrections, fiba
 from .analyze import DataError, analyze, clock_label
 from .fetch import Fetcher
 from .parse import ScheduledGame, StructureError, parse_play_by_play, parse_schedule
@@ -29,11 +29,15 @@ class Store:
     def dates_to_recheck(self, first: str, last: str) -> list[str]:
         """Dates (YYYYMMDD) in [first, last] with a published game, to pick up
         corrections the source makes in the days after a game."""
-        return sorted({g['date'].replace('-', '') for g in self.index['games'].values()
+        return sorted({g['date'].replace('-', '') for g in self._bleague()
                        if g['status'] == 'ok' and first <= g['date'].replace('-', '') <= last})
 
     def dates_to_retry(self) -> list[str]:
-        return sorted({g['date'].replace('-', '') for g in self.index['games'].values() if g['status'] in ('error', 'live')})
+        return sorted({g['date'].replace('-', '') for g in self._bleague() if g['status'] in ('error', 'live')})
+
+    def _bleague(self):
+        """Games found through the B.LEAGUE schedule; FIBA games are added by URL."""
+        return (g for g in self.index['games'].values() if g.get('league', 'bleague') == 'bleague')
 
 
 class Report:
@@ -184,3 +188,49 @@ def process_date(store: Store, fetcher: Fetcher, ymd: str, report: Report, live:
     store.index['seasonDates'] = season_dates
     return [process_game(store, fetcher, g, ymd, report) for g in games
             if g.status == FINISHED or (live and in_progress(g))]
+
+
+def _save_game(store: Store, game_id: str, payload: dict):
+    path = store.game_path(game_id)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    stored = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+    if stored is None or {k: v for k, v in stored.items() if k != 'generatedAt'} != payload:
+        payload['generatedAt'] = datetime.now(timezone.utc).isoformat(timespec='seconds')
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+
+
+def process_fiba_game(store: Store, fetcher: Fetcher, url: str, report: Report) -> dict:
+    """A FIBA game is published only when the rebuild reproduces the official
+    score, and every player's minutes (to the second) and +/- in FIBA's box score."""
+    _, fiba_id = fiba.parse_url(url)
+    game_id = f'fiba-{fiba_id}'
+    entry = {'gameId': game_id, 'league': 'fiba', 'sourceUrl': url.split('#')[0]}
+    try:
+        game = fiba.parse_game(fetcher.fiba_game(entry['sourceUrl'], game_id), url)
+        entry.update(date=game.date, tipoff=game.tipoff, competition=game.competition,
+                     home={'name': game.home, 'teamId': '', 'score': game.home_score},
+                     away={'name': game.away, 'teamId': '', 'score': game.away_score})
+        result = analyze(game.events, game.num_periods, game.home, game.away, final=game.final, exact_order=True)
+        if result['truncated']:
+            raise DataError(result['truncated']['reason'])
+        computed = [t['score'] for t in result['teams']]
+        if game.final:
+            if computed != [game.home_score, game.away_score]:
+                raise DataError(f'再計算した得点 {computed[0]}-{computed[1]} が公式スコア {game.home_score}-{game.away_score} と一致しない')
+            if diffs := fiba.check_against_box_score(result, game.official):
+                raise DataError('公式ボックススコアと一致しない: ' + '、'.join(diffs[:5]) + (f' ほか{len(diffs) - 5}件' if len(diffs) > 5 else ''))
+        else:
+            entry['clock'] = '試合中'
+            entry['home']['score'], entry['away']['score'] = computed
+    except (DataError, StructureError) as e:
+        kind = 'structure' if isinstance(e, StructureError) else 'data'
+        entry.update(status='error', errorKind=kind, message=str(e))
+        store.game_path(game_id).unlink(missing_ok=True)
+        report.problem(kind, game_key(game_id), f'FIBAの試合を取り込めない（{game_key(game_id)}）',
+                       f'- 内容: {e}\n- 出典: {entry["sourceUrl"]}')
+    else:
+        entry.update(status='ok' if game.final else 'live', anomalies=len(result['anomalies']))
+        _save_game(store, game_id, {**entry, **result, 'corrections': []})
+    if 'date' in entry:  # without a date the index page could not place it; the report still carries it
+        store.index['games'][game_id] = entry
+    return entry

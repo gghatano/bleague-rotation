@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 from .fetch import Fetcher
 from .notify import notify
 from .site import build
-from .store import Report, Store, process_date
+from .store import Report, Store, process_date, process_fiba_game
 
 ROOT = Path(__file__).resolve().parent.parent
 RECHECK_DAYS = 3
@@ -55,6 +55,21 @@ def cmd_update(args) -> int:
     return 0
 
 
+def cmd_fiba(args) -> int:
+    store = Store(ROOT / 'data')
+    fetcher = Fetcher(ROOT / 'raw')
+    report = Report()
+    for url in args.url:
+        e = process_fiba_game(store, fetcher, url, report)
+        store.save_index()
+        if e['status'] == 'error':
+            print(f"{e['gameId']}: 取り込めない ({e['message']})")
+        else:
+            print(f"{e['date']} {e['gameId']} {e['home']['name']} {e['home']['score']}-{e['away']['score']} {e['away']['name']}: {e['status']}")
+    report.write(Path(args.report))
+    return 1 if report.problems else 0
+
+
 def cmd_build(args) -> int:
     count = build(ROOT / 'data', Path(args.out))
     print(f'{count} 試合のページを {args.out} に生成')
@@ -76,6 +91,10 @@ def main() -> int:
     p.add_argument('--report', default=str(ROOT / 'report.json'), help='見つかった問題の出力先')
     p.add_argument('--live', action='store_true', help='試合中の試合も取り込む（日付の既定は当日。当日が開催日でなければ直近の開催日）')
     p.set_defaults(func=cmd_update)
+    p = sub.add_parser('fiba', help='FIBAの試合ページ（www.fiba.basketball/…/games/…）のURLを指定して、代表戦を取り込む')
+    p.add_argument('url', nargs='+')
+    p.add_argument('--report', default=str(ROOT / 'report.json'), help='見つかった問題の出力先')
+    p.set_defaults(func=cmd_fiba)
     p = sub.add_parser('build', help='data/ から静的サイトを生成する')
     p.add_argument('--out', default=str(ROOT / '_site'))
     p.set_defaults(func=cmd_build)

@@ -27,5 +27,8 @@ class Fetcher:
     def schedule(self, ymd: str) -> str:
         return self._get(f'{BASE}/daily/schedule_{ymd}.html', f'schedule_{ymd}.html')
 
+    def fiba_game(self, url: str, game_id: str) -> str:
+        return self._get(url, f'{game_id}.html')
+
     def play_by_play(self, game_id: str) -> str:
         return self._get(f'{BASE}/games/{game_id}/text_live.html', f'text_live_{game_id}.html')

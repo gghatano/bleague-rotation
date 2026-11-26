@@ -96,6 +96,7 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
 .game .spark{grid-column:1 / -1;display:block;height:46px;margin-top:2px;}
 .game .spark svg{display:block;width:100%;height:100%;overflow:visible;}
 .game .msg{grid-column:2 / -1;font-size:11.5px;color:var(--ink-faint);}
+.game .comp{display:block;font-size:11px;color:var(--accent);margin-bottom:1px;}
 .empty-note{font-size:13px;color:var(--ink-faint);}
 .foot{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);line-height:1.7;}
 .foot p{margin:0 0 .5rem;}
@@ -124,7 +125,8 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
   <footer class="foot">
     <p><b>更新タイミング</b>: 試合のある日は13時〜23時（JST）に15分おきを目安に、試合中の経過を更新します。翌日の早朝に、前日の試合を確定版として取得し直します。GitHubの混雑状況により、更新が遅れることがあります。交代記録に不整合がある試合は表示を保留し、翌日以降に再取得します（試合直後の記録は後から修正されることがあるため）。最終更新: {{BUILT_AT}}（JST）</p>
     <p><b>出典</b>: <a href="https://sports.yahoo.co.jp/basket/bleague/premier/schedule" rel="noopener">sports.yahoo.co.jp B.PREMIER 日程・テキスト速報</a>。各試合ページに元のテキスト速報へのリンクがあります。数値はテキスト速報の記録から本サイトが独自に集計したもので、公式記録ではありません。</p>
-    <p>本サイトは非公式のファンサイトで、B.LEAGUE・Yahoo! JAPANとは関係ありません。</p>
+    <p>日本代表の試合は <a href="https://www.fiba.basketball/" rel="noopener">FIBA 公式サイト</a>の試合ページ（プレイバイプレイ・ボックススコア）から集計し、各選手の出場時間と+/-が公式ボックススコアと一致することを確かめて公開しています。代表戦は自動では更新されず、試合ごとに取り込みます。</p>
+    <p>本サイトは非公式のファンサイトで、B.LEAGUE・Yahoo! JAPAN・FIBA・日本バスケットボール協会とは関係ありません。</p>
   </footer>
 </div>
 
@@ -229,7 +231,7 @@ a.game:hover{border-color:var(--line-strong);background:var(--surface-sunken);}
                      : '<span class="issue">' + 'データ確認中' + '</span>';
       el.innerHTML =
         '<span class="time">' + esc(g.tipoff) + '</span>' +
-        '<span class="teams">' + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
+        '<span class="teams">' + (g.competition ? '<span class="comp">' + esc(g.competition) + '</span>' : '') + esc(g.home.name) + '<span class="score">' + esc(g.home.score) + ' - ' + esc(g.away.score) + '</span>' + esc(g.away.name) + '</span>' +
         right +
         (ok ? (g.truncatedAt ? '<span class="msg">記録の不整合のため ' + esc(g.truncatedAt) + ' までを表示中</span>' : '')
             : '<span class="msg">' + esc(g.message || '') + '</span>') +
