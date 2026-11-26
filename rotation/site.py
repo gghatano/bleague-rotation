@@ -60,6 +60,25 @@ def _lineup_table(lineups: list[dict]) -> str:
             '<th>得点-失点</th><th>回数</th><th>5人</th></tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>')
 
 
+def _source(game: dict, as_of: str) -> tuple[str, str, str]:
+    """(competition label, page footer, one-line credit for the shared image)."""
+    if game.get('league') == 'fiba':
+        url = html.escape(game['sourceUrl'])
+        footer = (f'<p>出典: <a href="{url}" rel="noopener">FIBA 公式サイトの試合ページ（プレイバイプレイ・ボックススコア）</a>。'
+                  'プレイバイプレイの交代・得点の記録から本サイトが独自に集計したもので、公式記録ではありません。'
+                  '集計した各選手の出場時間と+/-は、同じページの公式ボックススコアと一致することを確かめてから公開しています。</p>\n    '
+                  f'<p>データ取得: {as_of}（JST）。</p>\n    '
+                  '<p>本サイトは非公式のファンサイトで、FIBA・日本バスケットボール協会とは関係ありません。</p>')
+        return html.escape(game['competition']), footer, '出典: FIBA 公式サイトのプレイバイプレイを独自に集計（非公式）'
+    footer = (f'<p>出典: <a href="{html.escape(SOURCE_URL.format(game["gameId"]))}" rel="noopener">'
+              f'sports.yahoo.co.jp B.PREMIER テキスト速報（gameId {html.escape(game["gameId"])}）</a>。'
+              'テキスト速報の交代・得点の記録から本サイトが独自に集計したもので、公式記録ではありません。</p>\n    '
+              f'<p>データ取得: {as_of}（JST）。試合中は15分おきを目安に更新し、翌日の早朝に確定版として取得し直します。'
+              '確定版の取得後に出典側で記録が修正されても、このページには反映されない場合があります。</p>\n    '
+              '<p>本サイトは非公式のファンサイトで、B.LEAGUE・Yahoo! JAPANとは関係ありません。</p>')
+    return 'B.LEAGUE PREMIER', footer, '出典: sports.yahoo.co.jp テキスト速報を独自に集計（非公式）'
+
+
 def render_game(game: dict) -> str:
     home, away = game['teams']
     t1, t2 = html.escape(home['name']), html.escape(away['name'])
@@ -84,12 +103,14 @@ def render_game(game: dict) -> str:
         note += (f'<b class="live">出典の交代記録のうち{len(game["corrections"])}件を補正して集計しています'
                  f'（{html.escape("、".join(game["corrections"]))}）。</b>')
     if live:
-        note += '試合中のデータです。試合終了後、翌朝の更新で確定版に置き換わります。'
+        note += ('試合中のデータです。試合終了後に取り込み直すと確定版に置き換わります。' if game.get('league') == 'fiba'
+                 else '試合中のデータです。試合終了後、翌朝の更新で確定版に置き換わります。')
     if game.get('truncated'):
         note += (f'<b class="live">{html.escape(game["truncatedAt"])} 以降は、出典の交代記録に不整合があるため表示を止めています'
                  f'（{html.escape(game["truncated"]["reason"])}）。出典で修正されれば、次の更新で表示が戻ります。</b>')
     as_of = _jst(datetime.fromisoformat(game['generatedAt']), seconds=True)
     state = f'試合中 {game.get("clock", "")}' if live else '試合終了'
+    competition, footer, credit = _source(game, as_of)
     chart['share'] = {
         'title': f'{home["name"]} {game["home"]["score"]}-{game["away"]["score"]} {away["name"]}',
         'date': f'{y}年{m}月{d}日 {game["tipoff"]}',
@@ -97,18 +118,17 @@ def render_game(game: dict) -> str:
         'asOf': as_of,
         'url': f'{SITE_URL}games/{game["gameId"]}.html',
         'file': f'rotation_{game["gameId"]}.png',
+        'source': credit,
     }
     values = {
         'TITLE': f'{t1}-{t2} ローテーション',
         'DATE': game['date'],
         'T1': t1, 'T2': t2,
         'S1': str(game['home']['score']), 'S2': str(game['away']['score']),
-        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・B.LEAGUE PREMIER（ホーム {t1}）',
+        'META': f'{y}年{m}月{d}日 {html.escape(game["tipoff"])}・{competition}（ホーム {t1}）',
         'AS_OF': (f'<b class="live">{html.escape(state)}</b>' if live else state) + f'・{as_of} 時点のデータ',
         'NOTE': note,
-        'GAME_ID': html.escape(game['gameId']),
-        'SOURCE_URL': html.escape(SOURCE_URL.format(game['gameId'])),
-        'FETCHED_AT': as_of,
+        'SOURCE_FOOTER': footer,
         'LINEUPS': lineups,
         'DATA': _json_for_script(chart),
     }

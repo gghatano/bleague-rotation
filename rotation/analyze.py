@@ -82,6 +82,36 @@ def _stints(team, opp, events, intervals, game_end):
     return stints
 
 
+def _stints_by_order(team, opp, events, game_end):
+    """Like _stints, but a basket scored in the same second as a substitution
+    goes to whichever lineup the event order says was on court. Only for a
+    source whose event order within a second is reliable (FIBA LiveStats)."""
+    court, stints = {}, []
+    for i, e in enumerate(events):
+        m = SUB_RE.match(e.desc)
+        if m and e.team == team:
+            key = (m.group(1), m.group(2))
+            if m.group(3) == 'イン':
+                court.setdefault(key, None)
+            else:
+                court.pop(key, None)
+            nxt = events[i + 1] if i + 1 < len(events) else None
+            if nxt and nxt.sec == e.sec and nxt.team == team and SUB_RE.match(nxt.desc):
+                continue
+            lineup = [{'jersey': j, 'name': n} for j, n in court]
+            if stints and stints[-1]['start'] == e.sec and not (stints[-1]['for'] or stints[-1]['against']):
+                stints[-1]['lineup'] = lineup
+                continue
+            if stints:
+                stints[-1]['end'] = e.sec
+            stints.append({'start': e.sec, 'end': game_end, 'for': 0, 'against': 0, 'margin': 0, 'lineup': lineup})
+        elif stints and (p := points_of(e.desc)):
+            st = stints[-1]
+            st['for' if e.team == team else 'against'] += p
+            st['margin'] = st['for'] - st['against']
+    return stints
+
+
 def _players(intervals, stints):
     spans = defaultdict(list)
     for key, start, end in intervals:
@@ -112,9 +142,11 @@ def _lineups(stints):
     return sorted(groups.values(), key=lambda g: -g['sec'])
 
 
-def analyze(events: list[Event], num_periods: int, home: str, away: str, final: bool = True) -> dict:
+def analyze(events: list[Event], num_periods: int, home: str, away: str, final: bool = True,
+            exact_order: bool = False) -> dict:
     """Rebuilds a game. With final=False the game is still in progress: it may
-    have fewer than four periods, and every open stint ends at the latest play."""
+    have fewer than four periods, and every open stint ends at the latest play.
+    With exact_order the events' list order decides same-second ties."""
     if final and num_periods < REGULAR_PERIODS:
         raise StructureError(f'試合終了なのにピリオドが{num_periods}個しかない')
     axis = period_lengths(max(num_periods, REGULAR_PERIODS))
@@ -140,7 +172,8 @@ def analyze(events: list[Event], num_periods: int, home: str, away: str, final: 
         intervals, anomalies = reconstruct(events, teams, game_end, num_periods)
     result = []
     for team, opp in ((home, away), (away, home)):
-        stints = _stints(team, opp, events, intervals[team], game_end)
+        stints = (_stints_by_order(team, opp, events, game_end) if exact_order
+                  else _stints(team, opp, events, intervals[team], game_end))
         result.append({
             'name': team,
             'score': sum(points_of(e.desc) for e in events if e.team == team),
